@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'Mak';
+    src: url('./assets/fonts/MAK.woff') format('truetype');
+}
+
+h1 {
+    font-family: 'MAK';
+}
+
+p {
+    font-family: "Poppins", sans-serif;
+}
