@@ -1,0 +1,87 @@
+:root {
+    --Vermelho: #8C2A2A;
+    --Amarelo: #F8F8D8;
+    --Marrom: #C29181;
+}
+
+/* flex {
+    display: flex;
+} */
+
+ul,
+li,
+link {
+    list-style: none;
+    text-decoration: none;
+}
+
+aside {
+    background-color: var(--Vermelho);
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    flex: 0 0 30vw;
+    padding: 50px 110px 0 50px;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.highlight {
+    background-color: var(--Amarelo);
+    width: 10px;
+    height: 50px;
+    border-radius: 0 10px 10px 0;
+    position: absolute;
+    left: 0;
+}
+
+.logo img {
+    width: 200px;
+    height: 80px;
+}
+
+ul {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+li img {
+    margin-right: 25px;
+    opacity: 50%;
+}
+
+li a,
+li Link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--Marrom);
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+}
+
+li a.active {
+    color: var(--Amarelo);
+}
+
+li a.active img {
+    opacity: 100%;
+}
+
+.saida {
+    margin-bottom: 20px;
+}
+
+.saida a {
+    color: var(--Amarelo);
+}
+
+.saida img {
+    opacity: 100%;
+}
