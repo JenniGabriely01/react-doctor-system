@@ -5,8 +5,18 @@ import './global.css';
 import Livraria from "./pages/Livraria/livraria";
 import Clientes from "./pages/Clientes/clientes";
 import Prazos from "./pages/Prazos/prazos";
+import axios from "axios";
+import api from '../Api';
+import { useEffect } from "react";
 
 function App() {
+
+    useEffect(() => {
+        api.get('/testeApi').then(res=>{
+            console.log(res.data);
+        })
+    }, [])
+
     return (
         <BrowserRouter>
             <Routes>

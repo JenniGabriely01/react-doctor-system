@@ -1,0 +1,80 @@
+:root {
+    --Vermelho: #8C2A2A;
+    --Amarelo: #F8F8D8;
+    --Marrom: #C29181;
+    --Padding-Default: 3rem;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden; 
+}
+
+.login {
+    background-image: url("../../assets/imagens/background-login.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--Padding-Default);
+}
+
+.center-login {
+    background-color: var(--Vermelho);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    max-width: 700px; 
+    width: 100%; 
+    box-sizing: border-box;
+}
+
+.conteudo-login {
+    text-align: center;
+}
+
+.conteudo-login img {
+    margin-bottom: 60px;
+    max-width: 100%;
+    width: 9rem;
+    height: auto;
+}
+
+.conteudo-login input {
+    width: 85%;
+    background: transparent;
+    border: 0;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid var(--Amarelo);
+    border-bottom: 3px solid var(--Amarelo);
+    padding: 15px;
+    margin-bottom: 20px;
+    font-size: 1.050rem;
+}
+
+.conteudo-login input::placeholder {
+    color: var(--Amarelo);
+    font-weight: 400;
+}
+
+.conteudo-login button {
+   border: 1px solid var(--Amarelo);
+   border-bottom: 3px solid var(--Amarelo);
+   color: var(--Amarelo);
+   font-weight: 500;
+   background-color: transparent;
+   text-decoration: none;
+   text-align: center;
+   padding: 15px 130px;
+   width: 50%;
+   border-radius: 5px;
+   font-size: 1rem;
+   margin-top: 40px;
+}
+
+
