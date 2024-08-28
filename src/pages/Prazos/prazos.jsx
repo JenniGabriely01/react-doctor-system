@@ -1,11 +1,29 @@
 import MenuLateral from "../../components/menuLateral/menuLateral";
+import TituloGrande from "../../components/tituloGrande/tituloGrande";
+import BarraSearch from "../../components/barraSearch/barraSearch";
+import './prazos.css'
 
-export default function Prazos(){
-    return(
+export default function Prazos() {
+    return (
         <>
-            <h2>Prazos</h2>
+            <section className="container-prazos">
+                <div>
+                    <MenuLateral />
+                </div>
 
-            <MenuLateral/>
+                <div>
+                    <TituloGrande
+                        tituloG="Prazos de Devolução"
+                    />
+                </div>
+
+                <div>
+                    <BarraSearch
+                        placeholder="Pesquisar prazos..."
+                    />
+                </div>
+            </section>
+
         </>
     )
 }

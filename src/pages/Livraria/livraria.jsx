@@ -1,11 +1,31 @@
+import BarraSearch from "../../components/barraSearch/barraSearch";
 import MenuLateral from "../../components/menuLateral/menuLateral";
+import Button from "../../components/button/button";
+import './livraria.css';
 
-export default function Livraria(){
-    return(
+export default function Livraria() {
+    return (
         <>
-            <h2>livraria</h2>
+            <section className="container-livraria">
+                <div>
+                    <MenuLateral />
+                </div>
 
-            <MenuLateral/>  
+                <div>
+                    <BarraSearch
+                        placeholder="Pesquisar por título e autores..."
+                    />
+                </div>
+
+                <div>
+                    <Button
+                        legendaBotao="
+                        Cadastrar"
+                    />
+                </div>
+
+            </section>
+
         </>
     )
 }

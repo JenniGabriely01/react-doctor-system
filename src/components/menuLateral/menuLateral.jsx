@@ -14,7 +14,6 @@ export default function MenuLateral() {
     const location = useLocation();
     const currentPath = location.pathname;
     return (
-        <section className="flex">
             <aside>
                 <div className="logo">
                     <img src={logoMenuLateral} alt="Logo" />
@@ -73,8 +72,5 @@ export default function MenuLateral() {
                     </li>
                 </div>
             </aside>
-
-        </section >
-
     )
 }

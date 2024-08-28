@@ -1,0 +1,16 @@
+:root {
+    --Vermelho: #8C2A2A;
+    --Amarelo: #F8F8D8;
+    --VermelhoOpacidade: #C28989;
+}
+
+button{
+   width: 145px;
+   height: 38px;
+   border-radius: 50px;
+   border: none;
+   background-color: var(--Vermelho);
+   font-size: 10px;
+   color: var(--Amarelo);
+   align-items: center;
+}

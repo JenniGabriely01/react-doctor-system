@@ -1,0 +1,41 @@
+:root {
+    --Vermelho: #8C2A2A;
+    --Amarelo: #F8F8D8;
+    --Rosa: #F8E8E8;
+    --VermelhoOpacidade: #C28989;
+}
+
+.search {
+    
+    background-color: var(--Rosa);
+    position: relative; 
+    display: flex; 
+    width: 400px;
+    height: 55px;
+    border-radius: 50px;
+    align-items: center;
+    padding-left: 30px;
+}
+
+input {
+    background: transparent;
+    box-sizing: border-box;
+    border: 0;
+    outline: none;  
+    width: 80%;
+    color: rgba(140, 42, 42, 1);
+}
+
+.search img{
+    width: 40px;
+    margin-left: 5px;
+}
+
+.search ::placeholder{
+    color: var(--VermelhoOpacidade);
+    font-weight: bold;
+}
+
+h1 {
+    font-family: "Poppins", sans-serif;
+}
