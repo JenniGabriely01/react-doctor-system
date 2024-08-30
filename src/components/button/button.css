@@ -4,7 +4,7 @@
     --VermelhoOpacidade: #C28989;
 }
 
-button{
+.botao{
    width: 145px;
    height: 38px;
    border-radius: 50px;

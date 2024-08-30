@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './login.css';
-import logoMain from '../../assets/imagens/logo-main.svg';
+import imagemDireita from '../../assets/imagens/imagemFundoLogin.png';
+import logoVertical from '../../assets/imagens/logoVertical.svg';
+import logoForm from '../../assets/imagens/logoMenu.svg';
 
 export default function Login() {
     const [email, setEmail] = useState('');
@@ -15,7 +17,7 @@ export default function Login() {
         event.preventDefault();
 
         if (!email || !password) {
-            setError('Por favor, insira todos os campos.');
+            setError('*Por favor, insira todos os campos.');
             return;
         }
 
@@ -33,45 +35,55 @@ export default function Login() {
             if (response.ok) {
                 setSuccess('Login bem-sucedido!');
                 setError('');
-                
-                
+
                 navigate('/Home');
             } else {
                 setError(data.error || 'Erro ao realizar login');
                 setSuccess('');
             }
         } catch (err) {
-            console.error('Erro ao fazer login:', err);
-            setError('Erro ao fazer login');
+            console.error('*Erro ao fazer login:', err);
+            setError('*Erro ao fazer login');
             setSuccess('');
         }
     };
 
     return (
         <section className="login">
-            <div className="center-login">
-                <div className="conteudo-login">
-                    <img src={logoMain} alt="Logo" />
+            <div className="conteiner-login">
+                <div className="conetudo-login">
+                    <img src={logoForm} alt="Logo" />
+                    <h1>Bem-vindo de Volta!</h1>
+                    <p className="p-title">Por favor, entre em sua conta.</p>
                     <form onSubmit={handleLogin}>
-                        <input
-                            type="text"
-                            placeholder="Digite seu e-mail"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                        />
-                        <input
-                            type="password"
-                            placeholder="Digite sua senha"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
+                        <div className="input-style">
+                            <p>Email</p>
+                            <input
+                                type="text"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+                        </div>
+
+                        <div className="input-style">
+                            <p>Senha</p>
+                            <input
+                                type="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                        </div>
+                        {error && <p className="error-message">{error}</p>}
+                        {success && <p className="success-message">{success}</p>}
                         <button type="submit">Entrar</button>
                     </form>
-                    {error && <p className="error-message">{error}</p>}
-                    {success && <p className="success-message">{success}</p>}
                 </div>
+            </div>
+
+            <div className="img-login">
+                <img className="background-imagem" src={imagemDireita} alt="Imagem lateral" />
+                <img className="logo-background" src={logoVertical} alt="Logo" />
             </div>
         </section>
     );
 }
-

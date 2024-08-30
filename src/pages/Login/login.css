@@ -1,80 +1,135 @@
 :root {
     --Vermelho: #8C2A2A;
+    --VermelhoBackground: #651F1F;
     --Amarelo: #F8F8D8;
     --Marrom: #C29181;
-    --Padding-Default: 3rem;
 }
 
-html, body {
+html,
+body {
     height: 100%;
-    overflow: hidden; 
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
 }
 
 .login {
-    background-image: url("../../assets/imagens/background-login.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 100vh; 
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+
+.conteiner-login {
+    width: 50%;
+    background-color: var(--VermelhoBackground);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.conetudo-login {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin-left: 75px;
+    text-align: left;
+}
+
+.conetudo-login img {
+    max-width: 180px;
+    margin-bottom: 60px;
+}
+
+.conetudo-login h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--Amarelo);
+}
+
+.p-title {
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 35px;
+    color: var(--Amarelo);
+}
+
+.input-style {
+    background-color: var(--Vermelho);
+    border-left: 8px solid var(--Amarelo);
+    border-radius: 5px;
+    height: 90px;
+    margin-bottom: 15px;
+}
+
+.input-style p {
+    font-size: 0.6rem;
+    font-weight: 600;
+    margin-left: 20px;
+    margin: 15px 0 0 20px;
+    color: var(--Amarelo);
+}
+
+.input-style input {
+    border: 0;
+    background: transparent;
+    color: var(--Amarelo);
+    padding: 20px 0 0 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    outline: none;
+}
+
+.conetudo-login form {
+    display: flex;
+    flex-direction: column;
+}
+
+.error-message, .success-message {
+    text-align: right;
+    font-size: 0.8rem;
+    color: var(--Amarelo);
+}
+
+.conetudo-login button {
+    margin-top: 35px;
+    background: transparent;
+    border: 2px solid var(--Amarelo);
+    color: var(--Amarelo);
+    border-radius: 5px;
+    width: 50%;
+    padding: 8px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.1s ease;
+}
+
+.conetudo-login button:hover {
+    box-shadow: 0 0 25px 0 var(--Vermelho); 
+    border: 2.5px solid var(--Amarelo);
+}
+
+.img-login {
+    width: 50%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: var(--Padding-Default);
+    overflow: hidden;
 }
 
-.center-login {
-    background-color: var(--Vermelho);
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    padding: 2rem;
-    max-width: 700px; 
-    width: 100%; 
-    box-sizing: border-box;
+.background-imagem {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;  /* garante que a imagem preencha a área sem distorcer */
 }
 
-.conteudo-login {
-    text-align: center;
+.logo-background {
+    z-index: 1;
+    position: absolute;
+    max-width: 100px;
+    right: 0;
+    margin-right: 50px;
+    margin: 0 20px 20px 0;
+    bottom: 0;
 }
-
-.conteudo-login img {
-    margin-bottom: 60px;
-    max-width: 100%;
-    width: 9rem;
-    height: auto;
-}
-
-.conteudo-login input {
-    width: 85%;
-    background: transparent;
-    border: 0;
-    outline: none;
-    border-radius: 5px;
-    border: 1px solid var(--Amarelo);
-    border-bottom: 3px solid var(--Amarelo);
-    padding: 15px;
-    margin-bottom: 20px;
-    font-size: 1.050rem;
-}
-
-.conteudo-login input::placeholder {
-    color: var(--Amarelo);
-    font-weight: 400;
-}
-
-.conteudo-login button {
-   border: 1px solid var(--Amarelo);
-   border-bottom: 3px solid var(--Amarelo);
-   color: var(--Amarelo);
-   font-weight: 500;
-   background-color: transparent;
-   text-decoration: none;
-   text-align: center;
-   padding: 15px 130px;
-   width: 50%;
-   border-radius: 5px;
-   font-size: 1rem;
-   margin-top: 40px;
-}
-
-
