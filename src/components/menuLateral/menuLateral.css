@@ -4,25 +4,24 @@
     --Marrom: #C29181;
 }
 
-ul,
-li,
-link {
-    list-style: none;
-    text-decoration: none;
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    min-height: 100vh;
+    overflow: hidden; /* Impede rolagem no body */
+    background-color: pink;
 }
 
 aside {
     background-color: var(--Vermelho);
-    /* position: fixed; */
-    left: 0;
+    width: 300px; 
+    height: 100vh; 
+    position: fixed;
     top: 0;
-    height: 100%;
-    flex: 0 0 30vw;
-    padding: 50px 110px 0 50px;
-    max-width: 400px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    left: 0;
+    padding: 50px 20px;
+    box-sizing: border-box;
 }
 
 .highlight {
@@ -39,19 +38,27 @@ aside {
     height: 80px;
 }
 
-ul {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    
 }
 
-li img {
+nav{
+    margin-top: 5vw;
+}
+
+nav li {
+    margin-bottom: 25px;
+}
+
+nav li img {
     margin-right: 25px;
     opacity: 50%;
 }
 
-li a,
-li Link {
+nav li a {
     display: flex;
     align-items: center;
     text-decoration: none;
@@ -59,25 +66,34 @@ li Link {
     font-family: "Poppins", sans-serif;
     font-weight: 600;
     font-size: 1.2rem;
-    margin-bottom: 25px;
 }
 
-li a.active {
+nav li a.active {
     color: var(--Amarelo);
 }
 
-li a.active img {
+nav li a.active img {
     opacity: 100%;
 }
 
 .saida {
-    margin-bottom: 20px;
+    text-decoration: none;
+    justify-content: center;
+    margin-top: 5vw;
+}
+
+.saida li{
+    list-style-type: none;
 }
 
 .saida a {
+    text-decoration: none;
     color: var(--Amarelo);
+    display: flex;
+    align-items: center;
 }
 
 .saida img {
     opacity: 100%;
+    margin-right: 25px;
 }

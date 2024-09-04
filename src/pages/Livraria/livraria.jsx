@@ -6,26 +6,20 @@ import './livraria.css';
 export default function Livraria() {
     return (
         <>
-            <section className="container-livraria">
-                <div>
-                    <MenuLateral />
-                </div>
-
-                <div>
-                    <BarraSearch
-                        placeholder="Pesquisar por título e autores..."
-                    />
-                </div>
-
-                <div>
-                    <Button
-                        legendaBotao="
-                        Cadastrar"
-                    />
-                </div>
-
-            </section>
-
+            <MenuLateral />
+            <main className="conetudo">
+                <section className="divs">
+                    <div className="teste"></div>
+                    <div className="teste"></div>
+                    <div className="teste"></div>
+                    <div className="teste"></div>
+                    <div className="teste"></div>
+                    <div className="teste"></div>
+                    <div className="teste"></div>
+                    <div className="teste"></div>
+                    <div className="teste"></div>
+                </section>
+            </main>
         </>
     )
 }
