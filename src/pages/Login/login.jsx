@@ -4,6 +4,7 @@ import './login.css';
 import imagemDireita from '../../assets/imagens/imagemFundoLogin.png';
 import logoVertical from '../../assets/imagens/logoVertical.svg';
 import logoForm from '../../assets/imagens/logoMenu.svg';
+import Input from '../../components/input/inpux';
 
 export default function Login() {
     const [email, setEmail] = useState('');
@@ -56,23 +57,20 @@ export default function Login() {
                     <h1>Bem-vindo de Volta!</h1>
                     <p className="p-title">Por favor, entre em sua conta.</p>
                     <form onSubmit={handleLogin}>
-                        <div className="input-style">
-                            <p>Email</p>
-                            <input
-                                type="text"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                            />
-                        </div>
+                        <Input 
+                            placeholder="Email"
+                            type="text"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
 
-                        <div className="input-style">
-                            <p>Senha</p>
-                            <input
-                                type="password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                            />
-                        </div>
+                        <Input
+                            placeholder="Senha"
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+
                         {error && <p className="error-message">{error}</p>}
                         {success && <p className="success-message">{success}</p>}
                         <button type="submit">Entrar</button>

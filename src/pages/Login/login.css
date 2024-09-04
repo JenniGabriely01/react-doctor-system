@@ -53,31 +53,6 @@ body {
     color: var(--Amarelo);
 }
 
-.input-style {
-    background-color: var(--Vermelho);
-    border-left: 8px solid var(--Amarelo);
-    border-radius: 5px;
-    height: 90px;
-    margin-bottom: 15px;
-}
-
-.input-style p {
-    font-size: 0.6rem;
-    font-weight: 600;
-    margin-left: 20px;
-    margin: 15px 0 0 20px;
-    color: var(--Amarelo);
-}
-
-.input-style input {
-    border: 0;
-    background: transparent;
-    color: var(--Amarelo);
-    padding: 20px 0 0 20px;
-    font-size: 1rem;
-    font-weight: 600;
-    outline: none;
-}
 
 .conetudo-login form {
     display: flex;
