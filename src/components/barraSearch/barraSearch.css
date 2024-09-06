@@ -6,15 +6,15 @@
 }
 
 .search {
-    
     background-color: var(--Rosa);
     position: relative; 
     display: flex; 
-    width: 400px;
+    width: 530px;
     height: 55px;
     border-radius: 50px;
     align-items: center;
-    padding-left: 30px;
+    padding-left: 35px;
+    margin: 0 30px 0 30px;
 }
 
 .search input {
@@ -28,7 +28,7 @@
 
 .search img{
     width: 40px;
-    margin-left: 5px;
+    margin-left: 35px;
 }
 
 .search ::placeholder{
