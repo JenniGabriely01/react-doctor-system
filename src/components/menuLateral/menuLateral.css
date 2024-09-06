@@ -2,26 +2,30 @@
     --Vermelho: #8C2A2A;
     --Amarelo: #F8F8D8;
     --Marrom: #C29181;
+    --font-medium: 1.40vw;
+    --icon-medium: 2vw;
 }
 
-body {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    min-height: 100vh;
-    overflow: hidden; /* Impede rolagem no body */
-    background-color: pink;
+ul,
+li,
+link {
+    list-style: none;
+    text-decoration: none;
 }
 
 aside {
     background-color: var(--Vermelho);
-    width: 300px; 
-    height: 100vh; 
     position: fixed;
-    top: 0;
     left: 0;
-    padding: 50px 20px;
-    box-sizing: border-box;
+    top: 0;
+    height: 100%;
+    padding: 50px 110px 0 50px;
+    width: 30%;
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: width 0.3s ease; /* Animação suave ao redimensionar */
 }
 
 .highlight {
@@ -34,66 +38,55 @@ aside {
 }
 
 .logo img {
-    width: 200px;
-    height: 80px;
+    width: 14vw;
+    height: 5vw;
+    transition: width 0.3s ease, height 0.3s ease; /* Suave aumento/redução */
 }
 
-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    
+ul {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
-nav{
-    margin-top: 5vw;
-}
-
-nav li {
-    margin-bottom: 25px;
-}
-
-nav li img {
+li img {
     margin-right: 25px;
+    width: var(--icon-medium);
+    height: var(--icon-medium);
     opacity: 50%;
+    transition: width 0.3s ease, height 0.3s ease;
 }
 
-nav li a {
+li a,
+li Link {
     display: flex;
     align-items: center;
     text-decoration: none;
     color: var(--Marrom);
     font-family: "Poppins", sans-serif;
     font-weight: 600;
-    font-size: 1.2rem;
+    font-size: var(--font-medium);
+    margin-bottom: 2vw;
+    transition: font-size 0.3s ease;
 }
 
-nav li a.active {
+li a.active {
     color: var(--Amarelo);
 }
 
-nav li a.active img {
+li a.active img {
     opacity: 100%;
 }
 
 .saida {
-    text-decoration: none;
-    justify-content: center;
-    margin-top: 5vw;
-}
-
-.saida li{
-    list-style-type: none;
+    margin-bottom: 20px;
 }
 
 .saida a {
-    text-decoration: none;
     color: var(--Amarelo);
-    display: flex;
-    align-items: center;
 }
 
 .saida img {
     opacity: 100%;
-    margin-right: 25px;
 }
+
