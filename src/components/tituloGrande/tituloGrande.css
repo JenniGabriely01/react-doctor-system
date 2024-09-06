@@ -6,7 +6,7 @@
 
 .title{
     color: var(--Vermelho);
-    font-size: 22px;
-    margin-left: 25px;
-    margin-top: 60px;
+    font-size: 1.563vw;
+    margin-right: 160px;
+    width: 50%;
 }

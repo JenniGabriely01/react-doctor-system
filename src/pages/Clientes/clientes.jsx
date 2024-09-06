@@ -7,32 +7,26 @@ import './clientes.css'
 export default function Clientes() {
     return (
         <>
-            <section className="container-clientes">
-
+            <main className="clientes">
                 <div>
                     <MenuLateral />
-
                 </div>
 
-                <div>
-                    <TituloGrande
-                        tituloG="Clientes da Biblioteca"
-                    />
-                </div>
+                <section className="conteudo-clientes">
+                    <header className="header-clientes">
+                        <TituloGrande
+                            tituloG="Clientes da Biblioteca" />
 
-                <div>
-                    <BarraSearch
-                        placeholder="Pesquisar Clientes..."
-                    />
-                </div>
+                            <BarraSearch
+                                placeholder="Pesquisar Clientes..." />
 
-                <div>
-                    <Button
-                        legendaBotao="Cadastrar"
-                    />
-                </div>
+                            <Button
+                                legendaBotao="Cadastrar"
+                            />
 
-            </section>
+                    </header>
+                </section>
+            </main>
 
 
         </>

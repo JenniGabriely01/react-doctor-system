@@ -9,12 +9,12 @@
     background-color: var(--Rosa);
     position: relative; 
     display: flex; 
-    width: 530px;
-    height: 55px;
-    border-radius: 50px;
+    width: 45vw;
+    height: 3.906vw;
+    border-radius: 2.604vw;
     align-items: center;
-    padding-left: 35px;
-    margin: 0 30px 0 30px;
+    padding-left: 1.823vw;
+    margin: 0 1.7vw 0 1.7vw;
 }
 
 .search input {
@@ -27,8 +27,8 @@
 }
 
 .search img{
-    width: 40px;
-    margin-left: 35px;
+    width: 3vw;
+    margin-left: 5%;
 }
 
 .search ::placeholder{
