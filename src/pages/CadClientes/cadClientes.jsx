@@ -40,6 +40,7 @@ export default function CadClientes() {
                                 legendaBotao="Voltar"
                                 cor="50%"
                                 margem="0 0 0 5%"
+                                rota="/Clientes"
                             />
                         </div>
                     </div>
