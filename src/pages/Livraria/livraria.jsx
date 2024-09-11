@@ -18,6 +18,7 @@ export default function Livraria() {
                         />
                         <Button
                             legendaBotao="Cadastrar"
+                            rota="/CadLivros"
                         />
                     </header>
                 </section>

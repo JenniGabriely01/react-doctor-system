@@ -5,6 +5,9 @@ import './global.css';
 import Livraria from "./pages/Livraria/livraria";
 import Clientes from "./pages/Clientes/clientes";
 import Prazos from "./pages/Prazos/prazos";
+import CadLivros from "./pages/CadLivros/cadLivros";
+import CadClientes from "./pages/CadClientes/cadClientes";
+import Emprestimo from "./pages/Emprestimo/emprestimo";
 
 function App() {
 
@@ -16,6 +19,9 @@ function App() {
                 <Route path="/Livraria" element={<Livraria/>} />
                 <Route path="/Clientes" element={<Clientes/>} />
                 <Route path="/Prazos" element={<Prazos/>} />
+                <Route path="/CadLivros" element={<CadLivros/>} />
+                <Route path="/CadClientes" element={<CadClientes/>} />
+                <Route path="/Emprestimo" element={<Emprestimo/>} />
             </Routes>
         </BrowserRouter>
     );

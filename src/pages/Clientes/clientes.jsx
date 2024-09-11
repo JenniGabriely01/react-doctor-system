@@ -22,6 +22,7 @@ export default function Clientes() {
 
                         <Button
                             legendaBotao="Cadastrar"
+                            rota="/CadClientes"
                         />
 
                     </header>
