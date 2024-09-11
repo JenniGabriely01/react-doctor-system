@@ -1,13 +1,13 @@
 .clientes{
-    overflow-y: auto; /* permite a rolagem */
+    /* overflow-y: auto; */ /* permite a rolagem */
     display: flex;
     width: 100%;
 }
 
 .conteudo-clientes {
-    margin-left: 23%; 
+    margin-left: 25%; 
     width: 75%; 
-    padding: 50px; 
+    padding: 50px 40px; 
 }   
 
 .header-clientes {

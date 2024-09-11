@@ -17,12 +17,12 @@ export default function Clientes() {
                         <TituloGrande
                             tituloG="Clientes da Biblioteca" />
 
-                            <BarraSearch
-                                placeholder="Pesquisar Clientes..." />
+                        <BarraSearch
+                            placeholder="Pesquisar Clientes..." />
 
-                            <Button
-                                legendaBotao="Cadastrar"
-                            />
+                        <Button
+                            legendaBotao="Cadastrar"
+                        />
 
                     </header>
                 </section>
