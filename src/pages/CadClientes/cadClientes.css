@@ -1,0 +1,77 @@
+:root {
+    --Vermelho: #8C2A2A;
+    --VermelhoBackground: #651F1F;
+    --Amarelo: #F8F8D8;
+    --Marrom: #C29181;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.main-content {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+
+.info-conteiner {
+    width: 50%;
+    background-color: var(--VermelhoBackground);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.cad-content {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin-left: 75px;
+    text-align: left;
+}
+
+.cad-content h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--Amarelo);
+}
+
+.p-title {
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 35px;
+    color: var(--Amarelo);
+}
+
+.buttons {
+    display: flex;
+}
+
+.img-cad {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.background-imagem {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;  /* garante que a imagem preencha a área sem distorcer */
+}
+
+.logo-background {
+    z-index: 1;
+    position: absolute;
+    max-width: 100px;
+    right: 0;
+    margin-right: 50px;
+    margin: 0 20px 20px 0;
+    bottom: 0;
+}
