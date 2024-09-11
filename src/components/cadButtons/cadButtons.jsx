@@ -11,7 +11,7 @@ export default function CadButton({ legendaBotao, rota, cor, margem }) {
 
     return (
         <button style={{ opacity: cor, margin: margem }} className="button" onClick={handleClick}>
-            <h1>{legendaBotao}</h1>
+            <h1 className='h1-cadButton'>{legendaBotao}</h1>
         </button>
     )
 }

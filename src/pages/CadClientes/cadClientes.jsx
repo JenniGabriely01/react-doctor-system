@@ -12,7 +12,7 @@ export default function CadClientes() {
             <section className='main-content'>
                 <div className='info-conteiner'>
                     <div className='cad-content'>
-                        <h1>Cadastro</h1>
+                        <h1 className='tittle'>Cadastro</h1>
                         <p className='p-title'>Insira as informações do cliente.</p>
                         <Input
                             placeholder="Nome"

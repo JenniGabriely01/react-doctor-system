@@ -34,10 +34,14 @@ body {
     text-align: left;
 }
 
-.cad-content h1 {
+.tittle {
     font-size: 2rem;
     font-weight: 700;
     color: var(--Amarelo);
+}
+
+.h1-cadButton {
+    font-size: 1.25vw;
 }
 
 .p-title {
