@@ -41,6 +41,11 @@ body {
     background: transparent; 
 }
 
+.form-emprestimo {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
 
 .conteudo-Emprestimo {
     display: flex;
