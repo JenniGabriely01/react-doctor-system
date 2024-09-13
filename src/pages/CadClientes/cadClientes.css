@@ -27,6 +27,12 @@ body {
     overflow: hidden;
 }
 
+.form-cadClientes {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
 .cli-content {
     display: flex;
     flex-direction: column;
