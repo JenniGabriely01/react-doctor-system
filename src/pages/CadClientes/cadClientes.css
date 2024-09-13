@@ -18,15 +18,16 @@ body {
     height: 100vh;
 }
 
-.info-conteiner {
+.cliente-conteiner {
     width: 50%;
     background-color: var(--VermelhoBackground);
     display: flex;
     flex-direction: column;
     justify-content: center;
+    overflow: hidden;
 }
 
-.cad-content {
+.cli-content {
     display: flex;
     flex-direction: column;
     width: 60%;
@@ -34,13 +35,14 @@ body {
     text-align: left;
 }
 
-.tittle {
+.cli-title {
     font-size: 2rem;
     font-weight: 700;
     color: var(--Amarelo);
+    padding: 10vw 0 0 0;
 }
 
-.h1-cadButton {
+.h1-cliButton {
     font-size: 1.25vw;
 }
 
@@ -53,9 +55,11 @@ body {
 
 .buttons {
     display: flex;
+    padding-bottom: 5vw;
+    margin-bottom: 5vw;
 }
 
-.img-cad {
+.img-cli {
     width: 50%;
     height: 100%;
     display: flex;

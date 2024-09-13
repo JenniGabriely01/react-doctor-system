@@ -1,35 +1,49 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import './cadLivros.css';
-import imagemDireita from '../../assets/imagens/ImagemFundoCad.png';
+import iconeLivro from '../../assets/icons/AddBook.svg'
+import imagemDireita from '../../assets/imagens/cadLivros-img.png';
 import logoVertical from '../../assets/imagens/logoVertical.svg';
 import Input from '../../components/input/inpux';
 import CadButton from '../../components/cadButtons/cadButtons';
 
-export default function CadLivros () {
+export default function CadLivros() {
     return (
         <>
             <section className='main-content'>
                 <div className='info-conteiner'>
                     <div className='cad-content'>
-                        <h1>Cadastro</h1>
-                        <p className='p-title'>Insira as informações do cliente.</p>
-                        <Input
-                            placeholder="Nome"
-                            type="text"
-                        />
-                        <Input
-                            placeholder="Sobrenome"
-                            type="text"
-                        />
-                        <Input
-                            placeholder="E-mail"
-                            type="text"
-                        />
-                        <Input
-                            placeholder="Telefone"
-                            type="text"
-                        />
+                        <h1 className='cad-title'>Cadastro</h1>
+                        <p className='p-title'>Insira as informações do livro.</p>
+
+                        <form className='formLivros' action="">
+                            <Input
+                                placeholder="Nome do Livro"
+                                type="text"
+                            />
+                            <Input
+                                placeholder="Autor"
+                                type="text"
+                            />
+                            <Input
+                                placeholder="Gênero"
+                                type="text"
+                            />
+                            <Input
+                                placeholder="Data de Lançamento"
+                                type="text"
+                            />
+                            <Input
+                                placeholder="Quantidade de Cópias"
+                                type="text"
+                            />
+                        </form>
+
+                        <button className='addBook-btn'>
+                            <img className='icon-book' src={iconeLivro} alt="" />
+                            <h1 className='addBook-h1'>
+                                Inserir imagem do livro
+                            </h1>
+                        </button>
 
                         <div className='buttons'>
                             <CadButton
@@ -40,7 +54,7 @@ export default function CadLivros () {
                                 legendaBotao="Voltar"
                                 cor="50%"
                                 margem="0 0 0 5%"
-                                rota="/Clientes"
+                                rota="/"
                             />
                         </div>
                     </div>

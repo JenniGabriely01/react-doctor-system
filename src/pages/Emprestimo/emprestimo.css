@@ -50,7 +50,7 @@ body {
     text-align: left;
 }
 
-.title {
+.emp-title {
     font-size: 2rem;
     font-weight: 700;
     color: var(--Amarelo);
@@ -81,7 +81,7 @@ body {
 }
 
 
-.img-cad {
+.img-emp {
     width: 50%;
     height: 100%;
     display: flex;
