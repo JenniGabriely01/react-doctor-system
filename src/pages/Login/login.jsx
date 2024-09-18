@@ -16,12 +16,12 @@ export default function Login() {
 
     const handleLogin = async (event) => {
         event.preventDefault();
-
+    
         if (!email || !password) {
             setError('*Por favor, insira todos os campos.');
             return;
         }
-
+    
         try {
             const response = await fetch('http://localhost:3000/login', {
                 method: 'POST',
@@ -30,13 +30,13 @@ export default function Login() {
                 },
                 body: JSON.stringify({ email, password }),
             });
-
+    
             const data = await response.json();
-
+    
             if (response.ok) {
                 setSuccess('Login bem-sucedido!');
                 setError('');
-
+                localStorage.setItem('token', data.token);  // Armazena o token JWT
                 navigate('/Home');
             } else {
                 setError(data.error || 'Erro ao realizar login');
@@ -48,6 +48,7 @@ export default function Login() {
             setSuccess('');
         }
     };
+    
 
     return (
         <section className="login">

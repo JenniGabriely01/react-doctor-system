@@ -1,31 +1,35 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+// src/App.jsx
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home/home';
 import Login from './pages/Login/login';
-import './global.css';
-import Livraria from "./pages/Livraria/livraria";
-import Clientes from "./pages/Clientes/clientes";
-import Prazos from "./pages/Prazos/prazos";
+import Livraria from './pages/Livraria/livraria';
+import Clientes from './pages/Clientes/clientes';
+import Prazos from './pages/Prazos/prazos';
 import api from '../Api';
-import { useEffect } from "react";
+import { useEffect } from 'react';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute'; 
 
 function App() {
-
     useEffect(() => {
-        api.get('/testeApi').then(res=>{
+        api.get('/testeApi').then(res => {
             console.log(res.data);
-        })
-    }, [])
+        }).catch(error => {
+            console.error('Erro ao chamar a API:', error);
+        });
+    }, []);
 
     return (
         <BrowserRouter>
             <Routes>
+                <Route path="/login" element={<Login />} />
+                <Route path="/home" element={<PrivateRoute><Home /></PrivateRoute>} />
+                <Route path="/livraria" element={<PrivateRoute><Livraria /></PrivateRoute>} />
+                <Route path="/clientes" element={<PrivateRoute><Clientes /></PrivateRoute>} />
+                <Route path="/prazos" element={<PrivateRoute><Prazos /></PrivateRoute>} />
                 <Route path="/" element={<Login />} />
-                <Route path="/Home" element={<Home />} />
-                <Route path="/Livraria" element={<Livraria/>} />
-                <Route path="/Clientes" element={<Clientes/>} />
-                <Route path="/Prazos" element={<Prazos/>} />
             </Routes>
         </BrowserRouter>
     );
 }
+
 export default App;
