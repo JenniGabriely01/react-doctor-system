@@ -8,6 +8,7 @@ import Prazos from './pages/Prazos/prazos';
 import api from '../Api'; 
 import { useEffect, useState } from 'react';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute'; 
+import CadClientes from './pages/CadClientes/cadClientes';
 
 function App() {
     const [error, setError] = useState(null);
@@ -33,6 +34,7 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/Home" element={<PrivateRoute><Home /></PrivateRoute>} />
                 <Route path="/livraria" element={<PrivateRoute><Livraria /></PrivateRoute>} />
+                <Route path="/cadClientes" element={<PrivateRoute><CadClientes/></PrivateRoute>} />
                 <Route path="/clientes" element={<PrivateRoute><Clientes /></PrivateRoute>} />
                 <Route path="/prazos" element={<PrivateRoute><Prazos /></PrivateRoute>} />
                 <Route path="/" element={<Login />} />
