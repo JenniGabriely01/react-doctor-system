@@ -11,9 +11,9 @@ export default function Emprestimo() {
             <section className="Emprestimo">
                 <div className="container-Emprestimo">
                     <div className="conteudo-Emprestimo">
-                        <h1 className='title'>Empréstimo</h1>
+                        <h1 className='emp-title'>Empréstimo</h1>
                         <p className='p-Title'>Insira as informações do cliente.</p>
-                        <form action="">
+                        <form className="form-emprestimo" action="">
                             <Input
                                 placeholder="Cliente"
                                 type="text"
