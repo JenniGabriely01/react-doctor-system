@@ -13,7 +13,7 @@ export default function CadClientes() {
     const [telefone, setTelefone] = useState('');
     
     const navigate = useNavigate(); // Hook para redirecionar
-
+ 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
