@@ -27,7 +27,7 @@ export default function CadClientes() {
 
         if (response.ok) {
             alert('Cliente cadastrado com sucesso!');
-            navigate('/Clientes'); // Redireciona para a rota /clientes
+            navigate('/Clientes'); 
         } else {
             alert('Erro ao cadastrar cliente');
         }
