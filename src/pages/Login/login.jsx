@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import './login.css';
 import imagemDireita from '../../assets/imagens/imagemFundoLogin.png';
 import logoVertical from '../../assets/imagens/logoVertical.svg';
 import logoForm from '../../assets/imagens/logoMenu.svg';
-import Input from '../../components/input/inpux';
+import Input from '../../components/input/inpux'; 
 
 export default function Login() {
     const [email, setEmail] = useState('');
@@ -36,8 +36,12 @@ export default function Login() {
             if (response.ok) {
                 setSuccess('Login bem-sucedido!');
                 setError('');
-
-                navigate('/Home');
+                localStorage.setItem('token', data.token); 
+                
+                
+                setTimeout(() => {
+                    navigate('/Home');
+                }, 1000); 
             } else {
                 setError(data.error || 'Erro ao realizar login');
                 setSuccess('');
@@ -59,7 +63,7 @@ export default function Login() {
                     <form onSubmit={handleLogin}>
                         <Input 
                             placeholder="Email"
-                            type="text"
+                            type="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                         />

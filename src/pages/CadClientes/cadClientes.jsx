@@ -13,7 +13,7 @@ export default function CadClientes() {
     const [telefone, setTelefone] = useState('');
     
     const navigate = useNavigate(); // Hook para redirecionar
-
+ 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -27,7 +27,7 @@ export default function CadClientes() {
 
         if (response.ok) {
             alert('Cliente cadastrado com sucesso!');
-            navigate('/Clientes'); // Redireciona para a rota /clientes
+            navigate('/Clientes'); 
         } else {
             alert('Erro ao cadastrar cliente');
         }
