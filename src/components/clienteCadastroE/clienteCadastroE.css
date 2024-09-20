@@ -1,0 +1,60 @@
+.CardEstatistica{
+    display: flex;
+    width: 22vw;
+    height: 4.7vw;
+    margin-bottom: 0.6vw;
+    border-radius: 0.521vw;
+    background-color: #F8E8E8;
+}
+
+.lineEstatistica{
+    width: 0.521vw;
+    height: 100%;
+    background-color: #8C2A2A;
+    border-top-left-radius: 0.521vw;
+    border-bottom-left-radius: 0.521vw;
+}
+
+.tituloestatistica{
+    width: 100%;
+    height: 100%;
+}
+
+.tituloEs{
+    display: flex;
+    width: 100%;
+    height: 2.1vw;
+}
+
+.tituloEs h1{
+    font-size: 1.2vw;
+    color: var(--Vermelho);
+    margin-left: 1vw;
+    margin-top: 0.6vw;
+}
+
+.infoEstatistica{
+    display: flex;
+    width: 100%;
+    height: 2vw;
+}
+
+.inforE{
+    width: 100%;
+    height: 2vw;
+}
+
+.NomeEsobreE h3{
+    font-size: 1.2vw;
+    color: var(--Vermelho);
+    margin-left: 1vw;
+    margin-top: 0.6vw;
+}
+
+.inforE h4{
+    font-size: 0.8vw;
+    margin-left: 1vw;
+    font-weight: bold;
+    margin-top: 0.5vw;
+    color: var(--vermelhoOpacidade);
+}

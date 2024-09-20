@@ -1,17 +1,163 @@
-.clientes{
-    /* overflow-y: auto; */ /* permite a rolagem */
+:root {
+    --Vermelho: #8C2A2A;
+    --Amarelo: #F8F8D8;
+    --Marrom: #C29181;
+    --font-medium: 1.40vw;
+    --icon-medium: 2vw;
+}
+
+
+.clientes {
     display: flex;
     width: 100%;
 }
 
 .conteudo-clientes {
-    margin-left: 25%; 
-    width: 75%; 
-    padding: 50px 40px; 
-}   
+    margin-left: 25%;
+    width: 75%;
+    height: 70vw;
+    padding: 2.604vw 3.2vw;
+    overflow-y: auto;
+    height: 100vh;
+}
 
 .header-clientes {
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+}
+
+.banner-container {
+    width: 100%;
+    height: 20vw;
+    display: flex;
+    margin-top: 1.5vw;
+}
+
+.banner {
+    display: flex;
+    width: 100%;
+    height: 15vw;
+    background-image: url('../../assets/imagens/banner.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 0.781vw;
+    position: relative;
+}
+
+.textoB {
+
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-size: 2vw;
+}
+
+.textoB h1 {
+    margin-left: 2.5vw;
+}
+
+.textoB h2 {
+    margin-left: 2.5vw;
+    font-size: 1vw;
+}
+
+#textoB {
+    display: flex;
+    flex-direction: column;
+}
+
+.book {
+    margin-left: 11vw;
+    margin-top: 2.8vw;
+    width: 17.135vw;
+    height: 17.344vw;
+    display: flex;
+    background-image: url(../../assets/imagens/booksBanner.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.secondContent {
+    width: 100%;
+    height: 3.2vw;
+}
+
+.TituloSecondC {
+    width: 100%;
+    height: 2vw;
+    display: flex;
+}
+
+.TituloSecondC h3 {
+    font-size: 1.25vw;
+    color: var(--Vermelho);
+}
+
+.clientes-lista {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 1vw;
+    width: 100%;
+}
+
+.clientes-lista li {
+    flex: 1 1 calc(33.33% - 1vw);
+    box-sizing: border-box;
+    margin: 0;
+}
+
+/* Para Chrome, Edge e Safari */
+::-webkit-scrollbar {
+    width: 8px;
+    /* Largura da barra de rolagem */
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+    /* Fundo da barra de rolagem */
+}
+
+::-webkit-scrollbar-thumb {
+    background: transparent;
+    /* Cor do polegar da barra de rolagem */
+}
+
+.botaoShowMore {
+    display: flex;
+    width: 100%;
+    height: 2vw;
+}
+
+.botaoShowMore h1 {
+    font-size: 1vw;
+    color: var(--Vermelho);
+    font-weight: 700;
+    margin-left: 92.7%;
+}
+
+.ThirdContent{
+    width: 100%;
+    height: 3.2vw;
+}
+
+.TituloThirdC{
+    width: 100%;
+    height: 2vw;
+    display: flex;
+}
+
+.TituloThirdC h3{
+    font-size: 1.25vw;
+    color: var(--Vermelho);
+}
+
+.testeTemporario{
+    display: flex;
+    gap: 1vw; /* Adicione o espaçamento desejado aqui */
 }

@@ -1,0 +1,71 @@
+:root {
+    --Vermelho: #8C2A2A;
+    --Amarelo: #F8F8D8;
+    --Marrom: #C29181;
+    --font-medium: 1.40vw;
+    --icon-medium: 2vw;
+    --vermelhoOpacidade: rgba(140, 42, 42, 0.5);
+}
+
+.card-clientes {
+    display: flex;
+    width: 22vw;
+    height: 4.7vw;
+    margin-bottom: 0.6vw;
+    border-radius: 0.521vw;
+    background-color: #F8E8E8;
+}
+
+.line{
+    width: 0.521vw;
+    height: 100%;
+    background-color: #8C2A2A;
+    border-top-left-radius: 0.521vw;
+    border-bottom-left-radius: 0.521vw;
+}
+
+.infoOne{
+    width: 100%;
+    height: 100%;
+}
+
+.NomeEsobre{
+    display: flex;
+    width: 100%;
+    height: 2.1vw;
+    
+}
+
+.NomeEsobre h3{
+    font-size: 1.2vw;
+    color: var(--Vermelho);
+    margin-left: 1vw;
+    margin-top: 0.6vw;
+}
+
+.livrosPegosT{
+    display: flex;
+    width: 100%;
+    height: 2vw;
+}
+
+.livrosPegosT h4{
+    font-size: 0.8vw;
+    margin-left: 1vw;
+    font-weight: bold;
+    margin-top: 0.5vw;
+    color: var(--vermelhoOpacidade);
+}
+
+.quantidade{
+    width: 70%;
+    height: 2vw;
+}
+
+.date{
+    width: 30%;
+    height: 2vw;
+    display: flex;
+    align-items: center;
+}
+
