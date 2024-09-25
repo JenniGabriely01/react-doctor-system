@@ -72,6 +72,8 @@ export default function Clientes() {
                                 </div>
                             ))}
                         </div>
+
+        
                     </div>
                 </section>
 

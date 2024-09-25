@@ -5,40 +5,48 @@ import imagemDireita from '../../assets/imagens/cadLivros-img.png';
 import logoVertical from '../../assets/imagens/logoVertical.svg';
 import Input from '../../components/input/inpux';
 import CadButton from '../../components/cadButtons/cadButtons';
-import { useNavigate } from 'react-router-dom'; // Adicionar importação do useNavigate
+import { useNavigate } from 'react-router-dom';
 
 export default function CadLivros() {
-    const [nome, setNome] = useState('');
+    const [nomeLivro, setNome] = useState('');
     const [autor, setAutor] = useState('');
     const [genero, setGenero] = useState('');
-    const [data, setData] = useState('');
-    const [quant, setQuant] = useState('');
+    const [dataLancamento, setDataLancamento] = useState('');
+    const [qtdCopias, setQtdCopias] = useState('');
 
-    const navigate = useNavigate(); // Hook para redirecionar
+    const navigate = useNavigate();
 
-    // Função para lidar com o submit do formulário
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
-            const response = await fetch('http://localhost:5000/api/livros', { // Corrigido para 5000
+            const response = await fetch('http://localhost:3000/api/livros', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ nome, autor, genero, data, quant }),
+                body: JSON.stringify({
+                    nomeLivro,
+                    autor,
+                    genero,
+                    dataLancamento, // A data será enviada no formato correto (yyyy-MM-dd)
+                    qtdCopias
+                }),
             });
+
+            const data = await response.json();
 
             if (response.ok) {
                 alert('Livro cadastrado com sucesso!');
-                navigate('/Livraria'); // Redireciona para a rota /Livraria após o sucesso
+                navigate('/Livraria');
             } else {
-                alert('Erro ao cadastrar livro');
+                alert(`Erro ao cadastrar o livro: ${data.message}`);
             }
         } catch (error) {
-            alert('Erro de conexão: ' + error.message);
+            alert(`Erro na requisição: ${error.message}`);
         }
     };
+
 
     return (
         <>
@@ -53,7 +61,7 @@ export default function CadLivros() {
                             <Input
                                 placeholder="Nome do Livro"
                                 type="text"
-                                value={nome}
+                                value={nomeLivro}
                                 onChange={(e) => setNome(e.target.value)}
                             />
                             <Input
@@ -70,39 +78,38 @@ export default function CadLivros() {
                             />
                             <Input
                                 placeholder="Data de Lançamento"
-                                type="text"
-                                value={data}
-                                onChange={(e) => setData(e.target.value)}
+                                type="date" 
+                                value={dataLancamento}
+                                onChange={(e) => setDataLancamento(e.target.value)}
                             />
                             <Input
                                 placeholder="Quantidade de Cópias"
-                                type="text"
-                                value={quant}
-                                onChange={(e) => setQuant(e.target.value)}
+                                type="number"
+                                value={qtdCopias}
+                                onChange={(e) => setQtdCopias(e.target.value)}
                             />
-                            
-                            <button type="submit" className='addBook-btn'>
+
+                            <button type="button" className='addBook-btn'>
                                 <img className='icon-book' src={iconeLivro} alt="" />
                                 <h1 className='addBook-h1'>
                                     Inserir imagem do livro
                                 </h1>
                             </button>
-                        </form>
 
-                        {/* Botões de Ação */}
-                        <div className='buttons'>
-                            <CadButton
-                                legendaBotao="Inserir"
-                                margem="0 0 0 0"
-                                type="submit"
-                            />
-                            <CadButton
-                                legendaBotao="Voltar"
-                                cor="50%"
-                                margem="0 0 0 5%"
-                                rota="/Livraria"
-                            />
-                        </div>
+                            <div className='buttons'>
+                                <CadButton
+                                    legendaBotao="Inserir"
+                                    margem="0 0 0 0"
+                                    type="submit"
+                                />
+                                <CadButton
+                                    legendaBotao="Voltar"
+                                    cor="50%"
+                                    margem="0 0 0 5%"
+                                    rota="/Livraria"
+                                />
+                            </div>
+                        </form>
                     </div>
                 </div>
 
