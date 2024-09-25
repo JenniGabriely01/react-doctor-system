@@ -1,11 +1,10 @@
 import BarraSearch from "../../components/barraSearch/barraSearch";
 import MenuLateral from "../../components/menuLateral/menuLateral";
 import TituloGrande from "../../components/tituloGrande/tituloGrande";
-import ClienteCadastro from "../../components/clienteCadastro/ClienteCadastro";
-import ClienteCadastroE from "../../components/clienteCadastroE/clienteCadastroE";
 import Button from "../../components/button/button";
 import { useState, useEffect } from 'react';
 import './clientes.css'
+import { Link } from "react-router-dom";
 
 export default function Clientes() {
     const [clientes, setClientes] = useState([]);
@@ -18,6 +17,8 @@ export default function Clientes() {
         };
         fetchClientes();
     }, []);
+
+
     return (
         <>
             <main className="clientes">
@@ -49,54 +50,32 @@ export default function Clientes() {
                         </div>
                     </section>
 
-                    <section className="secondContent">
-                        <div className="TituloSecondC">
-                            <h3>Clientes Recentes</h3>
+
+                    <div className="conteudo-cards">
+                        <div className="titulos-cliente">
+                            <h2>Clientes Recentes</h2>
+                            <Link>
+                                Ver mais
+                            </Link>
                         </div>
-                    </section>
 
-                    <ul className="clientes-lista">
-                        {clientes.map((cliente) => (
-                            <li key={cliente._id}>
-                                <ClienteCadastro
-                                    nome={cliente.nome}
-                                    sobrenome={cliente.sobrenome}
-                                />
-                            </li>
-                        ))}
-                    </ul>
-
-                    <div className="botaoShowMore">
-                        <h1>Ver mais</h1>
-                    </div>
-
-                    <section className="ThirdContent">
-                        <div className="TituloThirdC">
-                            <h3>Estatísticas</h3>
+                        <div className="cards-clientes">
+                            {clientes.map((cliente) => (
+                                <div className="card-cliente" key={cliente._id}>
+                                    <h3>{cliente.nome} {cliente.sobrenome}</h3>
+                                    {/* <p>Email: {cliente.email}</p>
+                                    <p>Telefone: {cliente.telefone}</p> */}
+                                    <div className="bottom-info">
+                                        <p>2 Livro(s) emprestados</p> {/* texto temporario */}
+                                        <p>{cliente.createdAt ? new Date(cliente.createdAt).toLocaleDateString() : 'Data não disponível'}</p>
+                                    </div>
+                                </div>
+                            ))}
                         </div>
-                    </section>
-
-                    <div className="testeTemporario">
-                        <ClienteCadastroE
-                            legendaEstatistica="Estatística"
-                            legendaTemporaria="2.803"
-                        />
-
-                        <ClienteCadastroE
-                            legendaEstatistica="Livros Emprestados"
-                            legendaTemporaria="472"
-                        />
-
-                        <ClienteCadastroE
-                            legendaEstatistica="Livros Cadastrados"
-                            legendaTemporaria="6.059"
-                        />
                     </div>
-
                 </section>
+
             </main>
-
-
         </>
     )
 }

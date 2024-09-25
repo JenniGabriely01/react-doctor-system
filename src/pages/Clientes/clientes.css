@@ -1,13 +1,12 @@
 :root {
     --Vermelho: #8C2A2A;
     --Amarelo: #F8F8D8;
+    --Rosa: #F8E8E8;
     --Marrom: #C29181;
-    --font-medium: 1.40vw;
-    --icon-medium: 2vw;
 }
 
-
-.clientes {
+.clientes{
+    /* overflow-y: auto; */ /* permite a rolagem */
     display: flex;
     width: 100%;
 }
@@ -25,7 +24,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-
 }
 
 .banner-container {
@@ -80,84 +78,58 @@
     background-repeat: no-repeat;
 }
 
-.secondContent {
-    width: 100%;
-    height: 3.2vw;
-}
 
-.TituloSecondC {
-    width: 100%;
-    height: 2vw;
+.titulos-cliente {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.TituloSecondC h3 {
-    font-size: 1.25vw;
+.titulos-cliente h2 {
     color: var(--Vermelho);
-}
-
-.clientes-lista {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    gap: 1vw;
-    width: 100%;
-}
-
-.clientes-lista li {
-    flex: 1 1 calc(33.33% - 1vw);
-    box-sizing: border-box;
-    margin: 0;
-}
-
-/* Para Chrome, Edge e Safari */
-::-webkit-scrollbar {
-    width: 8px;
-    /* Largura da barra de rolagem */
-}
-
-::-webkit-scrollbar-track {
-    background: transparent;
-    /* Fundo da barra de rolagem */
-}
-
-::-webkit-scrollbar-thumb {
-    background: transparent;
-    /* Cor do polegar da barra de rolagem */
-}
-
-.botaoShowMore {
-    display: flex;
-    width: 100%;
-    height: 2vw;
-}
-
-.botaoShowMore h1 {
-    font-size: 1vw;
-    color: var(--Vermelho);
+    font-size: 1.2rem;
     font-weight: 700;
-    margin-left: 92.7%;
 }
 
-.ThirdContent{
-    width: 100%;
-    height: 3.2vw;
-}
-
-.TituloThirdC{
-    width: 100%;
-    height: 2vw;
-    display: flex;
-}
-
-.TituloThirdC h3{
-    font-size: 1.25vw;
+.titulos-cliente a {
     color: var(--Vermelho);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
 }
 
-.testeTemporario{
+.cards-clientes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.card-cliente {
+    background-color: var(--Rosa);
+    border-left: 8px solid var(--Vermelho);
     display: flex;
-    gap: 1vw; /* Adicione o espaçamento desejado aqui */
+    flex-direction: column;
+    padding: 15px 25px 15px 15px;
+    border-radius: 8px;
+    text-align: left;
+}
+
+.card-cliente h3 {
+    color: var(--Vermelho);
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.bottom-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.bottom-info p {
+    color: var(--Marrom);
+    font-size: 0.7rem;
+    font-weight: 700;
 }
