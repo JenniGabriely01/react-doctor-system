@@ -1,3 +1,10 @@
+:root {
+    --Vermelho: #8C2A2A;
+    --Amarelo: #F8F8D8;
+    --Rosa: #F8E8E8;
+    --Marrom: #C29181;
+}
+
 .clientes{
     /* overflow-y: auto; */ /* permite a rolagem */
     display: flex;
@@ -14,4 +21,63 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.conteudo-cards {
+    margin-top: 80px;
+}
+
+.titulos-cliente {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.titulos-cliente h2 {
+    color: var(--Vermelho);
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.titulos-cliente a {
+    color: var(--Vermelho);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.cards-clientes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.card-cliente {
+    background-color: var(--Rosa);
+    border-left: 8px solid var(--Vermelho);
+    display: flex;
+    flex-direction: column;
+    padding: 15px 25px 15px 15px;
+    border-radius: 8px;
+    text-align: left;
+}
+
+.card-cliente h3 {
+    color: var(--Vermelho);
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.bottom-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.bottom-info p {
+    color: var(--Marrom);
+    font-size: 0.7rem;
+    font-weight: 700;
 }

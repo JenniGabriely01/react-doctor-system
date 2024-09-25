@@ -4,6 +4,7 @@ import TituloGrande from "../../components/tituloGrande/tituloGrande";
 import Button from "../../components/button/button";
 import { useState, useEffect } from 'react';
 import './clientes.css'
+import { Link } from "react-router-dom";
 
 export default function Clientes() {
     const [clientes, setClientes] = useState([]);
@@ -16,6 +17,8 @@ export default function Clientes() {
         };
         fetchClientes();
     }, []);
+
+
     return (
         <>
             <main className="clientes">
@@ -37,18 +40,34 @@ export default function Clientes() {
                         />
                     </header>
 
-                    {/* estrtutura da página de clientes aqui */}
-                    <ul>
-                        {clientes.map((cliente) => (
-                            <li key={cliente._id}>
-                                {cliente.nome} - {cliente.sobrenome} - {cliente.email} - {cliente.telefone}
-                            </li>
-                        ))}
-                    </ul>
+                    <div className="conteudo-cards">
+                        <div className="titulos-cliente">
+                            <h2>Clientes Recentes</h2>
+                            <Link>
+                                Ver mais
+                            </Link>
+                        </div>
+
+                        <div className="cards-clientes">
+                            {clientes.map((cliente) => (
+                                <div className="card-cliente" key={cliente._id}>
+                                    <h3>{cliente.nome} {cliente.sobrenome}</h3>
+                                    {/* <p>Email: {cliente.email}</p>
+                                    <p>Telefone: {cliente.telefone}</p> */}
+                                    <div className="bottom-info">
+                                        <p>2 Livro(s) emprestados</p> {/* texto temporario */}
+                                        <p>{cliente.createdAt ? new Date(cliente.createdAt).toLocaleDateString() : 'Data não disponível'}</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+
+
                 </section>
+
             </main>
-
-
         </>
     )
 }
