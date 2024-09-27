@@ -8,6 +8,8 @@
     margin-left: 25%; 
     width: 75%; 
     padding: 50px; 
+    overflow-y: auto;
+    height: 100vh;
 }
 
 .header-livraria {
