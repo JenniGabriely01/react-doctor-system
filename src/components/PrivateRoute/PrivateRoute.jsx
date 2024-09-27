@@ -5,7 +5,7 @@ import { useAuth } from '../../hooks/useAuth';
 
 const PrivateRoute = ({ children }) => {
     //const { isAuthenticated } = useAuth();
-    const token = localStorage.getItem('token');
+    const token = sessionStorage.getItem('token');
      
     if (token == null) {
         return <Navigate to="/login" />;

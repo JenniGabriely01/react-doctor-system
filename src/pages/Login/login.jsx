@@ -36,7 +36,7 @@ export default function Login() {
             if (response.ok) {
                 setSuccess('Login bem-sucedido!');
                 setError('');
-                localStorage.setItem('token', data.token); 
+                sessionStorage.setItem('token', data.token); 
                 
                 
                 setTimeout(() => {
