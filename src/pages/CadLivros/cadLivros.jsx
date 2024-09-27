@@ -13,6 +13,7 @@ export default function CadLivros() {
     const [genero, setGenero] = useState('');
     const [dataLancamento, setDataLancamento] = useState('');
     const [qtdCopias, setQtdCopias] = useState('');
+    const [image, setImage] = useState('');
 
     const navigate = useNavigate();
 
@@ -30,7 +31,8 @@ export default function CadLivros() {
                     autor,
                     genero,
                     dataLancamento, // A data será enviada no formato correto (yyyy-MM-dd)
-                    qtdCopias
+                    qtdCopias,
+                    image
                 }),
             });
 
@@ -46,6 +48,20 @@ export default function CadLivros() {
             alert(`Erro na requisição: ${error.message}`);
         }
     };
+
+    /* convertendo imagem para base6e */
+    function convertToBase64(e) {
+        console.log(e);
+        var reader = new FileReader();
+        reader.readAsDataURL(e.target.files[0]);
+        reader.onload = () => {
+            console.log(reader.result); /* base64encoded string */
+            setImage(reader.result);
+        };
+        reader.onerror = error => {
+            console.log("error:", error);
+        };
+    }
 
 
     return (
@@ -78,7 +94,7 @@ export default function CadLivros() {
                             />
                             <Input
                                 placeholder="Data de Lançamento"
-                                type="date" 
+                                type="date"
                                 value={dataLancamento}
                                 onChange={(e) => setDataLancamento(e.target.value)}
                             />
@@ -88,7 +104,14 @@ export default function CadLivros() {
                                 value={qtdCopias}
                                 onChange={(e) => setQtdCopias(e.target.value)}
                             />
-
+                            <Input
+                                placeholder="Inserir imagem do livro"
+                                type="file"
+                                accept="image/*"
+                                onChange={convertToBase64}
+                            />
+                            {image=="" || image==null?"": <img width={100} height={100} src={image} />}
+                            
                             <button type="button" className='addBook-btn'>
                                 <img className='icon-book' src={iconeLivro} alt="" />
                                 <h1 className='addBook-h1'>
