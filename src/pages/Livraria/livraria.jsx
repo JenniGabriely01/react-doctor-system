@@ -40,8 +40,8 @@ export default function Livraria() {
                 <div className="livros">
                     {livros.map((livro) => (
                         <div className="livro" key={livro._id}>
-                            <h3>{livro.nomeLivro}</h3> 
-                            <img src={livro.image} /> 
+                            <img className="livro-imagem" src={livro.image} /> 
+                            <h3 className="livro-titulo">{livro.nomeLivro}</h3> 
                         </div>
                     ))}
                 </div>

@@ -19,3 +19,25 @@
     width: 100%;
 }
 
+.livros {
+    display: flex;
+    gap: 3rem;
+    flex-wrap: wrap;
+}
+
+.livro {
+    margin: 1rem 0 1rem 0;
+    width: 10rem;
+    height: 15rem;
+}
+
+.livro-titulo {
+    font-size: 0.8rem;
+    color: var(--Vermelho);
+    text-align: center;
+}
+
+.livro-imagem {
+    width: 100%;
+    height: 100%;
+}
