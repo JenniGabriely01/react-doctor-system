@@ -104,20 +104,19 @@ export default function CadLivros() {
                                 value={qtdCopias}
                                 onChange={(e) => setQtdCopias(e.target.value)}
                             />
-                            <Input
-                                placeholder="Inserir imagem do livro"
-                                type="file"
-                                accept="image/*"
-                                onChange={convertToBase64}
-                            />
-                            {image=="" || image==null?"": <img width={100} height={100} src={image} />}
-                            
-                            <button type="button" className='addBook-btn'>
-                                <img className='icon-book' src={iconeLivro} alt="" />
-                                <h1 className='addBook-h1'>
+
+                            <div className='addBook-btn'>
+                                <label className='custom-file-upload'>
+                                    <img className='icon-book' src={iconeLivro} alt="" />
+                                    <input
+                                        type="file"
+                                        accept="image/*"
+                                        onChange={convertToBase64}
+                                    />
                                     Inserir imagem do livro
-                                </h1>
-                            </button>
+                                </label>
+                                {image && <img width={100} height={100} src={image} />}
+                            </div>
 
                             <div className='buttons'>
                                 <CadButton

@@ -108,13 +108,21 @@ body {
 
 .addBook-btn img{
     margin-left: 1vw;
+    margin-right: 15px;
     width: 4vw;
 }
 
-.addBook-btn h1{
-    margin-left: 1vw;
+.custom-file-upload {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
     color: var(--Amarelo);
-    font-size: 1.5vw;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.custom-file-upload input {
+    display: none;
 }
 
 .info-conteiner::-webkit-scrollbar {
