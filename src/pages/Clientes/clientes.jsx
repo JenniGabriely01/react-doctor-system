@@ -4,19 +4,26 @@ import TituloGrande from "../../components/tituloGrande/tituloGrande";
 import Button from "../../components/button/button";
 import { useState, useEffect } from 'react';
 import './clientes.css'
-import { Link } from "react-router-dom";
 
 export default function Clientes() {
     const [clientes, setClientes] = useState([]);
+    const [mostrarTodos, setMostrarTodos] = useState(false);
+    const [totalClientes, setTotalClientes] = useState(0);
+
 
     useEffect(() => {
         const fetchClientes = async () => {
-            const response = await fetch('http://localhost:3000/api/clientes');
-            const data = await response.json();
-            setClientes(data);
+            try {
+                const response = await fetch(`http://localhost:3000/api/clientes`);
+                const data = await response.json();
+                setTotalClientes(data.length);
+                setClientes(data.slice(0, mostrarTodos ? totalClientes : 6)); /* limita os clientes exibidos */
+            } catch (error) {
+                console.log("Erro ao buscar clientes", error);
+            }
         };
         fetchClientes();
-    }, []);
+    }, [mostrarTodos]); // Atualiza a lista quando "mostrarTodos" mudar
 
 
     return (
@@ -50,21 +57,20 @@ export default function Clientes() {
                         </div>
                     </section>
 
-
                     <div className="conteudo-cards">
                         <div className="titulos-cliente">
                             <h2>Clientes Recentes</h2>
-                            <Link>
-                                Ver mais
-                            </Link>
+                            {totalClientes > 6 && (
+                                <button onClick={() => setMostrarTodos(!mostrarTodos)}>
+                                    {mostrarTodos ? "Mostrar menos" : "Ver mais"}
+                                </button>
+                            )}
                         </div>
 
                         <div className="cards-clientes">
                             {clientes.map((cliente) => (
                                 <div className="card-cliente" key={cliente._id}>
                                     <h3>{cliente.nome} {cliente.sobrenome}</h3>
-                                    {/* <p>Email: {cliente.email}</p>
-                                    <p>Telefone: {cliente.telefone}</p> */}
                                     <div className="bottom-info">
                                         <p>2 Livro(s) emprestados</p> {/* texto temporario */}
                                         <p>{cliente.createdAt ? new Date(cliente.createdAt).toLocaleDateString() : 'Data não disponível'}</p>
@@ -73,7 +79,7 @@ export default function Clientes() {
                             ))}
                         </div>
 
-        
+
                     </div>
                 </section>
 

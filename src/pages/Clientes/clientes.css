@@ -45,7 +45,6 @@
 }
 
 .textoB {
-
     width: 50%;
     display: flex;
     justify-content: center;
@@ -91,11 +90,10 @@
     font-weight: 700;
 }
 
-.titulos-cliente a {
+.titulos-cliente button {
+    background-color: transparent;
+    border: 0;
     color: var(--Vermelho);
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 0.9rem;
 }
 
 .cards-clientes {
