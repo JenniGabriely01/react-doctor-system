@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 
 export default function Livraria() {
     const [livros, setLivros] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
 
     useEffect(() => {
         const fetchLivros = async () => {
@@ -30,6 +31,7 @@ export default function Livraria() {
                 <header className="header-livraria">
                     <BarraSearch
                         placeholder="Pesquisar por título e autores..."
+                        onSearch={setSearchTerm}  // Passa a função de busca para o componente de pesquisa
                     />
                     <Button
                         legendaBotao="Cadastrar"
@@ -40,7 +42,7 @@ export default function Livraria() {
                 <div className="livros">
                     {livros.map((livro) => (
                         <div className="livro" key={livro._id}>
-                            <img className="livro-imagem" src={livro.image} /> 
+                            <img className="livro-imagem" src={livro.image} alt={livro.nomeLivro} /> 
                             <h3 className="livro-titulo">{livro.nomeLivro}</h3> 
                         </div>
                     ))}

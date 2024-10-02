@@ -6,7 +6,7 @@ import logoVertical from '../../assets/imagens/logoVertical.svg';
 import logoForm from '../../assets/imagens/logoMenu.svg';
 import Input from '../../components/input/inpux'; 
 /* Importação da tela de login */
-import 'ldrs/ring'; 
+/* import 'ldrs/ring';  */
 
 export default function Login() {
     const [email, setEmail] = useState('');
