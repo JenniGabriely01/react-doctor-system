@@ -27,6 +27,7 @@ body {
     justify-content: center;
 }
 
+/* Tela de carregamento ajustada ao centro da tela */
 .loading-container {
     display: flex;
     justify-content: center;

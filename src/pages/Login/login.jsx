@@ -5,6 +5,7 @@ import imagemDireita from '../../assets/imagens/imagemFundoLogin.png';
 import logoVertical from '../../assets/imagens/logoVertical.svg';
 import logoForm from '../../assets/imagens/logoMenu.svg';
 import Input from '../../components/input/inpux'; 
+/* Importação da tela de login */
 import 'ldrs/ring'; 
 
 export default function Login() {
@@ -47,7 +48,8 @@ export default function Login() {
                 setTimeout(() => {
                     setLoading(false); 
                     navigate('/Home');
-                }, 1000); // 5 segundos
+                    /* Tempo da tela de carregamento */
+                }, 1000); // 1 segundo. 
             } else {
                 setError(data.error || 'Erro ao realizar login');
                 setLoading(false); 
@@ -85,6 +87,7 @@ export default function Login() {
                         {success && <p className="success-message">{success}</p>}
                         {loading ? (
                             <div className="loading-container">
+                                {/* Tela de carregamento */}
                                 <l-ring size="100" color="white"></l-ring> 
                             </div>
                         ) : (
