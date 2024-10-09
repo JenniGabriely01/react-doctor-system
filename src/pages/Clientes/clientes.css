@@ -131,3 +131,19 @@
     font-size: 0.7rem;
     font-weight: 700;
 }
+
+#titulo-cliente{
+    margin-top: 30px;
+}
+
+.cards-estatistica{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.cards-estatistica{
+
+}
+

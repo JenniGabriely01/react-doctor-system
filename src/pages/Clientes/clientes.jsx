@@ -1,6 +1,7 @@
 import BarraSearch from "../../components/barraSearch/barraSearch";
 import MenuLateral from "../../components/menuLateral/menuLateral";
 import TituloGrande from "../../components/tituloGrande/tituloGrande";
+import EstatisticBlock from "../../components/EstatisticBlock/estatisticBlock";
 import Button from "../../components/button/button";
 import { useState, useEffect } from 'react';
 import './clientes.css'
@@ -11,6 +12,8 @@ export default function Clientes() {
     const [totalClientes, setTotalClientes] = useState(0);
     const [searchTerm, setSearchTerm] = useState('');
     const [filteredClientes, setFilteredClientes] = useState([]); // Nova lista filtrada
+    const [livrosCount, setLivrosCount] = useState(0); //Adiciona contagem de livros -Nath
+    const [livrosEmprestadosCount, setLivrosEmprestadosCount] = useState(0); // Adicionada contagem de livros emprestados -Nath
 
     useEffect(() => {
         const fetchClientes = async () => {
@@ -30,12 +33,43 @@ export default function Clientes() {
 
     useEffect(() => {
         // Filtra os clientes localmente sempre que searchTerm mudar
-        const filtered = clientes.filter(cliente => 
+        const filtered = clientes.filter(cliente =>
             cliente.nome.toLowerCase().includes(searchTerm.toLowerCase()) ||
             cliente.sobrenome.toLowerCase().includes(searchTerm.toLowerCase())
         );
         setFilteredClientes(filtered.slice(0, mostrarTodos ? filtered.length : 6)); // Atualiza lista filtrada
     }, [searchTerm, clientes, mostrarTodos]);
+
+
+    /* contagem de livros -nath */
+    useEffect(() => {
+        const fetchLivrosCount = async () => {
+            try {
+                const response = await fetch('http://localhost:3000/api/livros/count');//rota para contagem de livros
+                const data = await response.json();
+                setLivrosCount(data.count);//atualiza contagem de livros
+            } catch (error) {
+                console.log("erro ao buscar contagem de livros", error);
+            }
+        };
+        fetchLivrosCount();
+    })
+
+    // Efeito para contar livros emprestados - apenas uma vez ao montar -Nath
+    useEffect(() => {
+        const fetchLivrosEmprestadosCount = async () => {
+            try {
+                const response = await fetch('http://localhost:3000/api/livros/emprestados/count'); // Rota para contagem de livros emprestados
+                const data = await response.json();
+                setLivrosEmprestadosCount(data.count); // Atualiza contagem de livros emprestados
+            } catch (error) {
+                console.log("Erro ao buscar contagem de livros emprestados", error);
+            }
+        };
+
+        // Chama a função de contagem de livros emprestados
+        fetchLivrosEmprestadosCount();
+    }, []); // Array vazio para garantir que execute apenas na montagem
 
     return (
         <main className="clientes">
@@ -66,6 +100,7 @@ export default function Clientes() {
                 </section>
 
                 <div className="conteudo-cards">
+
                     <div className="titulos-cliente">
                         <h2>Clientes Recentes</h2>
                         {totalClientes > 6 && (
@@ -86,6 +121,28 @@ export default function Clientes() {
                             </div>
                         ))}
                     </div>
+
+                    <div className="titulos-cliente" id="titulo-cliente">
+                        <h2>Estatísticas</h2>
+                    </div>
+
+                    <div className="cards-estatistica">
+                        <EstatisticBlock
+                            title="Clientes cadastrados"
+                            amount={totalClientes}
+                        />
+
+                        <EstatisticBlock
+                            title="Livros emprestados"
+                            amount={livrosEmprestadosCount}
+                        />
+
+                        <EstatisticBlock
+                            title="Livros cadastrados"
+                            amount={livrosCount}
+                        />
+                    </div>
+
                 </div>
             </section>
         </main>
