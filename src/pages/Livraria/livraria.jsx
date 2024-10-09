@@ -11,7 +11,8 @@ export default function Livraria() {
     useEffect(() => {
         const fetchLivros = async () => {
             try {
-                const response = await fetch('http://localhost:3000/api/livros');
+                console.log(`Buscando livros com o termo: ${searchTerm}`);  // Verificar se o termo está sendo passado
+                const response = await fetch(`http://localhost:3000/api/livros?search=${searchTerm}`);
                 const data = await response.json();
                 setLivros(data);
             } catch (error) {
@@ -19,7 +20,7 @@ export default function Livraria() {
             }
         };
         fetchLivros();
-    }, []);
+    }, [searchTerm]); // A busca será refeita sempre que searchTerm mudar      
 
     return (
         <main className="livraria">
