@@ -1,26 +1,33 @@
 import React, { useState } from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './login.css';
 import imagemDireita from '../../assets/imagens/imagemFundoLogin.png';
 import logoVertical from '../../assets/imagens/logoVertical.svg';
 import logoForm from '../../assets/imagens/logoMenu.svg';
 import Input from '../../components/input/inpux'; 
+/* Importação da tela de login */
+/* import 'ldrs/ring';  */
 
 export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
 
     const handleLogin = async (event) => {
         event.preventDefault();
-
+        setError('');
+        setSuccess('');
+        
         if (!email || !password) {
             setError('*Por favor, insira todos os campos.');
             return;
         }
+
+        setLoading(true);  
 
         try {
             const response = await fetch('http://localhost:3000/login', {
@@ -35,21 +42,22 @@ export default function Login() {
 
             if (response.ok) {
                 setSuccess('Login bem-sucedido!');
-                setError('');
                 sessionStorage.setItem('token', data.token); 
-                
+
                 
                 setTimeout(() => {
+                    setLoading(false); 
                     navigate('/Home');
-                }, 1000); 
+                    /* Tempo da tela de carregamento */
+                }, 1000); // 1 segundo. 
             } else {
                 setError(data.error || 'Erro ao realizar login');
-                setSuccess('');
+                setLoading(false); 
             }
         } catch (err) {
             console.error('*Erro ao fazer login:', err);
             setError('*Erro ao fazer login');
-            setSuccess('');
+            setLoading(false); 
         }
     };
 
@@ -77,7 +85,14 @@ export default function Login() {
 
                         {error && <p className="error-message">{error}</p>}
                         {success && <p className="success-message">{success}</p>}
-                        <button type="submit">Entrar</button>
+                        {loading ? (
+                            <div className="loading-container">
+                                {/* Tela de carregamento */}
+                                <l-ring size="100" color="white"></l-ring> 
+                            </div>
+                        ) : (
+                            <button type="submit">Entrar</button>
+                        )}
                     </form>
                 </div>
             </div>

@@ -1,0 +1,29 @@
+:root {
+    --Vermelho: #8C2A2A;
+    --Amarelo: #F8F8D8;
+    --Rosa: #F8E8E8;
+    --Marrom: #C29181;
+}
+
+.pinkBlock{
+    background-color: var(--Rosa);
+    border-left: 8px solid var(--Vermelho);
+    display: flex;
+    flex-direction: column;
+    padding: 15px 25px 15px 15px;
+    border-radius: 8px;
+}
+
+.BlockT h3{
+    color: var(--Vermelho);
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.amountContent p{
+    color: var(--Marrom);
+    font-size: 0.7rem;
+    font-weight: 700;
+    margin-top: 0.5vw;
+}
+

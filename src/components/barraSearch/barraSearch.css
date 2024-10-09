@@ -7,8 +7,8 @@
 
 .search {
     background-color: var(--Rosa);
-    position: relative; 
-    display: flex; 
+    position: relative;
+    display: flex;
     width: 45vw;
     height: 3.906vw;
     border-radius: 2.604vw;
@@ -21,17 +21,17 @@
     background: transparent;
     box-sizing: border-box;
     border: 0;
-    outline: none;  
+    outline: none;
     width: 80%;
     color: rgba(140, 42, 42, 1);
 }
 
-.search img{
+.search img {
     width: 3vw;
     margin-left: 5%;
 }
 
-.search ::placeholder{
+.search ::placeholder {
     color: var(--VermelhoOpacidade);
     font-weight: bold;
 }

@@ -3,7 +3,6 @@ import './emprestimo.css'
 import CadButton from '../../components/cadButtons/cadButtons';
 import imagemDireita from '../../assets/imagens/Emprestimo-img.png';
 import logoVertical from '../../assets/imagens/logoVertical.svg';
-/* import Input from '../../components/input/inpux'*/
 import emprestarOutroLivro from '../../assets/icons/img-emprestar-outro-livro.svg'
 import axios from 'axios';
 import Select from 'react-select';
