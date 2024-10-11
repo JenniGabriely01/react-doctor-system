@@ -32,7 +32,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
     margin-top: 100px;
-    gap: 80px;
+    gap: 30px 40px;
 }
 
 .card-prazo {
@@ -46,12 +46,17 @@
     padding: 15px 30px 15px 25px;
     font-weight: 700;
     color: var(--Marrom);
+    margin-bottom: 30px;
     font-size: 0.8rem;
 }
 
 .card-prazo h3 {
     color: var(--Vermelho);
     font-size: 1.1rem;
+    white-space: nowrap;         
+    overflow: hidden;            
+    text-overflow: ellipsis;   
+    width: 200px;
 }
 
 .detalhes {
