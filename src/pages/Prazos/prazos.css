@@ -1,3 +1,10 @@
+:root {
+    --Vermelho: #8C2A2A;
+    --Amarelo: #F8F8D8;
+    --Rosa: #F8E8E8;
+    --Marrom: #C29181;
+}
+
 .prazos {
     overflow-y: auto;
     display: flex;
@@ -19,4 +26,46 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.clientes-emprestimo {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    margin-top: 100px;
+    gap: 80px;
+}
+
+.card-prazo {
+    background-color: var(--Rosa);
+    border-left: 8px solid var(--Vermelho);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    padding: 15px 30px 15px 25px;
+    font-weight: 700;
+    color: var(--Marrom);
+    font-size: 0.8rem;
+}
+
+.card-prazo h3 {
+    color: var(--Vermelho);
+    font-size: 1.1rem;
+}
+
+.detalhes {
+    color: var(--Marrom);
+    margin-top: 5px;
+    margin-bottom: 20px;
+    font-size: 0.8rem;
+}
+
+.emprestimo {
+    color: var(--Vermelho);
+    margin-top: 5px;
+}
+
+.entrega {
+    color: var(--Vermelho);
 }
