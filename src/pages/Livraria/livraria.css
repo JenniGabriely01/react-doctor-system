@@ -17,6 +17,7 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    margin-bottom: 8vw;
 }
 
 .livros {
@@ -41,4 +42,14 @@
 .livro-imagem {
     width: 100%;
     height: 100%;
+}
+
+.categoria {
+    margin-bottom: 2vw; /* Espaçamento entre categorias */
+    width: 100%;
+}
+
+.cat-titulo {
+    font-size: 1.8vw;
+    color: var(--Vermelho);
 }

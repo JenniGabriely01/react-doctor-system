@@ -11,7 +11,6 @@ export default function Livraria() {
     useEffect(() => {
         const fetchLivros = async () => {
             try {
-                console.log(`Buscando livros com o termo: ${searchTerm}`);  // Verificar se o termo está sendo passado
                 const response = await fetch(`http://localhost:3000/api/livros?search=${searchTerm}`);
                 const data = await response.json();
                 setLivros(data);
@@ -20,7 +19,22 @@ export default function Livraria() {
             }
         };
         fetchLivros();
-    }, [searchTerm]); // A busca será refeita sempre que searchTerm mudar      
+    }, [searchTerm]);
+
+    // Função para formatar o gênero
+    const formatarGenero = (genero) => {
+        return genero.charAt(0).toUpperCase() + genero.slice(1).toLowerCase();
+    };
+
+    // Agrupar livros por gênero
+    const livrosPorGenero = livros.reduce((acc, livro) => {
+        const generoFormatado = formatarGenero(livro.genero);
+        if (!acc[generoFormatado]) {
+            acc[generoFormatado] = [];
+        }
+        acc[generoFormatado].push(livro);
+        return acc;
+    }, {});
 
     return (
         <main className="livraria">
@@ -32,7 +46,7 @@ export default function Livraria() {
                 <header className="header-livraria">
                     <BarraSearch
                         placeholder="Pesquisar por título e autores..."
-                        onSearch={setSearchTerm}  // Passa a função de busca para o componente de pesquisa
+                        onSearch={setSearchTerm}
                     />
                     <Button
                         legendaBotao="Cadastrar"
@@ -41,14 +55,20 @@ export default function Livraria() {
                 </header>
 
                 <div className="livros">
-                    {livros.map((livro) => (
-                        <div className="livro" key={livro._id}>
-                            <img className="livro-imagem" src={livro.image} alt={livro.nomeLivro} /> 
-                            <h3 className="livro-titulo">{livro.nomeLivro}</h3> 
+                    {Object.keys(livrosPorGenero).map((genero) => (
+                        <div key={genero} className="categoria">
+                            <h2 className="cat-titulo">{genero}</h2>
+                            <div className="livros">
+                                {livrosPorGenero[genero].map((livro) => (
+                                    <div className="livro" key={livro._id}>
+                                        <img className="livro-imagem" src={livro.image} alt={livro.nomeLivro} />
+                                        <h3 className="livro-titulo">{livro.nomeLivro}</h3>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                     ))}
                 </div>
-
             </section>
         </main>
     );
