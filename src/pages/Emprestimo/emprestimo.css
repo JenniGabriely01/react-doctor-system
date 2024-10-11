@@ -90,6 +90,10 @@ body {
     margin-bottom: 20px;
 }
 
+.form-group input {
+    outline: none;
+}
+
 .form-group label {
     color: var(--Amarelo);
     font-weight: 700;
