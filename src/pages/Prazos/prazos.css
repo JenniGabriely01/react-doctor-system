@@ -2,7 +2,7 @@
     --Vermelho: #8C2A2A;
     --Amarelo: #F8F8D8;
     --Rosa: #F8E8E8;
-    --Marrom: #C29181;
+    --Marrom: #C28989;
 }
 
 .prazos {
@@ -45,9 +45,19 @@
     text-align: left;
     padding: 15px 30px 15px 25px;
     font-weight: 700;
-    color: var(--Marrom);
     margin-bottom: 30px;
+    align-self: start;
     font-size: 0.8rem;
+}
+
+.card-prazo p {
+    color: var(--Marrom);
+}
+
+.card-prazo hr {
+    margin: 20px 0;
+    height: 2px;
+    background-color: var(--Marrom);
 }
 
 .card-prazo h3 {
@@ -59,18 +69,49 @@
     width: 200px;
 }
 
-.detalhes {
+.card-prazo h4 {
+    color: var(--Vermelho);
+}
+
+.card-prazo li {
     color: var(--Marrom);
     margin-top: 5px;
+    white-space: nowrap;         
+    overflow: hidden;            
+    text-overflow: ellipsis;   
+    width: 200px;
+}
+
+.detalhes {
+    color: var(--Marrom);
+    margin-top: 3px;
     margin-bottom: 20px;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
 }
 
 .emprestimo {
     color: var(--Vermelho);
-    margin-top: 5px;
+    margin-top: 25px;
 }
 
 .entrega {
     color: var(--Vermelho);
+}
+
+.devolucao {
+    display: flex;
+    align-items: center;
+}
+
+.devolucao h5 {
+    color: var(--Vermelho);
+}
+
+.devolucao button {
+    border: 0;
+    background-color: transparent;
+}
+
+.devolucao img{
+    width: 35px;
 }

@@ -22,42 +22,42 @@ export default function MenuLateral() {
 
             <nav>
                 <ul>
-                    <li>
+                    <li className="liMenu"> 
                         <Link to="/Home" className={currentPath === "/Home" ? "active" : ""}>
                             {currentPath === "/Home" && <div className="highlight"></div>}
-                            <img src={dashboardIcon} alt="Icon Dashboard" />
+                            <img className="iconLi" src={dashboardIcon} alt="Icon Dashboard" />
                             Dashboard
                         </Link>
                     </li>
 
-                    <li>
+                    <li className="liMenu">
                         <Link to="/Livraria" className={currentPath === "/Livraria" ? "active" : ""}>
                             {currentPath === "/Livraria" && <div className="highlight"></div>}
-                            <img src={livrariaIcon} alt="Icon Livraria" />
+                            <img className="iconLi" src={livrariaIcon} alt="Icon Livraria" />
                             Livraria
                         </Link>
                     </li>
 
-                    <li>
+                    <li className="liMenu">
                         <Link to="/Clientes" className={currentPath === "/Clientes" ? "active" : ""}>
                             {currentPath === "/Clientes" && <div className="highlight"></div>}
-                            <img src={userIcon} alt="Icon Clientes" />
+                            <img className="iconLi" src={userIcon} alt="Icon Clientes" />
                             Clientes
                         </Link>
                     </li>
 
-                    <li>
+                    <li className="liMenu">
                         <Link to="/prazos" className={currentPath === "/prazos" ? "active" : ""}>
                             {currentPath === "/prazos" && <div className="highlight"></div>}
-                            <img src={prazosIcon} alt="Icon Prazos" />
+                            <img className="iconLi" src={prazosIcon} alt="Icon Prazos" />
                             Prazos
                         </Link>
                     </li>
 
-                    <li>
+                    <li className="liMenu">
                         <Link to="/Emprestimo" className={currentPath === "/Emprestimo" ? "active" : ""}>
                             {currentPath === "Emprestimos" && <div className="highlight"></div>}
-                            <img src={emprestimosIcon} alt="Icon Empréstimos" />
+                            <img className="iconLi" src={emprestimosIcon} alt="Icon Empréstimos" />
                             Empréstimos
                         </Link>
                     </li>
@@ -66,7 +66,7 @@ export default function MenuLateral() {
 
 
             <div className="saida">
-                <li>
+                <li className='liMenu'>
                     <a href="">
                         <img src={saidaIcon} alt="Icon Saida" />
                         Log out

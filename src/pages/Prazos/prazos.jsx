@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import BarraSearch from "../../components/barraSearch/barraSearch";
 import MenuLateral from "../../components/menuLateral/menuLateral";
 import TituloGrande from "../../components/tituloGrande/tituloGrande";
+import Sim from "../../assets/icons/sim.svg";
+import Não from "../../assets/icons/não.svg";
 import './prazos.css';
 import axios from "axios";
 
@@ -61,7 +63,7 @@ export default function Prazos() {
                         <li className="card-prazo" key={emprestimo._id}>
                             <h3>{emprestimo.cliente.nome} {emprestimo.cliente.sobrenome}</h3>
                             <p className="detalhes" onClick={() => handleVerDetalhes(emprestimo._id)}>
-                                {expandedCard === emprestimo._id ? "Ver Menos" : "Ver Detalhes"}
+                                {expandedCard === emprestimo._id ? "Mostrar Menos" : "Ver Detalhes"}
                             </p>
                             <p><span className="emprestimo">Empréstimo:</span> {new Date(emprestimo.dataEmprestimo).toLocaleDateString()}</p>
                             <p><span className="entrega">Entrega:</span> {calcularPrazoEntrega(emprestimo.dataEmprestimo)}</p>
@@ -69,14 +71,26 @@ export default function Prazos() {
                             {expandedCard === emprestimo._id && (
                                 // Exibir detalhes apenas para o card expandido
                                 <>
+                                    <hr />
+
+                                    <h4>Livros emprestados</h4>
                                     <ul>
                                         {emprestimo.livros.map(livro => (
                                             <li key={livro._id}>{livro.nomeLivro}</li>
                                         ))}
                                     </ul>
-                                    <p>Esse cliente devolveu o(s) livro(s)?</p>
-                                    <button onClick={() => handleDevolucao(emprestimo._id, emprestimo.livros)}>Sim</button>
-                                    <button onClick={() => setExpandedCard(null)}>Não</button>
+                                    <hr />
+                                    <div className="devolucao">
+                                        <h5>O(s) livro(s) foram devolvido(s)?</h5>
+                                        <button
+                                            onClick={() => handleDevolucao(emprestimo._id, emprestimo.livros)}>
+                                            <img src={Sim} alt="SIm" />
+                                        </button>
+                                        <button
+                                            onClick={() => setExpandedCard(null)}>
+                                            <img src={Não} alt="Não" />
+                                        </button>
+                                    </div>
                                 </>
                             )}
                         </li>

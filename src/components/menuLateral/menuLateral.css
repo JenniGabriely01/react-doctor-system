@@ -49,7 +49,7 @@ ul {
     flex-direction: column;
 }
 
-li img {
+.liMenu img {
     margin-right: 25px;
     width: var(--icon-medium);
     height: var(--icon-medium);
@@ -57,8 +57,8 @@ li img {
     transition: width 0.3s ease, height 0.3s ease;
 }
 
-li a,
-li Link {
+.liMenu a,
+.liMenu Link {
     display: flex;
     align-items: center;
     text-decoration: none;
@@ -70,11 +70,11 @@ li Link {
     transition: font-size 0.3s ease;
 }
 
-li a.active {
+.liMenu a.active {
     color: var(--Amarelo);
 }
 
-li a.active img {
+.liMenu a.active img {
     opacity: 100%;
 }
 
