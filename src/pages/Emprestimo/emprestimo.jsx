@@ -6,6 +6,8 @@ import logoVertical from '../../assets/imagens/logoVertical.svg';
 import emprestarOutroLivro from '../../assets/icons/img-emprestar-outro-livro.svg'
 import axios from 'axios';
 import Select from 'react-select';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Emprestimo() {
     const [clientes, setClientes] = useState([]);
@@ -66,18 +68,18 @@ export default function Emprestimo() {
 
         // Validações básicas
         if (!selectedCliente) {
-            alert('Por favor, selecione um cliente.');
+            toast.error('Por favor, selecione um cliente.');
             return;
         }
 
         const livrosSelecionados = selectedLivros.map(item => item.livro).filter(livro => livro !== null);
         if (livrosSelecionados.length === 0) {
-            alert('Por favor, selecione pelo menos um livro.');
+            toast.error('Por favor, selecione pelo menos um livro.');
             return;
         }
 
         if (!dataEmprestimo) {
-            alert('Por favor, selecione a data do empréstimo.');
+            toast.error('Por favor, selecione a data do empréstimo.');
             return;
         }
 
@@ -98,24 +100,24 @@ export default function Emprestimo() {
             });
 
             if (response.status === 201) {
-                alert('Empréstimo realizado com sucesso!');
-                // Redireciona ou reseta o formulário conforme necessário
-                window.location.href = '/prazos'; // Ajuste a rota conforme necessário
+                toast.success('Empréstimo realizado com sucesso!');
+                setTimeout(() => {
+                    window.location.href = '/prazos';
+                }, 2000); // Atraso de 2 segundos (2000 ms)
             } else {
                 const errorData = await response.json();
-                alert(errorData.message || 'Erro ao realizar empréstimo.');
+                toast.error(errorData.message || 'Erro ao realizar empréstimo.');
             }
         } catch (error) {
-            console.error('Erro ao realizar empréstimo:', error);
-            alert('Erro ao realizar empréstimo.');
+            toast.error('Erro ao realizar empréstimo.');
         }
 
         console.log('Dados enviados:', data);
     };
 
-
     return (
         <>
+            <ToastContainer />
             <section className="Emprestimo">
                 <div className="container-Emprestimo">
                     <div className="conteudo-Emprestimo">
