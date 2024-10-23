@@ -1,6 +1,6 @@
 import DashBox from "../../components/DashBox/dashBox";
 import MenuLateral from "../../components/menuLateral/menuLateral";
-import './home.css'
+import './dashboard.css'
 
 export default function Home() {
     return (

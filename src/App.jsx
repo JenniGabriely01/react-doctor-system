@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Home from './pages/Home/home';
+import Dashboard from './pages/Dashboard/dashboard';
 import Login from './pages/Login/login';
 import Livraria from './pages/Livraria/livraria';
 import Clientes from './pages/Clientes/clientes';
@@ -15,7 +15,7 @@ function App() {
         <BrowserRouter>
             <Routes>
                 <Route path="/login" element={<Login />} />
-                <Route path="/Home" element={<PrivateRoute><Home /></PrivateRoute>} />
+                <Route path="/Dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
                 <Route path="/Livraria" element={<PrivateRoute><Livraria /></PrivateRoute>} />
                 <Route path="/CadLivros" element={<PrivateRoute><CadLivros /></PrivateRoute>} />
                 <Route path="/cadClientes" element={<PrivateRoute><CadClientes/></PrivateRoute>} />
