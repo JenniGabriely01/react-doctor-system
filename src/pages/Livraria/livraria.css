@@ -53,3 +53,21 @@
     font-size: 1.8vw;
     color: var(--Vermelho);
 }
+
+.cat-width {
+    width: 50%;
+}
+
+.flex-cat {
+    display: flex;
+    width: 100%;
+}
+
+.maisbtn{
+    background: none;
+    border: none;
+    font-size: 1.25vw;
+    font-weight: 400;
+    float: right;
+    color: var(--Vermelho);
+}

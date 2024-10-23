@@ -53,7 +53,7 @@ export default function Clientes() {
             }
         };
         fetchLivrosCount();
-    })
+    }, []); // Array vazio para garantir que execute apenas na montagem
 
     // Efeito para contar livros emprestados - apenas uma vez ao montar -Nath
     useEffect(() => {

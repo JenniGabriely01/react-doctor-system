@@ -6,6 +6,8 @@ import logoVertical from '../../assets/imagens/logoVertical.svg';
 import Input from '../../components/input/inpux';
 import CadButton from '../../components/cadButtons/cadButtons';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function CadLivros() {
     const [nomeLivro, setNome] = useState('');
@@ -39,13 +41,13 @@ export default function CadLivros() {
             const data = await response.json();
 
             if (response.ok) {
-                alert('Livro cadastrado com sucesso!');
+                toast.success('Livro cadastrado com sucesso!');
                 navigate('/Livraria');
             } else {
-                alert(`Erro ao cadastrar o livro: ${data.message}`);
+                toast.error(`${data.message}`);
             }
         } catch (error) {
-            alert(`Erro na requisição: ${error.message}`);
+            toast.error(`Erro na requisição: ${error.message}`);
         }
     };
 
@@ -66,6 +68,7 @@ export default function CadLivros() {
 
     return (
         <>
+            <ToastContainer/>
             <section className='main-content'>
                 <div className='info-conteiner'>
                     <div className='cad-content'>

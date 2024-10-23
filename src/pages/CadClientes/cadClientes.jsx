@@ -5,15 +5,17 @@ import imagemDireita from '../../assets/imagens/ImagemFundoCad.png';
 import logoVertical from '../../assets/imagens/logoVertical.svg';
 import Input from '../../components/input/inpux';
 import CadButton from '../../components/cadButtons/cadButtons';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function CadClientes() {
     const [nome, setNome] = useState('');
     const [sobrenome, setSobrenome] = useState('');
     const [email, setEmail] = useState('');
     const [telefone, setTelefone] = useState('');
-    
+
     const navigate = useNavigate(); // Hook para redirecionar
- 
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -26,21 +28,24 @@ export default function CadClientes() {
         });
 
         if (response.ok) {
-            alert('Cliente cadastrado com sucesso!');
-            navigate('/Clientes'); 
+            toast.success('Cliente cadastrado com sucesso!');
+            setTimeout(() => {
+                window.location.href = '/Clientes';
+            }, 2000); // Atraso de 2 segundos (2000 ms)
         } else {
-            alert('Erro ao cadastrar cliente');
+            toast.error('Erro ao cadastrar cliente');
         }
     };
 
     return (
         <>
+            <ToastContainer />
             <section className='main-content'>
                 <div className='cliente-conteiner'>
                     <div className='cli-content'>
                         <h1 className='cli-title'>Cadastro</h1>
                         <p className='p-title'>Insira as informações do cliente.</p>
-                        
+
                         <form className='form-cadClientes' onSubmit={handleSubmit}> {/* Adicionando o form */}
                             <Input
                                 placeholder="Nome"
