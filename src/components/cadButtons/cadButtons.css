@@ -1,0 +1,24 @@
+:root {
+    --Vermelho: #8C2A2A;
+    --Amarelo: #F8F8D8;
+    --VermelhoOpacidade: #C28989;
+}
+
+.button{
+   width: 15vw;
+   height: 3.9vw;
+   border: 2px solid var(--Amarelo);
+   border-radius: 5px;
+   background-color: transparent;
+   color: var(--Amarelo);
+   align-items: center;
+   cursor: pointer;
+}
+
+.h1-cadButton {
+    font-size: 1.25vw;
+}
+
+.button:hover {
+    opacity: 90%;
+}

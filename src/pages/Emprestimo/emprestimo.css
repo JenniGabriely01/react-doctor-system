@@ -1,0 +1,166 @@
+:root {
+    --Vermelho: #8C2A2A;
+    --VermelhoBackground: #651F1F;
+    --Amarelo: #F8F8D8;
+    --Marrom: #C29181;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.Emprestimo {
+    display: flex;
+    width: 100%;
+    align-content: center;
+    height: 100vh;
+}
+
+.container-Emprestimo {
+    width: 50%;
+    background-color: var(--VermelhoBackground);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow-y: scroll;
+}
+
+.conteudo-Emprestimo {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin-left: 75px;
+    text-align: left;
+}
+
+.container-Emprestimo::-webkit-scrollbar {
+    width: 8px;
+}
+
+.container-Emprestimo::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.container-Emprestimo::-webkit-scrollbar-thumb {
+    background: transparent;
+}
+
+.form-emprestimo {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.emp-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--Amarelo);
+    padding-top: 20vw;
+}
+
+.p-Title {
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 35px;
+    color: var(--Amarelo);
+}
+
+.img-Emprestimo {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    right: 0;
+    top: 0;
+}
+
+.form-group {
+    background-color: var(--Vermelho);
+    border-left: 8px solid var(--Amarelo);
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    padding: 10px 0 20px 0;
+    height: 100px;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    color: var(--Amarelo);
+    font-weight: 700;
+    margin-left: 15px;
+    font-size: 0.6rem;
+}
+
+.input-data {
+    margin-top: 30px;
+    background-color: transparent;
+    width: 80%;
+    border: 0;
+    color: var(--Amarelo);
+    font-weight: 700;
+    margin-left: 17px;
+}
+
+.remove-livro-btn {
+    background-color: var(--Vermelho);
+    border: 2px solid var(--Amarelo);
+    color: var(--Amarelo);
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 40px;
+}
+
+.add-livro-btn {
+    display: flex;
+    align-items: center;
+    background-color: var(--Vermelho);
+    border-left: 8px solid var(--Amarelo);
+    height: 100px;
+    border-top: none;
+    border-bottom: none;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    color: var(--Amarelo);
+    font-size: 1rem;
+    font-weight: 700;
+    border-right: 0;
+}
+
+.add-livro-btn img {
+    margin-right: 10px;
+}
+
+.buttons {
+    display: flex;
+}
+
+.img-emp {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.background-imagem {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.logo-background {
+    z-index: 1;
+    position: absolute;
+    max-width: 100px;
+    right: 0;
+    margin-right: 50px;
+    margin: 0 20px 20px 0;
+    bottom: 0;
+}

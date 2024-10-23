@@ -1,0 +1,136 @@
+:root {
+    --Vermelho: #8C2A2A;
+    --VermelhoBackground: #651F1F;
+    --Amarelo: #F8F8D8;
+    --Marrom: #C29181;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.main-content {
+    display: flex;
+    width: 100%;
+    align-content: center;
+    height: 100vh;
+}
+
+.info-conteiner {
+    width: 50%;
+    background-color: var(--VermelhoBackground);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow-y: scroll;
+}
+
+.cad-content {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin-left: 75px;
+    text-align: left;
+}
+
+.cad-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--Amarelo);
+    padding-top: 30vw;
+}
+
+.formLivros {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.h1-cadButton {
+    font-size: 1.25vw;
+}
+
+.p-title {
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 35px;
+    color: var(--Amarelo);
+}
+
+.buttons {
+    display: flex;
+}
+
+.img-cad {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.background-imagem {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;  /* garante que a imagem preencha a área sem distorcer */
+}
+
+.logo-background {
+    z-index: 1;
+    position: absolute;
+    max-width: 100px;
+    right: 0;
+    margin-right: 50px;
+    margin: 0 20px 20px 0;
+    bottom: 0;
+}
+
+.icone-livro {
+    color: var(--Amarelo);
+}
+
+.addBook-btn {
+    background-color: var(--Vermelho);
+    border-left: 8px solid var(--Amarelo);
+    border-radius: 5px;
+    height: 90px;
+    margin-bottom: 15px;
+    border-top: none;
+    border-right: none;
+    border-bottom: none;
+    align-items: center;
+    display: flex;
+}
+
+.addBook-btn img{
+    margin-left: 1vw;
+    margin-right: 15px;
+    width: 4vw;
+}
+
+.custom-file-upload {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: var(--Amarelo);
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.custom-file-upload input {
+    display: none;
+}
+
+.info-conteiner::-webkit-scrollbar {
+    width: 8px; 
+}
+.info-conteiner::-webkit-scrollbar-track {
+    background: transparent; 
+}
+.info-conteiner::-webkit-scrollbar-thumb {
+    background: transparent; 
+}

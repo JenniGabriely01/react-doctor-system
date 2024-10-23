@@ -10,38 +10,30 @@ body {
     height: 100%;
     margin: 0;
     padding: 0;
-    overflow: hidden;
 }
 
-.login {
+.main-content {
     display: flex;
     width: 100%;
     height: 100vh;
 }
 
-.conteiner-login {
+.cliente-conteiner {
     width: 50%;
     background-color: var(--VermelhoBackground);
     display: flex;
     flex-direction: column;
     justify-content: center;
+    overflow: hidden;
 }
 
-/* Tela de carregamento ajustada ao centro da tela */
-.loading-container {
+.form-cadClientes {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 100%;  
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 10; 
+    flex-direction: column;
+    width: 100%;
 }
 
-
-.conetudo-login {
+.cli-content {
     display: flex;
     flex-direction: column;
     width: 60%;
@@ -49,15 +41,15 @@ body {
     text-align: left;
 }
 
-.conetudo-login img {
-    max-width: 180px;
-    margin-bottom: 60px;
-}
-
-.conetudo-login h1 {
+.cli-title {
     font-size: 2rem;
     font-weight: 700;
     color: var(--Amarelo);
+    padding: 10vw 0 0 0;
+}
+
+.h1-cliButton {
+    font-size: 1.25vw;
 }
 
 .p-title {
@@ -67,38 +59,13 @@ body {
     color: var(--Amarelo);
 }
 
-
-.conetudo-login form {
+.buttons {
     display: flex;
-    flex-direction: column;
+    padding-bottom: 5vw;
+    margin-bottom: 5vw;
 }
 
-.error-message, .success-message {
-    text-align: right;
-    font-size: 0.8rem;
-    color: var(--Amarelo);
-}
-
-.conetudo-login button {
-    margin-top: 35px;
-    background: transparent;
-    border: 2px solid var(--Amarelo);
-    color: var(--Amarelo);
-    border-radius: 5px;
-    width: 50%;
-    padding: 8px;
-    font-size: 1rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: 0.1s ease;
-}
-
-.conetudo-login button:hover {
-    box-shadow: 0 0 25px 0 var(--Vermelho); 
-    border: 2.5px solid var(--Amarelo);
-}
-
-.img-login {
+.img-cli {
     width: 50%;
     height: 100%;
     display: flex;

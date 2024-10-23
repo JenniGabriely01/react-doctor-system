@@ -1,7 +1,15 @@
 .livraria {
-    overflow-y: auto; /* permite a rolagem */
+   /*  overflow-y: auto; */
     display: flex;
     width: 100%;
+}
+
+.conteudo-livraria {
+    margin-left: 25%; 
+    width: 75%; 
+    padding: 50px; 
+    overflow-y: auto;
+    height: 100vh;
 }
 
 .header-livraria {
@@ -11,8 +19,26 @@
     width: 100%;
 }
 
-.conteudo-livraria {
-    margin-left: 20%; 
-    width: 70%; 
-    padding: 50px 75px; 
+.livros {
+    width: 100%;
+    display: flex;
+    gap: 6%;
+    flex-wrap: wrap;
+}
+
+.livro {
+    margin: 1rem 0 1rem 0;
+    width: 20.5%;
+    height: 25%;
+}
+
+.livro-titulo {
+    font-size: 0.8rem;
+    color: var(--Vermelho);
+    text-align: center;
+}
+
+.livro-imagem {
+    width: 100%;
+    height: 100%;
 }

@@ -7,31 +7,31 @@
 
 .search {
     background-color: var(--Rosa);
-    position: relative; 
-    display: flex; 
+    position: relative;
+    display: flex;
     width: 45vw;
     height: 3.906vw;
     border-radius: 2.604vw;
     align-items: center;
     padding-left: 1.823vw;
-    margin: 0 1.7vw 0 1.7vw;
+    margin-right: 20px;
 }
 
 .search input {
     background: transparent;
     box-sizing: border-box;
     border: 0;
-    outline: none;  
+    outline: none;
     width: 80%;
     color: rgba(140, 42, 42, 1);
 }
 
-.search img{
+.search img {
     width: 3vw;
     margin-left: 5%;
 }
 
-.search ::placeholder{
+.search ::placeholder {
     color: var(--VermelhoOpacidade);
     font-weight: bold;
 }
