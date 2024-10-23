@@ -1,0 +1,23 @@
+:root {
+    --Vermelho: #8C2A2A;
+    --Amarelo: #F8F8D8;
+    --Rosa: #F8E8E8;
+    --VermelhoOpacidade: #C28989;
+}
+
+
+.pinkBox {
+    width: 24.479vw;
+    height: 24.01vw;
+    display: flex;
+    border-radius: 0.781vw;
+    background-color: var(--Rosa);
+    
+}
+
+.pinkBox h2{
+    color: var(--Vermelho);
+    font-size: 1.25vw;
+    margin-left: 2vw;
+    margin-top: 2vw;
+}
