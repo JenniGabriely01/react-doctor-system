@@ -139,6 +139,10 @@ export default function Emprestimo() {
                                         menu: (provided) => ({
                                             ...provided,
                                         }),
+                                        dropdownIndicator: (provided) => ({
+                                            ...provided,
+                                            color: '#F8F8D8',  // Define a cor da seta
+                                        }),
                                         placeholder: (provided) => ({
                                             ...provided,
                                             color: '#F8F8D8',
@@ -186,6 +190,10 @@ export default function Emprestimo() {
                                             menu: (provided) => ({
                                                 ...provided,
                                             }),
+                                            dropdownIndicator: (provided) => ({
+                                                ...provided,
+                                                color: '#F8F8D8',  // Define a cor da seta
+                                            }),
                                             placeholder: (provided) => ({
                                                 ...provided,
                                                 color: '#F8F8D8',
@@ -230,7 +238,7 @@ export default function Emprestimo() {
                             </div>
 
                             <button type="button" onClick={handleAddLivro} className="add-livro-btn">
-                                <img src={emprestarOutroLivro} alt="Adicionar outro livro" />
+                                <img className='img-emprestarOutroLivro' src={emprestarOutroLivro} alt="Adicionar outro livro" />
                                 Emprestar outro livro
                             </button>
 
