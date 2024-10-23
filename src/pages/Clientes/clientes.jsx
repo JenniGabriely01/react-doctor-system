@@ -1,29 +1,36 @@
 import BarraSearch from "../../components/barraSearch/barraSearch";
 import MenuLateral from "../../components/menuLateral/menuLateral";
 import TituloGrande from "../../components/tituloGrande/tituloGrande";
-import EstatisticBlock from "../../components/EstatisticBlock/estatisticBlock";
+import EstatisticBlock from "../../components/EstatisticBlock/estatisticblock";
 import Button from "../../components/button/button";
 import { useState, useEffect } from 'react';
-import './clientes.css'
+import './clientes.css';
 
 export default function Clientes() {
     const [clientes, setClientes] = useState([]);
     const [mostrarTodos, setMostrarTodos] = useState(false);
     const [totalClientes, setTotalClientes] = useState(0);
+    const [clientesRecentes, setClientesRecentes] = useState(0); // Contagem de clientes adicionados nos últimos 7 dias
     const [searchTerm, setSearchTerm] = useState('');
-    const [filteredClientes, setFilteredClientes] = useState([]); // Nova lista filtrada
-    const [livrosCount, setLivrosCount] = useState(0); //Adiciona contagem de livros -Nath
-    const [livrosEmprestadosCount, setLivrosEmprestadosCount] = useState(0); // Adicionada contagem de livros emprestados -Nath
+    const [filteredClientes, setFilteredClientes] = useState([]);
+    const [livrosCount, setLivrosCount] = useState(0);
+    const [livrosEmprestadosCount, setLivrosEmprestadosCount] = useState(0);
 
+    // Buscar todos os clientes
     useEffect(() => {
         const fetchClientes = async () => {
             try {
-                // Faz a requisição sem o termo de pesquisa
                 const response = await fetch(`http://localhost:3000/api/clientes`);
                 const data = await response.json();
                 setTotalClientes(data.length);
-                setClientes(data); // Armazena todos os clientes
-                setFilteredClientes(data.slice(0, mostrarTodos ? data.length : 6)); // Inicializa lista filtrada
+                setClientes(data);
+                setFilteredClientes(data.slice(0, mostrarTodos ? data.length : 6));
+
+                // Filtrar clientes dos últimos 7 dias
+                const seteDiasAtras = new Date();
+                seteDiasAtras.setDate(seteDiasAtras.getDate() - 7);
+                const recentes = data.filter(cliente => new Date(cliente.createdAt) >= seteDiasAtras);
+                setClientesRecentes(recentes.length); // Atualiza a contagem de clientes recentes
             } catch (error) {
                 console.log("Erro ao buscar clientes", error);
             }
@@ -32,44 +39,38 @@ export default function Clientes() {
     }, [mostrarTodos]);
 
     useEffect(() => {
-        // Filtra os clientes localmente sempre que searchTerm mudar
         const filtered = clientes.filter(cliente =>
             cliente.nome.toLowerCase().includes(searchTerm.toLowerCase()) ||
             cliente.sobrenome.toLowerCase().includes(searchTerm.toLowerCase())
         );
-        setFilteredClientes(filtered.slice(0, mostrarTodos ? filtered.length : 6)); // Atualiza lista filtrada
+        setFilteredClientes(filtered.slice(0, mostrarTodos ? filtered.length : 6));
     }, [searchTerm, clientes, mostrarTodos]);
 
-
-    /* contagem de livros -nath */
     useEffect(() => {
         const fetchLivrosCount = async () => {
             try {
-                const response = await fetch('http://localhost:3000/api/livros/count');//rota para contagem de livros
+                const response = await fetch('http://localhost:3000/api/livros/count');
                 const data = await response.json();
-                setLivrosCount(data.count);//atualiza contagem de livros
+                setLivrosCount(data.count);
             } catch (error) {
-                console.log("erro ao buscar contagem de livros", error);
+                console.log("Erro ao buscar contagem de livros", error);
             }
         };
         fetchLivrosCount();
-    }, []); // Array vazio para garantir que execute apenas na montagem
+    }, []);
 
-    // Efeito para contar livros emprestados - apenas uma vez ao montar -Nath
     useEffect(() => {
         const fetchLivrosEmprestadosCount = async () => {
             try {
-                const response = await fetch('http://localhost:3000/api/livros/emprestados/count'); // Rota para contagem de livros emprestados
+                const response = await fetch('http://localhost:3000/api/livros/emprestados/count');
                 const data = await response.json();
-                setLivrosEmprestadosCount(data.count); // Atualiza contagem de livros emprestados
+                setLivrosEmprestadosCount(data.count);
             } catch (error) {
                 console.log("Erro ao buscar contagem de livros emprestados", error);
             }
         };
-
-        // Chama a função de contagem de livros emprestados
         fetchLivrosEmprestadosCount();
-    }, []); // Array vazio para garantir que execute apenas na montagem
+    }, []);
 
     return (
         <main className="clientes">
@@ -83,7 +84,7 @@ export default function Clientes() {
 
                     <BarraSearch
                         placeholder="Pesquisar Clientes..."
-                        onSearch={setSearchTerm} // Passa a função de atualização corretamente
+                        onSearch={setSearchTerm}
                     />
 
                     <Button legendaBotao="Cadastrar" rota="/CadClientes" />
@@ -92,7 +93,7 @@ export default function Clientes() {
                 <section className="banner-container">
                     <div className="banner">
                         <div className="textoB" id="textoB">
-                            <h1>{filteredClientes.length} Novos Clientes</h1>
+                            <h1>{clientesRecentes} Novos Clientes</h1>
                             <h2>Adicionados essa semana</h2>
                         </div>
                         <div className="book"></div>
