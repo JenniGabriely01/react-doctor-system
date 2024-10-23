@@ -93,12 +93,18 @@ export default function Prazos() {
                                     <hr />
                                     <div className="devolucao">
                                         <h5>O(s) livro(s) foram devolvido(s)?</h5>
-                                        <button onClick={() => handleDevolucao(emprestimo._id, emprestimo.livros)}>
-                                            <img src={Sim} alt="Sim" />
-                                        </button>
-                                        <button onClick={() => setExpandedCard(null)}>
-                                            <img src={Não} alt="Não" />
-                                        </button>
+
+                                        <div className="btn-escolha">
+                                            <button
+                                                onClick={() => handleDevolucao(emprestimo._id, emprestimo.livros)}>
+                                                <img src={Sim} alt="SIm" />
+                                            </button>
+                                            <button
+                                                onClick={() => setExpandedCard(null)}>
+                                                <img src={Não} alt="Não" />
+                                            </button>
+                                        </div>
+
                                     </div>
                                 </>
                             )}
