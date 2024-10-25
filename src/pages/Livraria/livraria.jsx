@@ -3,6 +3,7 @@ import MenuLateral from "../../components/menuLateral/menuLateral";
 import Button from "../../components/button/button";
 import './livraria.css';
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Livraria() {
     const [livros, setLivros] = useState([]);
@@ -10,6 +11,7 @@ export default function Livraria() {
     const [mostrarTodos, setMostrarTodos] = useState({});
     const [totalLivros, setTotalLivros] = useState(0);
     const [filteredLivros, setFilteredLivros] = useState([]);
+    const [livroSelecionado, setLivroSelecionado] = useState(null); // Estado que verifica se o livro está selecionado
 
     // Fetch de todos os livros ao carregar a página
     useEffect(() => {
@@ -59,6 +61,17 @@ export default function Livraria() {
         return acc;
     }, {});
 
+    // Mostra Barra lateral após clicar em um livro
+    const handleVerDetalhesLivro = (livro) => {
+        setLivroSelecionado(livroSelecionado === livro ? null : livro);
+    };
+
+    // Função para formatar a data no formato "dd/mm/aaaa"
+    const formatarData = (dataISO) => {
+        const data = new Date(dataISO);
+        return data.toLocaleDateString('pt-BR'); // Formato dd/mm/aaaa
+    };
+
     return (
         <main className="livraria">
             <div>
@@ -66,44 +79,71 @@ export default function Livraria() {
             </div>
 
             <section className="conteudo-livraria">
-                <header className="header-livraria">
-                    <BarraSearch
-                        placeholder="Pesquisar por título e autores..."
-                        onSearch={setSearchTerm}
-                    />
-                    <Button
-                        legendaBotao="Cadastrar"
-                        rota="/CadLivros"
-                    />
-                </header>
 
-                <div className="livros">
-                    {Object.keys(livrosPorGenero).map((genero) => (
-                        <div key={genero} className="categoria">
-                            <div className="flex-cat">
-                                <div className="cat-width">
-                                    <h2 className="cat-titulo">{genero}</h2>
-                                </div>
-                                <div className="cat-width">
-                                    {livrosPorGenero[genero].length > 4 && (
-                                        <button className="maisbtn" onClick={() => toggleMostrarTodos(genero)}>
-                                            {mostrarTodos[genero] ? "Mostrar menos" : "Ver mais"}
-                                        </button>
-                                    )}
-                                </div>
-                            </div>
-                            <div className="livros">
-                                {/* Exibe até 4 livros por padrão ou todos se "mostrarTodos" for true */}
-                                {livrosPorGenero[genero].slice(0, mostrarTodos[genero] ? livrosPorGenero[genero].length : 4).map((livro) => (
-                                    <div className="livro" key={livro._id}>
-                                        <img className="livro-imagem" src={livro.image} alt={livro.nomeLivro} />
-                                        <h3 className="livro-titulo">{livro.nomeLivro}</h3>
+                <section>
+                    <header
+                        className={`header-livraria ${livroSelecionado ? 'detalhes-abertos' : ''}`}>
+                        <BarraSearch
+                            placeholder="Pesquisar por título e autores..."
+                            onSearch={setSearchTerm}
+                        />
+                        <Button
+                            legendaBotao="Cadastrar"
+                            rota="/CadLivros"
+                        />
+                    </header>
+
+
+
+                    <div className={`livros ${livroSelecionado ? 'detalhes-abertos' : ''}`}>
+                        {Object.keys(livrosPorGenero).map((genero) => (
+                            <div key={genero} className="categoria">
+                                <div className="flex-cat">
+                                    <div className="cat-width">
+                                        <h2 className="cat-titulo">{genero}</h2>
                                     </div>
-                                ))}
+                                    <div className="cat-width">
+                                        {livrosPorGenero[genero].length > 4 && (
+                                            <button className="maisbtn" onClick={() => toggleMostrarTodos(genero)}>
+                                                {mostrarTodos[genero] ? "Mostrar menos" : "Ver mais"}
+                                            </button>
+                                        )}
+                                    </div>
+                                </div>
+
+                                <div className="livros">
+                                    {livrosPorGenero[genero]
+                                        .slice(0, mostrarTodos[genero] ? livrosPorGenero[genero].length : 4)
+                                        .map((livro) => (
+                                            <div onClick={() => handleVerDetalhesLivro(livro)}
+                                                className="livro" key={livro._id}>
+                                                <img className="livro-imagem" src={livro.image} alt={livro.nomeLivro} />
+                                                <h3 className="livro-titulo">{livro.nomeLivro}</h3>
+                                            </div>
+                                        ))}
+                                </div>
                             </div>
+                        ))}
+                    </div>
+
+                </section>
+
+
+
+                {livroSelecionado && (
+                    <>
+                        <div className="detalhes-livro">
+                            <h3 className="tituloPrincipalDetalhes">{livroSelecionado.nomeLivro}</h3>
+                            <img src={livroSelecionado.image} alt={livroSelecionado.nomeLivro} />
+                            <h2> <span className="title-detalhe">Autor:</span> {livroSelecionado.autor}</h2>
+                            <h2> <span className="title-detalhe"> Genêro:</span> {livroSelecionado.genero}</h2>
+                            <h2> <span className="title-detalhe">Data de Lançamento:</span> {formatarData(livroSelecionado.dataLancamento)}</h2>
+                            <h2><span className="title-detalhe"> Estoque:</span> {livroSelecionado.qtdCopias}</h2>
+
+                            <Link to="/Emprestimo">Emprestar</Link>
                         </div>
-                    ))}
-                </div>
+                    </>
+                )}
             </section>
         </main>
     );

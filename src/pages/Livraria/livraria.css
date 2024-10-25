@@ -1,3 +1,10 @@
+::root {
+    --Vermelho: #8C2A2A;
+    --Amarelo: #F8F8D8;
+    --Marrom: #C29181;
+    --Rosa: #F8E8E8;
+}
+
 .livraria {
    /*  overflow-y: auto; */
     display: flex;
@@ -7,7 +14,9 @@
 .conteudo-livraria {
     margin-left: 25%; 
     width: 75%; 
-    padding: 50px; 
+    padding: 50px 50px 50px 50px; 
+    display: flex;
+    flex-direction: row;
     overflow-y: auto;
     height: 100vh;
 }
@@ -18,23 +27,22 @@
     justify-content: space-between;
     width: 100%;
     margin-bottom: 8vw;
+    transition: width 0.3s ease;
 }
 
-.livros {
-    width: 100%;
-    display: flex;
-    gap: 6%;
-    flex-wrap: wrap;
+.header-livraria.detalhes-abertos {
+    width: calc(100% - 220px); /* Reduz a largura apenas quando os detalhes estão abertos */
 }
 
 .livro {
     margin: 1rem 0 1rem 0;
     width: 20.5%;
     height: 25%;
+    cursor: pointer;
 }
 
 .livro-titulo {
-    font-size: 0.8rem;
+    font-size: 1rem;
     color: var(--Vermelho);
     text-align: center;
 }
@@ -50,7 +58,7 @@
 }
 
 .cat-titulo {
-    font-size: 1.8vw;
+    font-size: 1.3rem;
     color: var(--Vermelho);
 }
 
@@ -66,8 +74,75 @@
 .maisbtn{
     background: none;
     border: none;
-    font-size: 1.25vw;
+    font-size: 0.9rem;
     font-weight: 400;
     float: right;
     color: var(--Vermelho);
+}
+
+.livros {
+    flex: 3;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6%;
+    width: 100%; /* Ocupa a largura total por padrão */
+    transition: width 0.3s ease; /* Transição suave */
+}
+
+.detalhes-livro {
+    position: fixed;
+    top: 0;
+    right: 0;
+    flex: 1;
+    max-width: 250px; 
+    height: 100%; 
+    padding: 20px;
+    background-color: var(--Rosa);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.detalhes-livro h2{
+    text-align: left;
+    color: var(--Vermelho);
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+.detalhes-livro h3 {
+    font-weight: 700;
+    color: var(--Vermelho);
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+.detalhes-livro img {
+    width: 85%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+.detalhes-livro a {
+    background-color: var(--Vermelho);
+    color: var(--Amarelo);
+    border-radius: 10px;
+    border: 0;
+    padding: 5px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+}
+
+.detalhes-livro a:hover {
+    opacity: 90%;
+}
+
+.title-detalhe{
+    font-weight: 700;
+}
+
+.livros.detalhes-abertos {
+    width: calc(100% - 230px); /* Aplica apenas quando os detalhes estão abertos */
 }
