@@ -1,4 +1,4 @@
-::root {
+:root {
     --Vermelho: #8C2A2A;
     --Amarelo: #F8F8D8;
     --Marrom: #C29181;
@@ -106,7 +106,7 @@
 .detalhes-livro h2{
     text-align: left;
     color: var(--Vermelho);
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 400;
     margin-bottom: 20px;
 }
