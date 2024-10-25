@@ -47,7 +47,7 @@ export default function Login() {
                 
                 setTimeout(() => {
                     setLoading(false); 
-                    navigate('/Home');
+                    navigate('/Dashboard');
                     /* Tempo da tela de carregamento */
                 }, 1000); // 1 segundo. 
             } else {
