@@ -118,10 +118,21 @@
     margin-bottom: 20px;
 }
 
-.detalhes-livro img {
+.img-livro  {
     width: 85%;
     margin: 0 auto;
     margin-bottom: 20px;
+}
+
+.top-detalhes {
+    display: flex;
+    justify-content: space-between;
+}
+
+.exit {
+    cursor: pointer;
+    height: 18px;
+    margin-left: 140px;
 }
 
 .detalhes-livro a {

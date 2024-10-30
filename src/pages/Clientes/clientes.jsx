@@ -15,6 +15,7 @@ export default function Clientes() {
     const [filteredClientes, setFilteredClientes] = useState([]);
     const [livrosCount, setLivrosCount] = useState(0);
     const [livrosEmprestadosCount, setLivrosEmprestadosCount] = useState(0);
+    const [livrosEmprestadosPorCliente, setLivrosEmprestadosPorCliente] = useState({});
 
     // Buscar todos os clientes
     useEffect(() => {
@@ -31,6 +32,16 @@ export default function Clientes() {
                 seteDiasAtras.setDate(seteDiasAtras.getDate() - 7);
                 const recentes = data.filter(cliente => new Date(cliente.createdAt) >= seteDiasAtras);
                 setClientesRecentes(recentes.length); // Atualiza a contagem de clientes recentes
+
+                // Buscar livros emprestados por cliente
+                const livrosEmprestadosCount = {};
+                for (const cliente of data) {
+                    const responseLivros = await fetch(`http://localhost:3000/api/emprestimos/count?clienteId=${cliente._id}`);
+                    const dataLivros = await responseLivros.json();
+                    livrosEmprestadosCount[cliente._id] = dataLivros.count;
+                }
+                setLivrosEmprestadosCount(livrosEmprestadosCount);
+
             } catch (error) {
                 console.log("Erro ao buscar clientes", error);
             }
@@ -116,7 +127,7 @@ export default function Clientes() {
                             <div className="card-cliente" key={cliente._id}>
                                 <h3>{cliente.nome} {cliente.sobrenome}</h3>
                                 <div className="bottom-info">
-                                    <p>2 Livro(s) emprestados</p> {/* texto temporario */}
+                                    <p>2 Livro(s) emprestados</p>
                                     <p>{cliente.createdAt ? new Date(cliente.createdAt).toLocaleDateString() : 'Data não disponível'}</p>
                                 </div>
                             </div>

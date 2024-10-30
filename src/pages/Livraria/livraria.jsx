@@ -1,6 +1,7 @@
 import BarraSearch from "../../components/barraSearch/barraSearch";
 import MenuLateral from "../../components/menuLateral/menuLateral";
 import Button from "../../components/button/button";
+import Exit from "../../assets/icons/exit.svg";
 import './livraria.css';
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -72,6 +73,10 @@ export default function Livraria() {
         return data.toLocaleDateString('pt-BR'); // Formato dd/mm/aaaa
     };
 
+    const HandleCloseDetalhes = () => {
+        setLivroSelecionado(null)
+    }
+
     return (
         <main className="livraria">
             <div>
@@ -133,8 +138,11 @@ export default function Livraria() {
                 {livroSelecionado && (
                     <>
                         <div className="detalhes-livro">
-                            <h3 className="tituloPrincipalDetalhes">{livroSelecionado.nomeLivro}</h3>
-                            <img src={livroSelecionado.image} alt={livroSelecionado.nomeLivro} />
+                            <div className="top-detalhes">
+                                <h3 className="tituloPrincipalDetalhes">{livroSelecionado.nomeLivro}</h3>
+                                <img className="exit" onClick={HandleCloseDetalhes} src={Exit} alt="" />
+                            </div>
+                            <img className="img-livro" src={livroSelecionado.image} alt={livroSelecionado.nomeLivro} />
                             <h2> <span className="title-detalhe">Autor:</span> {livroSelecionado.autor}</h2>
                             <h2> <span className="title-detalhe"> Genêro:</span> {livroSelecionado.genero}</h2>
                             <h2> <span className="title-detalhe">Data de Lançamento:</span> {formatarData(livroSelecionado.dataLancamento)}</h2>
