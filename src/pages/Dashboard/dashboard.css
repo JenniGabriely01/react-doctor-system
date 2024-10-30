@@ -1,8 +1,61 @@
-h1 {
-    font-family: 'MAK';
+:root {
+    --Vermelho: #8C2A2A;
+    --Amarelo: #F8F8D8;
+    --Rosa: #F8E8E8;
+    --Marrom: #C29181;
 }
 
-p {
-    font-family: "Poppins", sans-serif;
+.dashboard-main {
+    display: flex;
+    width: 75%;
+    height: 100vh;
+    overflow-y: auto; 
+    margin-left: 25%;
+    padding: 50px;
 }
 
+.conteudo-esquerda {
+    width: 60%;
+}
+
+.conteudo-direita {
+    width: 40%;
+}
+
+.conteudo-esquerda img {
+    width: 100%;
+}
+
+.conteudo-direita {
+    display: flex;
+    flex-direction: column;
+}
+
+.principais {
+    background-color: var(--Rosa);
+    padding: 30px 80px 30px 35px;
+    border-radius: 15px;
+    margin-bottom: 25px;
+}
+
+.principais h2 {
+    color: var(--Vermelho);
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.principais h3 {
+    color: var(--Vermelho);
+    font-size: 1rem;
+    white-space: nowrap;         
+    overflow: hidden;            
+    text-overflow: ellipsis;   
+    width: 200px;
+}
+
+.principais p {
+    color: #C29181;
+    font-size: 0.7rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
