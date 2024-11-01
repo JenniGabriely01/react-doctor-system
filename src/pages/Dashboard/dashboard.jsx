@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import MenuLateral from "../../components/menuLateral/menuLateral";
 import './dashboard.css';
 import axios from "axios";
-import imgteste from '../../assets/imagens/banner.jpg';
+import carrosel1 from '../../assets/imagens/carrosel1.png';
+import { Link } from "react-router-dom";
 
 export default function Home() {
     const [generos, setGeneros] = useState([]);
@@ -29,7 +30,14 @@ export default function Home() {
             <MenuLateral />
 
             <section className="conteudo-esquerda">
-                <img src={imgteste} alt="" />
+                <div className="carrosel">
+                    <img src={carrosel1} alt="" />
+                    <div className="txt-carrosel">
+                        <h2>Clientes cadastrados</h2>
+                        <p>Dessa semana</p>
+                        <Link to="/Clientes">Ver mais</Link>
+                    </div>
+                </div>
             </section>
 
             <section className="conteudo-direita">
