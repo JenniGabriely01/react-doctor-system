@@ -37,7 +37,7 @@ export default function Home() {
                     <h2>Autores principais</h2>
                     {autores.map((autor) => (
                         <div key={autor.posicao}>
-                            <h3>{autor.posicao} {autor.autor}</h3>
+                            <h3>{autor.posicao}. {autor.autor}</h3>
                             <p>{autor.totalEmprestimos} empréstimos</p>
                         </div>
                     ))}

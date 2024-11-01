@@ -45,6 +45,8 @@
     font-size: 1rem;
     color: var(--Vermelho);
     text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .livro-imagem {
@@ -114,8 +116,10 @@
 .detalhes-livro h3 {
     font-weight: 700;
     color: var(--Vermelho);
-    margin: 0 auto;
     margin-bottom: 20px;
+    overflow: hidden;            
+    text-overflow: ellipsis;   
+    width: 60%;
 }
 
 .img-livro  {
@@ -132,7 +136,7 @@
 .exit {
     cursor: pointer;
     height: 18px;
-    margin-left: 140px;
+    /* margin-left: 140px; */
 }
 
 .detalhes-livro a {
