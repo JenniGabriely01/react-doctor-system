@@ -75,7 +75,7 @@ export default function Prazos() {
                             placeholder="Pesquisar Clientes..."
                             onSearch={setSearchTerm} // Passa a função de atualização corretamente
                         />
-                    </header>
+                     </header>
 
                     <div className="clientes-emprestimo">
                         {filteredEmp.map(emprestimo => (
