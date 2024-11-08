@@ -139,7 +139,7 @@ export default function Livraria() {
                     <>
                         <div className="detalhes-livro">
                             <div className="top-detalhes">
-                                <h3 className="tituloPrincipalDetalhes">{livroSelecionado.nomeLivro}</h3>
+                                <h3>{livroSelecionado.nomeLivro}</h3>
                                 <img className="exit" onClick={HandleCloseDetalhes} src={Exit} alt="" />
                             </div>
                             <img className="img-livro" src={livroSelecionado.image} alt={livroSelecionado.nomeLivro} />
