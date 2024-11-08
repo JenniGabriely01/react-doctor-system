@@ -13,6 +13,31 @@ export default function Home() {
     const [autores, setAutores] = useState([]);
     const [emprestimosRecentes, setEmprestimosRecentes] = useState(0);
     const [atrasosSemana, setAtrasosSemana] = useState(0);
+    const [currentSlide, setCurrentSlide] = useState(0);
+
+    const slides = [
+        {
+            img: carrosel1,
+            title: "Clientes cadastrados",
+            description: "Dessa semana",
+            link: "/Clientes",
+            value: ""
+        },
+        {
+            img: carrosel2,
+            title: `${emprestimosRecentes} Livro(s)`,
+            description: "Emprestados essa semana",
+            link: null,
+            value: ""
+        },
+        {
+            img: carrosel3,
+            title: `${atrasosSemana} Livros`,
+            description: "Atrasado(s)",
+            link: "/Prazos",
+            value: ""
+        }
+    ]
 
     const fetchData = async (url, setState) => {
         try {
@@ -51,33 +76,49 @@ export default function Home() {
         fetchAtrasosTotal();
     }, []);
 
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
+        }, 3500); // 3000ms = 3 segundos
+
+        return () => clearInterval(interval);
+    }, [slides.length]);
+
+    // Função para definir um slide específico
+    const goToSlide = (index) => {
+        setCurrentSlide(index);
+    };
+
     return (
         <main className="dashboard-main">
             <MenuLateral />
 
             <section className="conteudo-esquerda">
-                <div className="carrosel">
-                    <img src={carrosel1} alt="" />
-                    <div className="txt-carrosel">
-                        <h2>Clientes cadastrados</h2>
-                        <p>Dessa semana</p>
-                        <Link to="/Clientes">Ver mais</Link>
+                <div className="carrosel-container">
+                    {slides.map((slide, index) => (
+                        <div
+                            key={index}
+                            className={`carrosel ${index === currentSlide ? 'active' : ''}`}
+                        >
+                            <img src={slide.img} alt="" />
+                            <div className="txt-carrosel">
+                                <h2>{slide.title}</h2>
+                                <p>{slide.description}</p>
+                                {slide.link && <Link to={slide.link}>Ver mais</Link>}
+                            </div>
+                        </div>
+                    ))}
+
+                    <div className="dots-container">
+                        {slides.map((_, index) => (
+                            <span
+                                key={index}
+                                className={`dot ${index === currentSlide ? 'active' : ''}`}
+                                onClick={() => goToSlide(index)}
+                            ></span>
+                        ))}
                     </div>
-                </div>
-                <div className="carrosel">
-                    <img src={carrosel2} alt="" />
-                    <div className="txt-carrosel emprestimoRecente">
-                        <h2>{emprestimosRecentes} Livro(s)</h2>
-                        <p>Emprestados essa semana</p>
-                    </div>
-                </div>
-                <div className="carrosel">
-                    <img src={carrosel3} alt="" />
-                    <div className="txt-carrosel">
-                        <h2>{atrasosSemana} Livro(s)</h2>
-                        <p>Atrasado(s)</p>
-                        <Link to="/prazos">Ver mais</Link>
-                    </div>
+
                 </div>
             </section>
 
@@ -111,6 +152,6 @@ export default function Home() {
                     ))}
                 </div>
             </section>
-        </main>
+        </main >
     );
 }
