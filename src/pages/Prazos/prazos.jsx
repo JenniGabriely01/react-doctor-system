@@ -14,7 +14,7 @@ export default function Prazos() {
     const [expandedCard, setExpandedCard] = useState(null);
     const [searchTerm, setSearchTerm] = useState('');
     const [filteredEmp, setFilteredEmp] = useState([]); // Nova lista filtrada
-    const [mostrarTodos, setMostrarTodos] = useState(false); // Adiciona estado para controle de "Ver Mais" ou "Ver Menos"
+    const [mostrarTodos, setMostrarTodos] = useState(true); // Adiciona estado para controle de "Ver Mais" ou "Ver Menos"
 
     // Buscar os empréstimos da API
     useEffect(() => {
@@ -116,11 +116,7 @@ export default function Prazos() {
                                 )}
                             </li>
                         ))}
-                        {emprestimos.length > 6 && (
-                            <button onClick={() => setMostrarTodos(!mostrarTodos)}>
-                                {mostrarTodos ? "Mostrar menos" : "Ver mais"}
-                            </button>
-                        )}
+                     
                     </div>
                 </section>
             </main>
