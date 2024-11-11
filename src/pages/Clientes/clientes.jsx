@@ -13,10 +13,10 @@ export default function Clientes() {
     const [clientesRecentes, setClientesRecentes] = useState(0); // Contagem de clientes adicionados nos últimos 7 dias
     const [searchTerm, setSearchTerm] = useState('');
     const [filteredClientes, setFilteredClientes] = useState([]);
-    const [livrosCount, setLivrosCount] = useState(0);
+    /* const [livrosCount, setLivrosCount] = useState(0);
     const [livrosEmprestadosCount, setLivrosEmprestadosCount] = useState(0);
     const [livrosEmprestadosPorCliente, setLivrosEmprestadosPorCliente] = useState({});
-
+ */
     // Buscar todos os clientes
     useEffect(() => {
         const fetchClientes = async () => {
@@ -34,13 +34,13 @@ export default function Clientes() {
                 setClientesRecentes(recentes.length); // Atualiza a contagem de clientes recentes
 
                 // Buscar livros emprestados por cliente
-                const livrosEmprestadosCount = {};
-                for (const cliente of data) {
+               /*  const livrosEmprestadosCount = {};
+                for (const cliente of data || []) {
                     const responseLivros = await fetch(`http://localhost:3000/api/emprestimos/count?clienteId=${cliente._id}`);
                     const dataLivros = await responseLivros.json();
-                    livrosEmprestadosCount[cliente._id] = dataLivros.count;
+                    livrosEmprestadosCount[cliente._id] = dataLivros?.count || 0; // Use 0 como padrão
                 }
-                setLivrosEmprestadosCount(livrosEmprestadosCount);
+                setLivrosEmprestadosCount(livrosEmprestadosCount); */
 
             } catch (error) {
                 console.log("Erro ao buscar clientes", error);
@@ -57,7 +57,7 @@ export default function Clientes() {
         setFilteredClientes(filtered.slice(0, mostrarTodos ? filtered.length : 6));
     }, [searchTerm, clientes, mostrarTodos]);
 
-    useEffect(() => {
+  /*   useEffect(() => {
         const fetchLivrosCount = async () => {
             try {
                 const response = await fetch('http://localhost:3000/api/livros/count');
@@ -68,9 +68,9 @@ export default function Clientes() {
             }
         };
         fetchLivrosCount();
-    }, []);
+    }, []); */
 
-    useEffect(() => {
+/*     useEffect(() => {
         const fetchLivrosEmprestadosCount = async () => {
             try {
                 const response = await fetch('http://localhost:3000/api/livros/emprestados/count');
@@ -81,7 +81,7 @@ export default function Clientes() {
             }
         };
         fetchLivrosEmprestadosCount();
-    }, []);
+    }, []); */
 
     return (
         <main className="clientes">
@@ -123,16 +123,21 @@ export default function Clientes() {
                     </div>
 
                     <div className="cards-clientes">
-                        {filteredClientes.map((cliente) => (
-                            <div className="card-cliente" key={cliente._id}>
-                                <h3>{cliente.nome} {cliente.sobrenome}</h3>
-                                <div className="bottom-info">
-                                    <p>2 Livro(s) emprestados</p>
-                                    <p>{cliente.createdAt ? new Date(cliente.createdAt).toLocaleDateString() : 'Data não disponível'}</p>
+                        {filteredClientes.length > 0 ? (
+                            filteredClientes.map((cliente) => (
+                                <div className="card-cliente" key={cliente._id}>
+                                    <h3>{cliente.nome} {cliente.sobrenome}</h3>
+                                    <div className="bottom-info">
+                                        <p> Livro(s) emprestados</p>
+                                        <p>{cliente.createdAt ? new Date(cliente.createdAt).toLocaleDateString() : 'Data não disponível'}</p>
+                                    </div>
                                 </div>
-                            </div>
-                        ))}
+                            ))
+                        ) : (
+                            <p>Nenhum cliente cadastrado até o momento.</p>
+                        )}
                     </div>
+
 
                     <div className="titulos-cliente" id="titulo-cliente">
                         <h2>Estatísticas</h2>
@@ -141,18 +146,19 @@ export default function Clientes() {
                     <div className="cards-estatistica">
                         <EstatisticBlock
                             title="Clientes cadastrados"
-                            amount={totalClientes}
+                            amount={totalClientes || 0}
                         />
 
-                        <EstatisticBlock
+                       {/*  <EstatisticBlock
                             title="Livros emprestados"
-                            amount={livrosEmprestadosCount}
+                            amount={livrosEmprestadosCount || 0}
                         />
 
                         <EstatisticBlock
                             title="Livros cadastrados"
-                            amount={livrosCount}
-                        />
+                            amount={livrosCount || 0}
+                        /> */}
+
                     </div>
 
                 </div>
