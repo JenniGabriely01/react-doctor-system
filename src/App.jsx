@@ -8,6 +8,7 @@ import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import CadClientes from './pages/CadClientes/cadClientes';
 import Emprestimo from './pages/Emprestimo/emprestimo';
 import CadLivros from './pages/CadLivros/cadLivros';
+import EditarLivro from './pages/EditarLivro/Editar';
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
                 <Route path="/Dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
                 <Route path="/Livraria" element={<PrivateRoute><Livraria /></PrivateRoute>} />
                 <Route path="/CadLivros" element={<PrivateRoute><CadLivros /></PrivateRoute>} />
+                <Route path='/EditLivro' element={<PrivateRoute><EditarLivro /> </PrivateRoute>} />
                 <Route path="/cadClientes" element={<PrivateRoute><CadClientes/></PrivateRoute>} />
                 <Route path="/clientes" element={<PrivateRoute><Clientes /></PrivateRoute>} />
                 <Route path="/prazos" element={<PrivateRoute><Prazos /></PrivateRoute>} />
