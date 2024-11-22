@@ -1,3 +1,5 @@
+
+
 :root {
     --Vermelho: #8C2A2A;
     --Amarelo: #F8F8D8;
@@ -21,6 +23,7 @@
     flex-direction: column;
     float: left;
     width: 47.5%;
+    height: 201vh;
 }
 
 .conteudo-direita {
@@ -32,7 +35,6 @@
 .conteudo-esquerda img {
     width: 100%;
 }
-
 
 .carrosel-container {
     position: relative;
@@ -78,7 +80,6 @@
 .carrosel img {
     width: 100%;
     height: auto;
-    z-index: 1;
 }
 
 .txt-carrosel {
@@ -147,4 +148,37 @@
     font-size: 0.9vw;
     font-weight: 600;
     margin-bottom: 20px;
+}
+
+.livros-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.lista {
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.lista h2 {
+    color: var(--Vermelho);
+    font-size: 1.4vw;
+    margin-bottom: 20px;
+}
+
+.listas-livros {
+    margin-top: 50px;
+    width: 95%;
+}
+
+.livros-container img {
+    width: 10vw;
+    height: 13.5vw;
+}
+
+.livros-container p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100px; 
 }

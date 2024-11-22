@@ -14,6 +14,9 @@ export default function Home() {
     const [emprestimosRecentes, setEmprestimosRecentes] = useState(0);
     const [atrasosSemana, setAtrasosSemana] = useState(0);
     const [currentSlide, setCurrentSlide] = useState(0);
+    const [livrosMaisEmprestados, setLivrosMaisEmprestados] = useState([]);
+    const [livrosUltimos7Dias, setLivrosUltimos7Dias] = useState([]);
+    const [livrosMenosEmprestados, setLivrosMenosEmprestados] = useState([]);
 
     const slides = [
         {
@@ -21,44 +24,41 @@ export default function Home() {
             title: "Clientes cadastrados",
             description: "Dessa semana",
             link: "/Clientes",
-            value: ""
         },
         {
             img: carrosel2,
             title: `${emprestimosRecentes} Livro(s)`,
-            description: "Emprestados essa semana",
+            description: "Emprestado(s) essa semana",
             link: null,
-            value: ""
         },
         {
             img: carrosel3,
-            title: `${atrasosSemana} Livros`,
+            title: `${atrasosSemana} Livro(s)`,
             description: "Atrasado(s)",
             link: "/Prazos",
-            value: ""
         }
-    ]
+    ];
 
     const fetchData = async (url, setState) => {
         try {
             const response = await axios.get(url);
+            console.log('Dados recebidos:', response.data); // Log para visualizar os dados recebidos
             setState(response.data);
         } catch (error) {
-            console.error(`Erro ao buscar dados de ${url}`);
+            console.error(`Erro ao buscar dados de ${url}:`, error.response ? error.response.data : error.message);
         }
     };
 
-    // Função para emprestimos recentes
+
     const fecthEmprestimosRecentes = async () => {
         try {
             const response = await axios.get('http://localhost:3000/api/emprestimos/last-week-count');
             setEmprestimosRecentes(response.data.count);
-        } catch {
+        } catch (error) {
             console.error("Erro ao buscar contagem de empréstimos recentes:", error);
         }
     };
 
-    // Função que conta todos os atrasos
     const fetchAtrasosTotal = async () => {
         try {
             const response = await axios.get('http://localhost:3000/api/emprestimos/atrasos-total');
@@ -72,9 +72,19 @@ export default function Home() {
         fetchData('http://localhost:3000/api/autores-principais', setAutores);
         fetchData('http://localhost:3000/api/generos-principais', setGeneros);
         fetchData('http://localhost:3000/api/clientes-principais', setClientes);
+        fetchData('http://localhost:3000/api/livros-mais-emprestados', setLivrosMaisEmprestados);
+        fetchData('http://localhost:3000/api/livros-emprestados-semana', setLivrosUltimos7Dias);
+        fetchData('http://localhost:3000/api/livros-menos-emprestados', setLivrosMenosEmprestados);
         fecthEmprestimosRecentes();
         fetchAtrasosTotal();
     }, []);
+
+    useEffect(() => {
+        console.log("Mais emprestados:", livrosMaisEmprestados);
+        console.log("Emprestados nos últimos 7 dias:", livrosUltimos7Dias);
+        console.log("Menos emprestados:", livrosMenosEmprestados);
+    }, [livrosMaisEmprestados, livrosUltimos7Dias, livrosMenosEmprestados]);
+
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -84,10 +94,12 @@ export default function Home() {
         return () => clearInterval(interval);
     }, [slides.length]);
 
-    // Função para definir um slide específico
     const goToSlide = (index) => {
         setCurrentSlide(index);
     };
+
+
+
 
     return (
         <main className="dashboard-main">
@@ -118,7 +130,49 @@ export default function Home() {
                             ></span>
                         ))}
                     </div>
+                </div>
 
+                <div className="listas-livros">
+                    <div className="lista">
+                        <h2>Livros Mais Emprestados</h2>
+                        <div className="livros-container">
+                            {livrosMaisEmprestados.map((item) => (
+                                <div key={item.livro._id} className="livro-card">
+                                    <img src={item.livro.image} alt={item.livro.nomeLivro} />
+                                    <p>{item.livro.nomeLivro}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div className="lista">
+                        <h2>Livros Emprestados nos Últimos 7 Dias</h2>
+                        <div className="livros-container">
+                            {livrosUltimos7Dias.length > 0 ? (
+                                livrosUltimos7Dias.map((item) => (
+                                    <div key={item.livro._id} className="livro-card">
+                                        <img src={item.livro.image} alt={item.livro.nomeLivro} />
+                                        <p>{item.livro.nomeLivro}</p>
+                                    </div>
+                                ))
+                            ) : (
+                                <p>Sem livros emprestados nos últimos 7 dias</p>
+                            )}
+                        </div>
+                    </div>
+
+
+                    <div className="lista">
+                        <h2>Livros Menos Emprestados</h2>
+                        <div className="livros-container">
+                            {livrosMenosEmprestados.map((item) => (
+                                <div key={item.livro._id} className="livro-card">
+                                    <img src={item.livro.image} alt={item.livro.nomeLivro} />
+                                    <p>{item.livro.nomeLivro}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
                 </div>
             </section>
 

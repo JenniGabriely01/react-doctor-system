@@ -47,8 +47,8 @@ export default function MenuLateral() {
                     </li>
 
                     <li className="liMenu">
-                        <Link to="/prazos" className={currentPath === "/prazos" ? "active" : ""}>
-                            {currentPath === "/prazos" && <div className="highlight"></div>}
+                        <Link to="/Prazos" className={currentPath === "/Prazos" ? "active" : ""}>
+                            {currentPath === "/Prazos" && <div className="highlight"></div>}
                             <img className="iconLi" src={prazosIcon} alt="Icon Prazos" />
                             Prazos
                         </Link>
