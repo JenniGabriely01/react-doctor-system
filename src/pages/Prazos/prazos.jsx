@@ -103,7 +103,7 @@ export default function Prazos() {
                                             <div className="btn-escolha">
                                                 <button
                                                     onClick={() => handleDevolucao(emprestimo._id, emprestimo.livros)}>
-                                                    <img src={Sim} alt="SIm" />
+                                                    <img src={Sim} alt="Sim" />
                                                 </button>
                                                 <button
                                                     onClick={() => setExpandedCard(null)}>

@@ -34,7 +34,7 @@ export default function MenuLateral() {
                         <Link to="/Livraria" className={currentPath === "/Livraria" ? "active" : ""}>
                             {currentPath === "/Livraria" && <div className="highlight"></div>}
                             <img className="iconLi" src={livrariaIcon} alt="Icon Livraria" />
-                            Livraria
+                            Acervo
                         </Link>
                     </li>
 

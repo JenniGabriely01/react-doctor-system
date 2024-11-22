@@ -102,7 +102,7 @@ export default function Emprestimo() {
             if (response.status === 201) {
                 toast.success('Empréstimo realizado com sucesso!');
                 setTimeout(() => {
-                    window.location.href = '/prazos';
+                    window.location.href = '/Prazos';
                 }, 2000); // Atraso de 2 segundos (2000 ms)
             } else {
                 const errorData = await response.json();

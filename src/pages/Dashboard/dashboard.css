@@ -181,4 +181,6 @@
     overflow: hidden;
     text-overflow: ellipsis;
     width: 100px; 
+    color: var(--Vermelho);
+    text-align: left;
 }

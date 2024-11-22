@@ -149,6 +149,7 @@ export default function Livraria() {
                             <h2><span className="title-detalhe"> Estoque:</span> {livroSelecionado.qtdCopias}</h2>
 
                             <Link to="/Emprestimo">Emprestar</Link>
+                            <Link to="/">Editar Livro</Link>
                         </div>
                     </>
                 )}
