@@ -1,5 +1,4 @@
-/* import configIcon from '../../assets/icons/configIcon.svg';*/
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import './menuLateral.css';
 import logoMenuLateral from '../../assets/imagens/logoMenu.svg';
@@ -10,10 +9,20 @@ import userIcon from '../../assets/icons/userIcon.svg';
 import emprestimosIcon from '../../assets/icons/emprestimoIcon.svg';
 import saidaIcon from '../../assets/icons/saidaIcon.svg';
 
-
 export default function MenuLateral() {
     const location = useLocation();
     const currentPath = location.pathname;
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+       
+        sessionStorage.removeItem('token');
+       
+        navigate('/login');
+        console.log('Current Path:', location.pathname);
+
+    };
+
     return (
         <aside>
             <div className="logo">
@@ -22,7 +31,7 @@ export default function MenuLateral() {
 
             <nav>
                 <ul>
-                    <li className="liMenu"> 
+                    <li className="liMenu">
                         <Link to="/Dashboard" className={currentPath === "/Dashboard" ? "active" : ""}>
                             {currentPath === "/Dashboard" && <div className="highlight"></div>}
                             <img className="iconLi" src={dashboardIcon} alt="Icon Dashboard" />
@@ -56,7 +65,7 @@ export default function MenuLateral() {
 
                     <li className="liMenu">
                         <Link to="/Emprestimo" className={currentPath === "/Emprestimo" ? "active" : ""}>
-                            {currentPath === "Emprestimos" && <div className="highlight"></div>}
+                            {currentPath === "/Emprestimo" && <div className="highlight"></div>}
                             <img className="iconLi" src={emprestimosIcon} alt="Icon Empréstimos" />
                             Empréstimos
                         </Link>
@@ -64,15 +73,14 @@ export default function MenuLateral() {
                 </ul>
             </nav>
 
-
             <div className="saida">
-                <li className='liMenu'>
-                    <a href="/login">
+                <li className="liMenu">
+                    <button onClick={handleLogout} className="logoutButton">
                         <img src={saidaIcon} alt="Icon Saida" />
                         Log out
-                    </a>
+                    </button>
                 </li>
             </div>
         </aside>
-    )
+    );
 }
