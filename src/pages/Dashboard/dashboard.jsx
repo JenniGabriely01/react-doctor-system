@@ -136,12 +136,19 @@ export default function Home() {
                     <div className="lista">
                         <h2>Livros Mais Emprestados</h2>
                         <div className="livros-container">
-                            {livrosMaisEmprestados.map((item) => (
-                                <div key={item.livro._id} className="livro-card">
-                                    <img src={item.livro.image} alt={item.livro.nomeLivro} />
-                                    <p>{item.livro.nomeLivro}</p>
+                            {livrosMaisEmprestados.length > 0 ? (
+                                livrosMaisEmprestados.map((item) => (
+                                    <div key={item.livro._id} className="livro-card">
+                                        <img src={item.livro.image} alt={item.livro.nomeLivro} />
+                                        <p className="titulo">{item.livro.nomeLivro}</p>
+                                    </div>
+                                ))
+                            ) : (
+                                <div className="div-aviso">
+                                    <h3 className="main-aviso">Ah, que pena!</h3>
+                                    <p className="aviso">Não há livros emprestados no momento.</p>
                                 </div>
-                            ))}
+                            )}
                         </div>
                     </div>
 
@@ -152,11 +159,14 @@ export default function Home() {
                                 livrosUltimos7Dias.map((item) => (
                                     <div key={item.livro._id} className="livro-card">
                                         <img src={item.livro.image} alt={item.livro.nomeLivro} />
-                                        <p>{item.livro.nomeLivro}</p>
+                                        <p className="titulo">{item.livro.nomeLivro}</p>
                                     </div>
                                 ))
                             ) : (
-                                <p>Sem livros emprestados nos últimos 7 dias</p>
+                                <div className="div-aviso">
+                                    <h3 className="main-aviso">Ah, que pena!</h3>
+                                    <p className="aviso">Sem livros emprestados nesse período.</p>
+                                </div>
                             )}
                         </div>
                     </div>
@@ -165,12 +175,19 @@ export default function Home() {
                     <div className="lista">
                         <h2>Livros Menos Emprestados</h2>
                         <div className="livros-container">
-                            {livrosMenosEmprestados.map((item) => (
-                                <div key={item.livro._id} className="livro-card">
-                                    <img src={item.livro.image} alt={item.livro.nomeLivro} />
-                                    <p>{item.livro.nomeLivro}</p>
+                            {livrosMenosEmprestados.length > 0 ? (
+                                livrosMenosEmprestados.map((item) => (
+                                    <div key={item.livro._id} className="livro-card">
+                                        <img src={item.livro.image} alt={item.livro.nomeLivro} />
+                                        <p className="titulo">{item.livro.nomeLivro}</p>
+                                    </div>
+                                ))
+                            ) : (
+                                <div className="div-aviso">
+                                    <h3 className="main-aviso">Ah, que pena!</h3>
+                                    <p className="aviso">Não há livros emprestados no momento.</p>
                                 </div>
-                            ))}
+                            )}
                         </div>
                     </div>
                 </div>
