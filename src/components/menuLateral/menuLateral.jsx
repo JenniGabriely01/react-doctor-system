@@ -40,9 +40,9 @@ export default function MenuLateral() {
                     </li>
 
                     <li className="liMenu">
-                        <Link to="/Livraria" className={currentPath === "/Livraria" ? "active" : ""}>
-                            {currentPath === "/Livraria" && <div className="highlight"></div>}
-                            <img className="iconLi" src={livrariaIcon} alt="Icon Livraria" />
+                        <Link to="/Acervo" className={currentPath === "/Acervo" ? "active" : ""}>
+                            {currentPath === "/Acervo" && <div className="highlight"></div>}
+                            <img className="iconLi" src={livrariaIcon} alt="Icon Acervo" />
                             Acervo
                         </Link>
                     </li>
@@ -77,7 +77,7 @@ export default function MenuLateral() {
                 <li className="liMenu">
                     <button onClick={handleLogout} className="logoutButton">
                         <img src={saidaIcon} alt="Icon Saida" />
-                        Log out
+                            Log out
                     </button>
                 </li>
             </div>
