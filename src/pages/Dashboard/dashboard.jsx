@@ -146,7 +146,7 @@ export default function Home() {
                             ) : (
                                 <div className="div-aviso">
                                     <h3 className="main-aviso">Ah, que pena!</h3>
-                                    <p className="aviso">Não há livros emprestados no momento.</p>
+                                    <p className="aviso">Não há emprestados no momento.</p>
                                 </div>
                             )}
                         </div>
