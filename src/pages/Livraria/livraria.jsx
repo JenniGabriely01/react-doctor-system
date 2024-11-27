@@ -98,8 +98,6 @@ export default function Livraria() {
                         />
                     </header>
 
-
-
                     <div className={`livros ${livroSelecionado ? 'detalhes-abertos' : ''}`}>
                         {Object.keys(livrosPorGenero).map((genero) => (
                             <div key={genero} className="categoria">
@@ -120,8 +118,7 @@ export default function Livraria() {
                                     {livrosPorGenero[genero]
                                         .slice(0, mostrarTodos[genero] ? livrosPorGenero[genero].length : 4)
                                         .map((livro) => (
-                                            <div onClick={() => handleVerDetalhesLivro(livro)}
-                                                className="livro" key={livro._id}>
+                                            <div onClick={() => handleVerDetalhesLivro(livro)} className="livro" key={livro._id}>
                                                 <img className="livro-imagem" src={livro.image} alt={livro.nomeLivro} />
                                                 <h3 className="livro-titulo">{livro.nomeLivro}</h3>
                                             </div>
@@ -131,9 +128,8 @@ export default function Livraria() {
                         ))}
                     </div>
 
+
                 </section>
-
-
 
                 {livroSelecionado && (
                     <>
@@ -144,12 +140,12 @@ export default function Livraria() {
                             </div>
                             <img className="img-livro" src={livroSelecionado.image} alt={livroSelecionado.nomeLivro} />
                             <h2> <span className="title-detalhe">Autor:</span> {livroSelecionado.autor}</h2>
-                            <h2> <span className="title-detalhe"> Genêro:</span> {livroSelecionado.genero}</h2>
+                            <h2> <span className="title-detalhe"> Gênero:</span> {livroSelecionado.genero}</h2>
                             <h2> <span className="title-detalhe">Data de Lançamento:</span> {formatarData(livroSelecionado.dataLancamento)}</h2>
                             <h2><span className="title-detalhe"> Estoque:</span> {livroSelecionado.qtdCopias}</h2>
 
-                            <Link to="/Emprestimo">Emprestar</Link>
-                            <Link to="/EditLivro">Editar Livro</Link>
+                            <Link className="link" to="/Emprestimo">Emprestar</Link>
+                            <Link className="link" to="/EditLivro">Editar Livro</Link>
                         </div>
                     </>
                 )}

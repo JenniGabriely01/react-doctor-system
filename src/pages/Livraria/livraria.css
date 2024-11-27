@@ -35,11 +35,15 @@
 }
 
 .livro {
-    margin: 1rem 0 1rem 0;
-    width: 20.5%;
-    height: 25%;
-    cursor: pointer;
+    flex: 1 0 calc(25% - 1rem); /* Cada livro ocupa 25% menos o espaço do gap */
+    max-width: calc(25% - 1rem); /* Garante largura consistente */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
 }
+
 
 .livro-titulo {
     font-size: 1rem;
@@ -51,7 +55,7 @@
 
 .livro-imagem {
     width: 100%;
-    height: 100%;
+    height: 20vw;
 }
 
 .categoria {
@@ -83,12 +87,11 @@
 }
 
 .livros {
-    flex: 3;
     display: flex;
     flex-wrap: wrap;
-    gap: 6%;
-    width: 100%; /* Ocupa a largura total por padrão */
-    transition: width 0.3s ease; /* Transição suave */
+    justify-content: space-between; /* Espaços iguais entre os itens */
+    gap: 1.5vw; /* Espaço adicional entre os itens, se necessário */
+    min-height: 20vw; /* Define um espaço mínimo para acomodar 4 itens */
 }
 
 .detalhes-livro {
@@ -110,7 +113,7 @@
     color: var(--Vermelho);
     font-size: 1rem;
     font-weight: 400;
-    margin-bottom: 20px;
+    margin-bottom: 1vw;
 }
 
 .detalhes-livro h3 {
@@ -158,8 +161,18 @@
 
 .title-detalhe{
     font-weight: 700;
+    margin: 0.25vw;
 }
 
 .livros.detalhes-abertos {
     width: calc(100% - 230px); /* Aplica apenas quando os detalhes estão abertos */
+}
+
+.livros.detalhes-abertos .livro-imagem {
+    height: 15vw; /* Reduz a altura da imagem */
+}
+
+
+.link {
+    margin: 0.5vw;
 }
