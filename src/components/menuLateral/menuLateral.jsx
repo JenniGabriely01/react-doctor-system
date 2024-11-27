@@ -77,7 +77,7 @@ export default function MenuLateral() {
                 <li className="liMenu">
                     <button onClick={handleLogout} className="logoutButton">
                         <img src={saidaIcon} alt="Icon Saida" />
-                        Log out
+                            Log out
                     </button>
                 </li>
             </div>

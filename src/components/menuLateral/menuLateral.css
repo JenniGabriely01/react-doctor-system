@@ -21,7 +21,8 @@ link {
     align-items: center;
     gap: 8px;
     font-size: 16px;
-    color: #000;
+    color: var(--Amarelo);
+    font-weight: 600;
 }
 
 .logoutButton img {
