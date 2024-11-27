@@ -34,13 +34,13 @@ export default function Clientes() {
                 setClientesRecentes(recentes.length); // Atualiza a contagem de clientes recentes
 
                 // Buscar livros emprestados por cliente
-               /*  const livrosEmprestadosCount = {};
-                for (const cliente of data || []) {
-                    const responseLivros = await fetch(`http://localhost:3000/api/emprestimos/count?clienteId=${cliente._id}`);
-                    const dataLivros = await responseLivros.json();
-                    livrosEmprestadosCount[cliente._id] = dataLivros?.count || 0; // Use 0 como padrão
-                }
-                setLivrosEmprestadosCount(livrosEmprestadosCount); */
+                /*  const livrosEmprestadosCount = {};
+                 for (const cliente of data || []) {
+                     const responseLivros = await fetch(`http://localhost:3000/api/emprestimos/count?clienteId=${cliente._id}`);
+                     const dataLivros = await responseLivros.json();
+                     livrosEmprestadosCount[cliente._id] = dataLivros?.count || 0; // Use 0 como padrão
+                 }
+                 setLivrosEmprestadosCount(livrosEmprestadosCount); */
 
             } catch (error) {
                 console.log("Erro ao buscar clientes", error);
@@ -57,31 +57,31 @@ export default function Clientes() {
         setFilteredClientes(filtered.slice(0, mostrarTodos ? filtered.length : 6));
     }, [searchTerm, clientes, mostrarTodos]);
 
-  /*   useEffect(() => {
-        const fetchLivrosCount = async () => {
-            try {
-                const response = await fetch('http://localhost:3000/api/livros/count');
-                const data = await response.json();
-                setLivrosCount(data.count);
-            } catch (error) {
-                console.log("Erro ao buscar contagem de livros", error);
-            }
-        };
-        fetchLivrosCount();
-    }, []); */
+    /*   useEffect(() => {
+          const fetchLivrosCount = async () => {
+              try {
+                  const response = await fetch('http://localhost:3000/api/livros/count');
+                  const data = await response.json();
+                  setLivrosCount(data.count);
+              } catch (error) {
+                  console.log("Erro ao buscar contagem de livros", error);
+              }
+          };
+          fetchLivrosCount();
+      }, []); */
 
-/*     useEffect(() => {
-        const fetchLivrosEmprestadosCount = async () => {
-            try {
-                const response = await fetch('http://localhost:3000/api/livros/emprestados/count');
-                const data = await response.json();
-                setLivrosEmprestadosCount(data.count);
-            } catch (error) {
-                console.log("Erro ao buscar contagem de livros emprestados", error);
-            }
-        };
-        fetchLivrosEmprestadosCount();
-    }, []); */
+    /*     useEffect(() => {
+            const fetchLivrosEmprestadosCount = async () => {
+                try {
+                    const response = await fetch('http://localhost:3000/api/livros/emprestados/count');
+                    const data = await response.json();
+                    setLivrosEmprestadosCount(data.count);
+                } catch (error) {
+                    console.log("Erro ao buscar contagem de livros emprestados", error);
+                }
+            };
+            fetchLivrosEmprestadosCount();
+        }, []); */
 
     return (
         <main className="clientes">
@@ -134,7 +134,10 @@ export default function Clientes() {
                                 </div>
                             ))
                         ) : (
-                            <p>Nenhum cliente cadastrado até o momento.</p>
+                            <div className="div-aviso">
+                                <h3 className="main-aviso">Onde estão os leitores?</h3>
+                                <p className="aviso">Não há clientes cadastrados no momento.</p>
+                            </div>
                         )}
                     </div>
 
@@ -149,7 +152,7 @@ export default function Clientes() {
                             amount={totalClientes || 0}
                         />
 
-                       {/*  <EstatisticBlock
+                        {/*  <EstatisticBlock
                             title="Livros emprestados"
                             amount={livrosEmprestadosCount || 0}
                         />
