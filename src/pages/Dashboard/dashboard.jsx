@@ -42,7 +42,6 @@ export default function Home() {
     const fetchData = async (url, setState) => {
         try {
             const response = await axios.get(url);
-            console.log('Dados recebidos:', response.data); // Log para visualizar os dados recebidos
             setState(response.data);
         } catch (error) {
             console.error(`Erro ao buscar dados de ${url}:`, error.response ? error.response.data : error.message);
@@ -78,13 +77,6 @@ export default function Home() {
         fecthEmprestimosRecentes();
         fetchAtrasosTotal();
     }, []);
-
-    useEffect(() => {
-        console.log("Mais emprestados:", livrosMaisEmprestados);
-        console.log("Emprestados nos últimos 7 dias:", livrosUltimos7Dias);
-        console.log("Menos emprestados:", livrosMenosEmprestados);
-    }, [livrosMaisEmprestados, livrosUltimos7Dias, livrosMenosEmprestados]);
-
 
     useEffect(() => {
         const interval = setInterval(() => {

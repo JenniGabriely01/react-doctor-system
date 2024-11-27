@@ -15,12 +15,8 @@ export default function MenuLateral() {
     const navigate = useNavigate();
 
     const handleLogout = () => {
-       
         sessionStorage.removeItem('token');
-       
         navigate('/login');
-        console.log('Current Path:', location.pathname);
-
     };
 
     return (
