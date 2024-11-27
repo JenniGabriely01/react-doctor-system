@@ -65,45 +65,30 @@ export default function Emprestimo() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        // Validações básicas
-        if (!selectedCliente) {
-            toast.error('Por favor, selecione um cliente.');
-            return;
-        }
-
-        const livrosSelecionados = selectedLivros.map(item => item.livro).filter(livro => livro !== null);
-        if (livrosSelecionados.length === 0) {
-            toast.error('Por favor, selecione pelo menos um livro.');
-            return;
-        }
-
+    
         if (!dataEmprestimo) {
             toast.error('Por favor, selecione a data do empréstimo.');
             return;
         }
-
-        // Prepara os dados para envio
+    
         const data = {
-            cliente: selectedCliente.value,  // Captura o ID do cliente
-            dataEmprestimo,  // Data de empréstimo selecionada
-            livros: livrosSelecionados       // IDs dos livros selecionados
+            cliente: selectedCliente.value,
+            dataEmprestimo, // Enviar no formato já obtido do input
+            livros: selectedLivros.map(item => item.livro).filter(livro => livro !== null),
         };
-
+    
         try {
             const response = await fetch('http://localhost:3000/api/emprestimos', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data), // Envia os dados dinamicamente
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data),
             });
-
+    
             if (response.status === 201) {
                 toast.success('Empréstimo realizado com sucesso!');
                 setTimeout(() => {
                     window.location.href = '/Prazos';
-                }, 2000); // Atraso de 2 segundos (2000 ms)
+                }, 2000);
             } else {
                 const errorData = await response.json();
                 toast.error(errorData.message || 'Erro ao realizar empréstimo.');
@@ -111,9 +96,8 @@ export default function Emprestimo() {
         } catch (error) {
             toast.error('Erro ao realizar empréstimo.');
         }
-
-        console.log('Dados enviados:', data);
     };
+    
 
     return (
         <>
