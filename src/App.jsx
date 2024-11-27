@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Dashboard from './pages/Dashboard/dashboard';
 import Login from './pages/Login/login';
-import Livraria from './pages/Livraria/livraria';
+import Acervo from './pages/Livraria/livraria';
 import Clientes from './pages/Clientes/clientes';
 import Prazos from './pages/Prazos/prazos';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute'; 
@@ -17,7 +17,7 @@ function App() {
             <Routes>
                 <Route path="/login" element={<Login />} />
                 <Route path="/Dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
-                <Route path="/Livraria" element={<PrivateRoute><Livraria /></PrivateRoute>} />
+                <Route path="/Acervo" element={<PrivateRoute><Acervo /></PrivateRoute>} />
                 <Route path="/CadLivros" element={<PrivateRoute><CadLivros /></PrivateRoute>} />
                 <Route path='/EditLivro' element={<PrivateRoute><EditarLivro /> </PrivateRoute>} />
                 <Route path="/cadClientes" element={<PrivateRoute><CadClientes/></PrivateRoute>} />
