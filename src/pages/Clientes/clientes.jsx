@@ -5,6 +5,7 @@ import EstatisticBlock from "../../components/EstatisticBlock/estatisticblock";
 import Button from "../../components/button/button";
 import { useState, useEffect } from 'react';
 import './clientes.css';
+import axios from "axios";
 
 export default function Clientes() {
     const [clientes, setClientes] = useState([]);
@@ -13,10 +14,9 @@ export default function Clientes() {
     const [clientesRecentes, setClientesRecentes] = useState(0); // Contagem de clientes adicionados nos últimos 7 dias
     const [searchTerm, setSearchTerm] = useState('');
     const [filteredClientes, setFilteredClientes] = useState([]);
-    /* const [livrosCount, setLivrosCount] = useState(0);
     const [livrosEmprestadosCount, setLivrosEmprestadosCount] = useState(0);
-    const [livrosEmprestadosPorCliente, setLivrosEmprestadosPorCliente] = useState({});
- */
+    const [livrosCount, setLivrosCount] = useState(0);
+    
     // Buscar todos os clientes
     useEffect(() => {
         const fetchClientes = async () => {
@@ -59,32 +59,28 @@ export default function Clientes() {
         setFilteredClientes(filtered.slice(0, mostrarTodos ? filtered.length : 6));
     }, [searchTerm, clientes, mostrarTodos]);
 
-    /*   useEffect(() => {
-          const fetchLivrosCount = async () => {
-              try {
-                  const response = await fetch('http://localhost:3000/api/livros/count');
-                  const data = await response.json();
-                  setLivrosCount(data.count);
-              } catch (error) {
-                  console.log("Erro ao buscar contagem de livros", error);
-              }
-          };
-          fetchLivrosCount();
-      }, []); */
 
-    /*     useEffect(() => {
-            const fetchLivrosEmprestadosCount = async () => {
-                try {
-                    const response = await fetch('http://localhost:3000/api/livros/emprestados/count');
-                    const data = await response.json();
-                    setLivrosEmprestadosCount(data.count);
-                } catch (error) {
-                    console.log("Erro ao buscar contagem de livros emprestados", error);
-                }
-            };
-            fetchLivrosEmprestadosCount();
-        }, []); */
+    useEffect(() => {
+        axios.get('http://localhost:3000/api/estatisticas/livros-emprestados')
+            .then(response => {
+                setLivrosEmprestadosCount(response.data.totalLivrosEmprestados);
+            })
+            .catch(error => {
+                console.error('Erro ao buscar estatísticas de livros emprestados:', error);
+            });
+    }, []);
 
+    useEffect(() => {
+        // Buscar a contagem de livros cadastrados
+        axios.get('http://localhost:3000/api/livros/count')
+            .then(response => {
+                setLivrosCount(response.data.count);
+            })
+            .catch(error => {
+                console.error('Erro ao buscar contagem de livros:', error);
+            });
+    }, []);
+    
     return (
         <main className="clientes">
             <div>
@@ -152,8 +148,17 @@ export default function Clientes() {
                             title="Clientes cadastrados"
                             amount={totalClientes || 0}
                         />
-                    </div>
 
+                        <EstatisticBlock
+                            title="Livros emprestados"
+                            amount={livrosEmprestadosCount || 0}
+                        />
+
+                        <EstatisticBlock
+                            title="Livros Cadastrados"
+                            amount={livrosCount || 0}
+                        />
+                    </div>
                 </div>
             </section>
         </main>
