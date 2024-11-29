@@ -2,19 +2,20 @@
     --Vermelho: #8C2A2A;
     --Amarelo: #F8F8D8;
     --Marrom: #C29181;
+    --VermelhoTransp: #8c2a2aac;
     --Rosa: #F8E8E8;
 }
 
 .livraria {
-   /*  overflow-y: auto; */
+    /*  overflow-y: auto; */
     display: flex;
     width: 100%;
 }
 
 .conteudo-livraria {
-    margin-left: 25%; 
-    width: 75%; 
-    padding: 50px 50px 50px 50px; 
+    margin-left: 25%;
+    width: 75%;
+    padding: 50px 50px 50px 50px;
     display: flex;
     flex-direction: row;
     overflow-y: auto;
@@ -31,12 +32,15 @@
 }
 
 .header-livraria.detalhes-abertos {
-    width: calc(100% - 220px); /* Reduz a largura apenas quando os detalhes estão abertos */
+    width: calc(100% - 220px);
+    /* Reduz a largura apenas quando os detalhes estão abertos */
 }
 
 .livro {
-    flex: 1 0 calc(25% - 1rem); /* Cada livro ocupa 25% menos o espaço do gap */
-    max-width: calc(25% - 1rem); /* Garante largura consistente */
+    flex: 1 0 calc(25% - 1rem);
+    /* Cada livro ocupa 25% menos o espaço do gap */
+    max-width: calc(25% - 1rem);
+    /* Garante largura consistente */
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -49,6 +53,7 @@
     font-size: 1rem;
     color: var(--Vermelho);
     text-align: center;
+    width: 130px;
     overflow: hidden;
     text-overflow: ellipsis;
 }
@@ -59,7 +64,8 @@
 }
 
 .categoria {
-    margin-bottom: 2vw; /* Espaçamento entre categorias */
+    margin-bottom: 2vw;
+    /* Espaçamento entre categorias */
     width: 100%;
 }
 
@@ -77,7 +83,7 @@
     width: 100%;
 }
 
-.maisbtn{
+.maisbtn {
     background: none;
     border: none;
     font-size: 0.9rem;
@@ -89,18 +95,17 @@
 .livros {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between; /* Espaços iguais entre os itens */
-    gap: 1.5vw; /* Espaço adicional entre os itens, se necessário */
-    min-height: 20vw; /* Define um espaço mínimo para acomodar 4 itens */
+    justify-content: space-between;
+    gap: 1.5vw;
+    min-height: 20vw;
 }
 
 .detalhes-livro {
     position: fixed;
     top: 0;
     right: 0;
-    flex: 1;
-    max-width: 250px; 
-    height: 100%; 
+    max-width: 250px;
+    height: 100%;
     padding: 20px;
     background-color: var(--Rosa);
     display: flex;
@@ -108,7 +113,12 @@
     flex-direction: column;
 }
 
-.detalhes-livro h2{
+.conteudo-detalhes {
+    display: flex;
+    flex-direction: column;
+}
+
+.detalhes-livro h2 {
     text-align: left;
     color: var(--Vermelho);
     font-size: 1rem;
@@ -119,15 +129,14 @@
 .detalhes-livro h3 {
     font-weight: 700;
     color: var(--Vermelho);
-    margin-bottom: 20px;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;       /* Garante que o texto não quebre a linha */
-    display: block;            /* Define o h3 como um bloco */
-    width: 60%;                /* Define uma largura máxima */
+    white-space: nowrap;
+    display: block;
+    width: 60%;
 }
 
-.img-livro  {
+.img-livro {
     width: 85%;
     margin: 0 auto;
     margin-bottom: 20px;
@@ -136,6 +145,9 @@
 .top-detalhes {
     display: flex;
     justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
 .exit {
@@ -159,20 +171,79 @@
     opacity: 90%;
 }
 
-.title-detalhe{
+.title-detalhe {
     font-weight: 700;
     margin: 0.25vw;
 }
 
 .livros.detalhes-abertos {
-    width: calc(100% - 230px); /* Aplica apenas quando os detalhes estão abertos */
+    width: calc(100% - 230px);
 }
 
 .livros.detalhes-abertos .livro-imagem {
-    height: 15vw; /* Reduz a altura da imagem */
+    height: 15vw;
 }
-
 
 .link {
     margin: 0.5vw;
+}
+
+.remover {
+    background-color: transparent;
+    border: 0;
+    color: var(--Vermelho);
+    text-decoration: underline;
+    font-size: 1.25vw;
+    margin-top: auto;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    /* Fundo escuro */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: var(--Rosa);
+    padding: 20px 60px;
+    border-radius: 5px;
+    text-align: center;
+    width: 400px;
+    color: var(--Vermelho);
+    font-weight: 600;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modal-content button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    margin-top: 20px;
+    width: 100px;
+    background-color: var(--Vermelho);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modal-content button:last-child {
+    background-color: var(--VermelhoTransp);
+    margin-right: 0;
+}
+
+.btn-modal {
+    display: flex;
+    justify-content: center;
+}
+
+.btn-modal button {
+    margin-right: 30px;
 }

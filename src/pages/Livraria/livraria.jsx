@@ -12,7 +12,9 @@ export default function Livraria() {
     const [mostrarTodos, setMostrarTodos] = useState({});
     const [totalLivros, setTotalLivros] = useState(0);
     const [filteredLivros, setFilteredLivros] = useState([]);
-    const [livroSelecionado, setLivroSelecionado] = useState(null); // Estado que verifica se o livro está selecionado
+    const [livroSelecionado, setLivroSelecionado] = useState(null);
+    const [showModal, setShowModal] = useState(false); // Estado para controlar o modal
+    const [livroARemover, setLivroARemover] = useState(null); // Estado para armazenar o livro a ser removido
 
     // Fetch de todos os livros ao carregar a página
     useEffect(() => {
@@ -62,6 +64,28 @@ export default function Livraria() {
         return acc;
     }, {});
 
+    const removerLivro = async () => {
+        try {
+            console.log("Removendo livro:", livroARemover);
+            const response = await fetch(`http://localhost:3000/api/livros/${livroARemover._id}`, {
+                method: 'DELETE',
+            });
+
+            if (response.ok) {
+                // Remover o livro do estado local após sucesso
+                setLivros(livros.filter(livro => livro._id !== livroARemover._id));
+                setFilteredLivros(filteredLivros.filter(livro => livro._id !== livroARemover._id));
+                setShowModal(false);
+                setLivroARemover(null);  // Limpar o estado do livro a ser removido
+            } else {
+                console.log("Erro ao remover livro:", response.status);
+            }
+        } catch (error) {
+            console.error("Erro ao tentar remover livro:", error);
+        }
+    };
+
+
     // Mostra Barra lateral após clicar em um livro
     const handleVerDetalhesLivro = (livro) => {
         setLivroSelecionado(livroSelecionado === livro ? null : livro);
@@ -75,7 +99,7 @@ export default function Livraria() {
 
     const HandleCloseDetalhes = () => {
         setLivroSelecionado(null)
-    }
+    };
 
     return (
         <main className="livraria">
@@ -84,10 +108,8 @@ export default function Livraria() {
             </div>
 
             <section className="conteudo-livraria">
-
                 <section>
-                    <header
-                        className={`header-livraria ${livroSelecionado ? 'detalhes-abertos' : ''}`}>
+                    <header className={`header-livraria ${livroSelecionado ? 'detalhes-abertos' : ''}`}>
                         <BarraSearch
                             placeholder="Pesquisar por título e autores..."
                             onSearch={setSearchTerm}
@@ -127,29 +149,42 @@ export default function Livraria() {
                             </div>
                         ))}
                     </div>
-
-
                 </section>
 
                 {livroSelecionado && (
                     <>
                         <div className="detalhes-livro">
-                            <div className="top-detalhes">
-                                <h3>{livroSelecionado.nomeLivro}</h3>
-                                <img className="exit" onClick={HandleCloseDetalhes} src={Exit} alt="" />
-                            </div>
-                            <img className="img-livro" src={livroSelecionado.image} alt={livroSelecionado.nomeLivro} />
-                            <h2> <span className="title-detalhe">Autor:</span> {livroSelecionado.autor}</h2>
-                            <h2> <span className="title-detalhe"> Gênero:</span> {livroSelecionado.genero}</h2>
-                            <h2> <span className="title-detalhe">Data de Lançamento:</span> {formatarData(livroSelecionado.dataLancamento)}</h2>
-                            <h2><span className="title-detalhe"> Estoque:</span> {livroSelecionado.qtdCopias}</h2>
+                            <div className="conteudo-detalhes">
+                                <div className="top-detalhes">
+                                    <h3>{livroSelecionado.nomeLivro}</h3>
+                                    <img className="exit" onClick={HandleCloseDetalhes} src={Exit} alt="" />
+                                </div>
+                                <img className="img-livro" src={livroSelecionado.image} alt={livroSelecionado.nomeLivro} />
+                                <h2> <span className="title-detalhe">Autor:</span> {livroSelecionado.autor}</h2>
+                                <h2> <span className="title-detalhe"> Gênero:</span> {livroSelecionado.genero}</h2>
+                                <h2> <span className="title-detalhe">Data de Lançamento:</span> {formatarData(livroSelecionado.dataLancamento)}</h2>
+                                <h2><span className="title-detalhe"> Estoque:</span> {livroSelecionado.qtdCopias}</h2>
 
-                            <Link className="link" to="/Emprestimo">Emprestar</Link>
-                            <Link className="link" to="/EditLivro">Editar Livro</Link>
+                                <Link className="link" to="/Emprestimo">Emprestar</Link>
+                                <button className="link remover" onClick={() => { setLivroARemover(livroSelecionado); setShowModal(true); }}>Remover Livro</button>
+                            </div>
                         </div>
                     </>
                 )}
             </section>
+
+            {/* Modal de confirmação */}
+            {showModal && (
+                <div className="modal-overlay">
+                    <div className="modal-content">
+                        <p>Tem certeza que deseja remover esse livro?</p>
+                        <div className="btn-modal">
+                            <button onClick={removerLivro}>Sim</button>
+                            <button onClick={() => setShowModal(false)}>Não</button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </main>
     );
 }
