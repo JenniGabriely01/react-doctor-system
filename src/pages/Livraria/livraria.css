@@ -213,10 +213,15 @@
 
 .modal-content {
     background-color: var(--Rosa);
-    padding: 20px 60px;
+    padding: 20px 15px;
+    border-left: 8px solid var(--Vermelho);
     border-radius: 5px;
     text-align: center;
     width: 400px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     color: var(--Vermelho);
     font-weight: 600;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -224,7 +229,7 @@
 
 .modal-content button {
     margin-top: 10px;
-    padding: 10px 20px;
+    padding: 5px 20px;
     margin-top: 20px;
     width: 100px;
     background-color: var(--Vermelho);
@@ -232,6 +237,10 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.modal-content p {
+    font-size: 1.1vw;
 }
 
 .modal-content button:last-child {
@@ -245,5 +254,5 @@
 }
 
 .btn-modal button {
-    margin-right: 30px;
+    margin-right: 15px;
 }

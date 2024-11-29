@@ -18,26 +18,25 @@ export default function Clientes() {
     const [livrosCount, setLivrosCount] = useState(0);
 
     useEffect(() => {
-        const fetchClientesRecentes = async () => {
-            try {
-                const response = await fetch('http://localhost:3000/api/clientes');
-                const data = await response.json();
-    
-                // Filtrar clientes dos últimos 7 dias
-                const umaSemanaAtras = new Date();
-                umaSemanaAtras.setDate(umaSemanaAtras.getDate() - 7);
-                const recentes = data.filter(cliente => new Date(cliente.createdAt) > umaSemanaAtras);
-    
-                setClientesRecentes(recentes.length);
-            } catch (error) {
-                console.log("Erro ao buscar clientes recentes", error);
-            }
-        };
-    
-        fetchClientesRecentes();
-    }, []);
-    
-    
+    const fetchClientesRecentes = async () => {
+        try {
+            const response = await fetch('http://localhost:3000/api/clientes');
+            const data = await response.json();
+
+            // Filtrar clientes dos últimos 7 dias
+            const umaSemanaAtras = new Date();
+            umaSemanaAtras.setDate(umaSemanaAtras.getDate() - 7);
+            const recentes = data.filter(cliente => new Date(cliente.createdAt) > umaSemanaAtras);
+
+            setClientesRecentes(recentes.length);
+        } catch (error) {
+            console.log("Erro ao buscar clientes recentes", error);
+        }
+    };
+
+    fetchClientesRecentes();
+}, []);
+
     // Buscar todos os clientes
     useEffect(() => {
         const fetchClientes = async () => {
