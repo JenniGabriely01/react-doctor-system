@@ -131,7 +131,7 @@ export default function Clientes() {
                                     <h3>{cliente.nome} {cliente.sobrenome}</h3>
                                     <div className="bottom-info">
                                         <p> {cliente.livrosEmprestados || 0} Livro(s) emprestados</p>
-                                        <p>{cliente.createdAt ? new Date(cliente.createdAt).toLocaleDateString() : 'Data não disponível'}</p>
+                                        <p>Cliente cadastro em: <span className="data-cliente-cadastrado">{cliente.createdAt ? new Date(cliente.createdAt).toLocaleDateString() : 'Data não disponível'}</span></p>
                                     </div>
                                 </div>
                             ))

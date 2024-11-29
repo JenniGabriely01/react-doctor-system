@@ -123,6 +123,11 @@
     width: 200px;
 }
 
+.data-cliente-cadastrado {
+    font-weight: 700;
+    color: var(--Vermelho);
+}
+
 .bottom-info {
     display: flex;
     justify-content: space-between;
@@ -133,7 +138,7 @@
 .bottom-info p {
     color: var(--Marrom);
     font-size: 0.7rem;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 #titulo-cliente{
