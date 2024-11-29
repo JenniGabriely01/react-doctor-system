@@ -16,6 +16,27 @@ export default function Clientes() {
     const [filteredClientes, setFilteredClientes] = useState([]);
     const [livrosEmprestadosCount, setLivrosEmprestadosCount] = useState(0);
     const [livrosCount, setLivrosCount] = useState(0);
+
+    useEffect(() => {
+        const fetchClientesRecentes = async () => {
+            try {
+                const response = await fetch('http://localhost:3000/api/clientes');
+                const data = await response.json();
+    
+                // Filtrar clientes dos últimos 7 dias
+                const umaSemanaAtras = new Date();
+                umaSemanaAtras.setDate(umaSemanaAtras.getDate() - 7);
+                const recentes = data.filter(cliente => new Date(cliente.createdAt) > umaSemanaAtras);
+    
+                setClientesRecentes(recentes.length);
+            } catch (error) {
+                console.log("Erro ao buscar clientes recentes", error);
+            }
+        };
+    
+        fetchClientesRecentes();
+    }, []);
+    
     
     // Buscar todos os clientes
     useEffect(() => {
@@ -127,7 +148,7 @@ export default function Clientes() {
                                     <h3>{cliente.nome} {cliente.sobrenome}</h3>
                                     <div className="bottom-info">
                                         <p> {cliente.livrosEmprestados || 0} Livro(s) emprestados</p>
-                                        <p>Cliente cadastro em: <span className="data-cliente-cadastrado">{cliente.createdAt ? new Date(cliente.createdAt).toLocaleDateString() : 'Data não disponível'}</span></p>
+                                        <p> Cadastrado em: <span className="data-cliente-cadastrado">{cliente.createdAt ? new Date(cliente.createdAt).toLocaleDateString() : 'Data não disponível'}</span></p>
                                     </div>
                                 </div>
                             ))
