@@ -4,37 +4,37 @@ import MenuLateral from "../../components/menuLateral/menuLateral";
 import TituloGrande from "../../components/tituloGrande/tituloGrande";
 import Sim from "../../assets/icons/sim.svg";
 import Não from "../../assets/icons/não.svg";
-import './prazos.css';
+import Atrasado from "../../assets/icons/atrasado.svg";
+import NoPrazo from "../../assets/icons/no-prazo.svg";
+import "./prazos.css";
 import axios from "axios";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Prazos() {
     const [emprestimos, setEmprestimos] = useState([]);
     const [expandedCard, setExpandedCard] = useState(null);
-    const [searchTerm, setSearchTerm] = useState('');
-    const [filteredEmp, setFilteredEmp] = useState([]); // Nova lista filtrada
-    const [mostrarTodos, setMostrarTodos] = useState(true); // Adiciona estado para controle de "Ver Mais" ou "Ver Menos"
+    const [searchTerm, setSearchTerm] = useState("");
+    const [filteredEmp, setFilteredEmp] = useState([]);
+    const [mostrarTodos, setMostrarTodos] = useState(true);
 
-    // Buscar os empréstimos da API
     useEffect(() => {
-        axios.get('http://localhost:3000/api/emprestimos')
-            .then(response => {
+        axios.get("http://localhost:3000/api/emprestimos")
+            .then((response) => {
                 setEmprestimos(response.data);
-                setFilteredEmp(response.data.slice(0, mostrarTodos ? response.data.length : 6)); // Inicializa lista filtrada
+                setFilteredEmp(response.data.slice(0, mostrarTodos ? response.data.length : 6));
             })
-            .catch(error => {
-                console.error('Erro ao buscar empréstimos:', error);
+            .catch((error) => {
+                console.error("Erro ao buscar empréstimos:", error);
             });
     }, [mostrarTodos]);
 
-    // Filtra os empréstimos localmente sempre que searchTerm ou emprestimos mudar
     useEffect(() => {
-        const filtered = emprestimos.filter(emprestimo =>
+        const filtered = emprestimos.filter((emprestimo) =>
             emprestimo.cliente.nome.toLowerCase().includes(searchTerm.toLowerCase()) ||
             emprestimo.cliente.sobrenome.toLowerCase().includes(searchTerm.toLowerCase())
         );
-        setFilteredEmp(filtered.slice(0, mostrarTodos ? filtered.length : 6)); // Atualiza lista filtrada
+        setFilteredEmp(filtered.slice(0, mostrarTodos ? filtered.length : 6));
     }, [searchTerm, emprestimos, mostrarTodos]);
 
     const handleVerDetalhes = (emprestimoId) => {
@@ -44,20 +44,25 @@ export default function Prazos() {
     const handleDevolucao = (emprestimoId, livros) => {
         axios.put(`http://localhost:3000/api/emprestimos/${emprestimoId}/devolucao`, { livros })
             .then(() => {
-                setEmprestimos(emprestimos.filter(e => e._id !== emprestimoId));
+                setEmprestimos(emprestimos.filter((e) => e._id !== emprestimoId));
                 setExpandedCard(null);
 
-                toast.success('Devolução realizada com sucesso!');
+                toast.success("Devolução realizada com sucesso!");
             })
-            .catch(error => {
-                console.error('Erro ao processar devolução:', error);
+            .catch((error) => {
+                console.error("Erro ao processar devolução:", error);
             });
     };
 
     const calcularPrazoEntrega = (dataEmprestimo) => {
         const dataEntrega = new Date(dataEmprestimo);
-        dataEntrega.setDate(dataEntrega.getDate() + 15); // Adiciona 15 dias
-        return dataEntrega.toLocaleDateString();
+        dataEntrega.setDate(dataEntrega.getDate() + 15);
+        return dataEntrega;
+    };
+
+    const isAtrasado = (dataEntrega) => {
+        const hoje = new Date();
+        return hoje > dataEntrega;
     };
 
     return (
@@ -73,61 +78,68 @@ export default function Prazos() {
                         <TituloGrande tituloG="Prazos de Devolução" />
                         <BarraSearch
                             placeholder="Pesquisar Clientes..."
-                            onSearch={setSearchTerm} // Passa a função de atualização corretamente
+                            onSearch={setSearchTerm}
                         />
-                     </header>
+                    </header>
 
                     <div className="clientes-emprestimo">
                         {filteredEmp.length > 0 ? (
-                            filteredEmp.map(emprestimo => (
-                                <li className="card-prazo" key={emprestimo._id}>
-                                    <h3>{emprestimo.cliente.nome} {emprestimo.cliente.sobrenome}</h3>
-                                    <p className="detalhes" onClick={() => handleVerDetalhes(emprestimo._id)}>
-                                        {expandedCard === emprestimo._id ? "Mostrar Menos" : "Ver Detalhes"}
-                                    </p>
-                                    <p><span className="emprestimo">Empréstimo:</span> {new Date(emprestimo.dataEmprestimo).toLocaleDateString()}</p>
-                                    <p><span className="entrega">Entrega:</span> {calcularPrazoEntrega(emprestimo.dataEmprestimo)}</p>
-    
-                                    {expandedCard === emprestimo._id && (
-                                        <>
-                                            <hr />
-                                            <h4>Livros emprestados</h4>
-                                            <ul>
-                                                {emprestimo.livros.map(livro => (
-                                                    <li key={livro._id}>{livro.nomeLivro}</li>
-                                                ))}
-                                            </ul>
-                                            <hr />
-                                            <div className="devolucao">
-                                                <h5>O(s) livro(s) foram devolvido(s)?</h5>
-    
-                                                <div className="btn-escolha">
-                                                    <button
-                                                        onClick={() => handleDevolucao(emprestimo._id, emprestimo.livros)}>
-                                                        <img src={Sim} alt="Sim" />
-                                                    </button>
-                                                    <button
-                                                        onClick={() => setExpandedCard(null)}>
-                                                        <img src={Não} alt="Não" />
-                                                    </button>
+                            filteredEmp.map((emprestimo) => {
+                                const prazoEntrega = calcularPrazoEntrega(emprestimo.dataEmprestimo);
+                                const atrasado = isAtrasado(prazoEntrega);
+
+                                return (
+                                    <li className="card-prazo" key={emprestimo._id}>
+                                        <div className="top-card">
+                                            <h3>{emprestimo.cliente.nome} {emprestimo.cliente.sobrenome}</h3>
+                                            <img
+                                                src={atrasado ? Atrasado : NoPrazo}
+                                                alt={atrasado ? "Atrasado" : "No Prazo"}
+                                                className="status-icon"
+                                            />
+                                        </div>
+                                        <p className="detalhes" onClick={() => handleVerDetalhes(emprestimo._id)}>
+                                            {expandedCard === emprestimo._id ? "Mostrar Menos" : "Ver Detalhes"}
+                                        </p>
+                                        <p><span className="emprestimo">Empréstimo:</span> {new Date(emprestimo.dataEmprestimo).toLocaleDateString()}</p>
+                                        <p><span className="entrega">Entrega:</span> {prazoEntrega.toLocaleDateString()}</p>
+
+                                        {expandedCard === emprestimo._id && (
+                                            <>
+                                                <hr />
+                                                <h4>Livros emprestados</h4>
+                                                <ul>
+                                                    {emprestimo.livros.map((livro) => (
+                                                        <li key={livro._id}>{livro.nomeLivro}</li>
+                                                    ))}
+                                                </ul>
+                                                <hr />
+                                                <div className="devolucao">
+                                                    <h5>O(s) livro(s) foram devolvido(s)?</h5>
+
+                                                    <div className="btn-escolha">
+                                                        <button onClick={() => handleDevolucao(emprestimo._id, emprestimo.livros)}>
+                                                            <img src={Sim} alt="Sim" />
+                                                        </button>
+                                                        <button onClick={() => setExpandedCard(null)}>
+                                                            <img src={Não} alt="Não" />
+                                                        </button>
+                                                    </div>
                                                 </div>
-    
-                                            </div>
-                                        </>
-                                    )}
-                                </li>
-                            ))
+                                            </>
+                                        )}
+                                    </li>
+                                );
+                            })
                         ) : (
                             <div className="div-aviso">
-                                    <h3 className="main-aviso">Ah, que pena!</h3>
-                                    <p className="aviso">Não há empréstimos no momento.</p>
-                                </div>
+                                <h3 className="main-aviso">Ah, que pena!</h3>
+                                <p className="aviso">Não há empréstimos no momento.</p>
+                            </div>
                         )}
-                     
                     </div>
                 </section>
             </main>
         </>
-
     );
 }

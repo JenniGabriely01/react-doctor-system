@@ -43,7 +43,7 @@
     flex-direction: column;
     justify-content: center;
     text-align: left;
-    padding: 15px 30px 15px 25px;
+    padding: 0 10px 15px 25px;
     font-weight: 700;
     margin-bottom: 30px;
     align-self: start;
@@ -124,4 +124,19 @@
 
 .btn-escolha button {
     cursor: pointer;
+}
+
+.top-card {
+    display: flex;
+    align-items: center;
+    margin-bottom: -18px;
+}
+
+.status-icon {
+    width: 70px;
+    display: flex;
+    justify-content: end;
+    position: relative;
+    left: 10px;
+    bottom: 30px;
 }
