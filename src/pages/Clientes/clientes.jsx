@@ -25,29 +25,31 @@ export default function Clientes() {
                 const data = await response.json();
                 setTotalClientes(data.length);
                 setClientes(data);
+
+                // Filtrar clientes para exibição
                 setFilteredClientes(data.slice(0, mostrarTodos ? data.length : 6));
 
-                // Filtrar clientes dos últimos 7 dias
-                const seteDiasAtras = new Date();
-                seteDiasAtras.setDate(seteDiasAtras.getDate() - 7);
-                const recentes = data.filter(cliente => new Date(cliente.createdAt) >= seteDiasAtras);
-                setClientesRecentes(recentes.length); // Atualiza a contagem de clientes recentes
-
-                // Buscar livros emprestados por cliente
-               /*  const livrosEmprestadosCount = {};
-                for (const cliente of data || []) {
-                    const responseLivros = await fetch(`http://localhost:3000/api/emprestimos/count?clienteId=${cliente._id}`);
-                    const dataLivros = await responseLivros.json();
-                    livrosEmprestadosCount[cliente._id] = dataLivros?.count || 0; // Use 0 como padrão
+                // Buscar quantidade de livros emprestados para cada cliente
+                const emprestimosPorCliente = {};
+                for (const cliente of data) {
+                    const responseEmprestimos = await fetch(`http://localhost:3000/api/emprestimos/count?clienteId=${cliente._id}`);
+                    const dataEmprestimos = await responseEmprestimos.json();
+                    emprestimosPorCliente[cliente._id] = dataEmprestimos.count || 0;
                 }
-                setLivrosEmprestadosCount(livrosEmprestadosCount); */
 
+                setClientes((prevClientes) =>
+                    prevClientes.map((cliente) => ({
+                        ...cliente,
+                        livrosEmprestados: emprestimosPorCliente[cliente._id] || 0,
+                    }))
+                );
             } catch (error) {
-                console.log("Erro ao buscar clientes", error);
+                console.log("Erro ao buscar clientes ou empréstimos", error);
             }
         };
         fetchClientes();
     }, [mostrarTodos]);
+
 
     useEffect(() => {
         const filtered = clientes.filter(cliente =>
@@ -57,31 +59,31 @@ export default function Clientes() {
         setFilteredClientes(filtered.slice(0, mostrarTodos ? filtered.length : 6));
     }, [searchTerm, clientes, mostrarTodos]);
 
-  /*   useEffect(() => {
-        const fetchLivrosCount = async () => {
-            try {
-                const response = await fetch('http://localhost:3000/api/livros/count');
-                const data = await response.json();
-                setLivrosCount(data.count);
-            } catch (error) {
-                console.log("Erro ao buscar contagem de livros", error);
-            }
-        };
-        fetchLivrosCount();
-    }, []); */
+    /*   useEffect(() => {
+          const fetchLivrosCount = async () => {
+              try {
+                  const response = await fetch('http://localhost:3000/api/livros/count');
+                  const data = await response.json();
+                  setLivrosCount(data.count);
+              } catch (error) {
+                  console.log("Erro ao buscar contagem de livros", error);
+              }
+          };
+          fetchLivrosCount();
+      }, []); */
 
-/*     useEffect(() => {
-        const fetchLivrosEmprestadosCount = async () => {
-            try {
-                const response = await fetch('http://localhost:3000/api/livros/emprestados/count');
-                const data = await response.json();
-                setLivrosEmprestadosCount(data.count);
-            } catch (error) {
-                console.log("Erro ao buscar contagem de livros emprestados", error);
-            }
-        };
-        fetchLivrosEmprestadosCount();
-    }, []); */
+    /*     useEffect(() => {
+            const fetchLivrosEmprestadosCount = async () => {
+                try {
+                    const response = await fetch('http://localhost:3000/api/livros/emprestados/count');
+                    const data = await response.json();
+                    setLivrosEmprestadosCount(data.count);
+                } catch (error) {
+                    console.log("Erro ao buscar contagem de livros emprestados", error);
+                }
+            };
+            fetchLivrosEmprestadosCount();
+        }, []); */
 
     return (
         <main className="clientes">
@@ -128,16 +130,18 @@ export default function Clientes() {
                                 <div className="card-cliente" key={cliente._id}>
                                     <h3>{cliente.nome} {cliente.sobrenome}</h3>
                                     <div className="bottom-info">
-                                        <p> Livro(s) emprestados</p>
+                                        <p> {cliente.livrosEmprestados || 0} Livro(s) emprestados</p>
                                         <p>{cliente.createdAt ? new Date(cliente.createdAt).toLocaleDateString() : 'Data não disponível'}</p>
                                     </div>
                                 </div>
                             ))
                         ) : (
-                            <p>Nenhum cliente cadastrado até o momento.</p>
+                            <div className="div-aviso">
+                                <h3 className="main-aviso">Onde estão os leitores?</h3>
+                                <p className="aviso">Não há clientes cadastrados no momento.</p>
+                            </div>
                         )}
                     </div>
-
 
                     <div className="titulos-cliente" id="titulo-cliente">
                         <h2>Estatísticas</h2>
@@ -148,17 +152,6 @@ export default function Clientes() {
                             title="Clientes cadastrados"
                             amount={totalClientes || 0}
                         />
-
-                       {/*  <EstatisticBlock
-                            title="Livros emprestados"
-                            amount={livrosEmprestadosCount || 0}
-                        />
-
-                        <EstatisticBlock
-                            title="Livros cadastrados"
-                            amount={livrosCount || 0}
-                        /> */}
-
                     </div>
 
                 </div>

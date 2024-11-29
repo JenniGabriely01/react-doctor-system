@@ -4,6 +4,7 @@
     --Vermelho: #8C2A2A;
     --Amarelo: #F8F8D8;
     --Rosa: #F8E8E8;
+    --Aviso: #f8e8e883;
     --Marrom: #C29181;
     --Marrom2: #4F3838;
     --Cinza: #CEC8C8;
@@ -23,7 +24,7 @@
     flex-direction: column;
     float: left;
     width: 47.5%;
-    height: 201vh;
+    height: 261vh;
 }
 
 .conteudo-direita {
@@ -151,6 +152,7 @@
 }
 
 .livros-container {
+    height: 100%;
     display: flex;
     justify-content: space-between;
 }
@@ -163,7 +165,7 @@
 .lista h2 {
     color: var(--Vermelho);
     font-size: 1.4vw;
-    margin-bottom: 20px;
+    margin-bottom: 1vw;
 }
 
 .listas-livros {
@@ -176,11 +178,31 @@
     height: 13.5vw;
 }
 
-.livros-container p {
+.titulo {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     width: 100px; 
     color: var(--Vermelho);
     text-align: left;
+}
+
+.div-aviso {
+    background-color: var(--Aviso);
+    border-radius: 10px;
+    height: 10vw;
+}
+
+.main-aviso {
+    color: var(--Vermelho);
+    padding: 2vw 0 0 2vw;
+    margin: 1vw 0 0 0;
+    font-size: 1rem;
+}
+
+.aviso {
+    color: var(--Vermelho);
+    font-weight: 500;
+    padding: 0 2vw 0 2vw;
+    font-size: 1rem;
 }
