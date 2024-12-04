@@ -15,6 +15,7 @@ export default function Livraria() {
     const [livroSelecionado, setLivroSelecionado] = useState(null);
     const [showModal, setShowModal] = useState(false); // Estado para controlar o modal
     const [livroARemover, setLivroARemover] = useState(null); // Estado para armazenar o livro a ser removido
+    
 
     // Fetch de todos os livros ao carregar a página
     useEffect(() => {
@@ -77,9 +78,11 @@ export default function Livraria() {
                 setFilteredLivros(filteredLivros.filter(livro => livro._id !== livroARemover._id));
                 setShowModal(false);
                 setLivroARemover(null);  // Limpar o estado do livro a ser removido
+                setLivroSelecionado(null); // Fechar os detalhes
             } else {
                 console.log("Erro ao remover livro:", response.status);
             }
+            
         } catch (error) {
             console.error("Erro ao tentar remover livro:", error);
         }
