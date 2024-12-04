@@ -145,7 +145,7 @@ export default function CadLivros() {
                                     legendaBotao="Voltar"
                                     cor="50%"
                                     margem="0 0 0 5%"
-                                    rota="/Livraria"
+                                    rota="/Acervo"
                                 />
                             </div>
                         </form>

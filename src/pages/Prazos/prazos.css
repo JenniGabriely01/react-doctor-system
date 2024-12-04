@@ -52,6 +52,7 @@
 
 .card-prazo p {
     color: var(--Marrom);
+    cursor: pointer;
 }
 
 .card-prazo hr {

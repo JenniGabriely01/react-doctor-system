@@ -5,6 +5,8 @@ import EstatisticBlock from "../../components/EstatisticBlock/estatisticblock";
 import Button from "../../components/button/button";
 import { useState, useEffect } from 'react';
 import './clientes.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 
 export default function Clientes() {
@@ -117,30 +119,92 @@ export default function Clientes() {
         }));
     };
 
-    const handleRemoverCliente = async (id) => {
-        const confirmar = window.confirm("Tem certeza que deseja remover este cliente?");
-        if (!confirmar) return;
+    const handleRemoverCliente = (id) => {
+        // Exibir mensagem de confirmação
+        toast.info(
+            <div
+                style={{
+                    padding: "10px",
+                    marginLeft: "10px",
+                }}
+            >
+                <p
+                    style={{
+                        fontSize: "1.2vw",
+                        color: "#8C2A2A",
+                        marginBottom: "10px"
+                    }}
+                >Tem certeza que deseja remover este cliente?</p>
+                <button
+                    onClick={() => removerCliente(id)}
+                    style={{
+                        padding: "5px",
+                        backgroundColor: "#8C2A2A",
+                        color: "#fff",
+                        border: "none",
+                        borderRadius: "5px",
+                        cursor: "pointer",
+                    }}
+                >
+                    Confirmar
+                </button>
+                <button
+                    onClick={() => toast.dismiss()}
+                    style={{
+                        margin: "5px",
+                        padding: "5px",
+                        backgroundColor: "#8c2a2aac",
+                        color: "#fff",
+                        border: "none",
+                        borderRadius: "5px",
+                        cursor: "pointer",
+                    }}
+                >
+                    Cancelar
+                </button>
+            </div>,
+            {
+                position: "top-right",
+                autoClose: false,
+                closeOnClick: false,
+                draggable: false,
+                icon: false,
+            }
+        );
+    };
 
+    const removerCliente = async (id) => {
         try {
-            await fetch(`http://localhost:3000/api/clientes/${id}`, {
+            const response = await fetch(`http://localhost:3000/api/cliente/${id}`, {
                 method: "DELETE",
             });
-            setClientes((prevClientes) => prevClientes.filter((cliente) => cliente._id !== id));
-            setFilteredClientes((prevClientes) =>
-                prevClientes.filter((cliente) => cliente._id !== id)
-            );
-            setExpandedCards((prev) => {
-                const updated = { ...prev };
-                delete updated[id];
-                return updated;
-            });
+
+            if (response.ok) {
+                setClientes((prevClientes) =>
+                    prevClientes.filter((cliente) => cliente._id !== id)
+                );
+                toast.success("Cliente removido com sucesso!", {
+                    position: "top-right", // Define a posição no topo à direita
+                    autoClose: 3000,       // Tempo para fechar automaticamente (em milissegundos)
+                    hideProgressBar: false, // Mostra a barra de progresso
+                    closeOnClick: true,     // Fecha ao clicar
+                    pauseOnHover: true,     // Pausa o fechamento ao passar o mouse
+                    draggable: true,        
+                });
+            } else {
+                const errorData = await response.json();
+                toast.error(`Erro ao remover cliente: ${errorData.message}`);
+            }
         } catch (error) {
-            console.error("Erro ao remover cliente:", error);
+            toast.error("Erro ao conectar com o servidor.");
         }
     };
 
+
     return (
         <main className="clientes">
+            <ToastContainer position="top-center" style={{ marginRight: "37px" }} autoClose={3000} />
+
             <div>
                 <MenuLateral />
             </div>
