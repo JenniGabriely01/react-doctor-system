@@ -160,10 +160,36 @@ export default function Livraria() {
                                     <img className="exit" onClick={HandleCloseDetalhes} src={Exit} alt="" />
                                 </div>
                                 <img className="img-livro" src={livroSelecionado.image} alt={livroSelecionado.nomeLivro} />
-                                <h2> <span className="title-detalhe">Autor:</span> {livroSelecionado.autor}</h2>
-                                <h2> <span className="title-detalhe"> Gênero:</span> {livroSelecionado.genero}</h2>
-                                <h2> <span className="title-detalhe">Data de Lançamento:</span> {formatarData(livroSelecionado.dataLancamento)}</h2>
-                                <h2><span className="title-detalhe"> Estoque:</span> {livroSelecionado.qtdCopias}</h2>
+                                <h2>
+                                    <span className="title-detalhe">
+                                        Autor:</span> <span className="info-detalhe">{livroSelecionado.autor}
+                                    </span>
+                                </h2>
+                                <h2>
+                                    <span className="title-detalhe">
+                                        Gênero:</span> <span className="info-detalhe">{livroSelecionado.genero}
+                                    </span>
+                                </h2>
+                                <h2>
+                                    <span className="title-detalhe">
+                                        ISBN:</span> <span className="info-detalhe">{livroSelecionado.isbn}
+                                    </span>
+                                </h2>
+                                <h2>
+                                    <span className="title-detalhe">
+                                        Editora:</span> <span className="info-detalhe">{livroSelecionado.editora}
+                                    </span>
+                                </h2>
+                                <h2>
+                                    <span className="title-detalhe">
+                                        Data de Lançamento:</span> <span className="info-detalhe">{formatarData(livroSelecionado.dataLancamento)}
+                                    </span>
+                                </h2>
+                                <h2>
+                                    <span className="title-detalhe">
+                                        Estoque:</span> <span className="info-detalhe">{livroSelecionado.qtdCopias}
+                                    </span>
+                                </h2>
 
                                 <Link className="link" to="/Emprestimo">Emprestar</Link>
                                 <button className="link remover" onClick={() => { setLivroARemover(livroSelecionado); setShowModal(true); }}>Remover Livro</button>

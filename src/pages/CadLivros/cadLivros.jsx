@@ -13,6 +13,8 @@ export default function CadLivros() {
     const [nomeLivro, setNome] = useState('');
     const [autor, setAutor] = useState('');
     const [genero, setGenero] = useState('');
+    const [isbn, setISBN] = useState('');
+    const [editora, setEditora] = useState('');
     const [dataLancamento, setDataLancamento] = useState('');
     const [qtdCopias, setQtdCopias] = useState('');
     const [image, setImage] = useState('');
@@ -32,6 +34,8 @@ export default function CadLivros() {
                     nomeLivro,
                     autor,
                     genero,
+                    isbn,
+                    editora,
                     dataLancamento, // A data será enviada no formato correto (yyyy-MM-dd)
                     qtdCopias,
                     image
@@ -42,7 +46,7 @@ export default function CadLivros() {
 
             if (response.ok) {
                 toast.success('Livro cadastrado com sucesso!');
-                navigate('/Livraria');
+                navigate('/Acervo');
             } else {
                 toast.error(`${data.message}`);
             }
@@ -94,6 +98,18 @@ export default function CadLivros() {
                                 onChange={(e) => setGenero(e.target.value)}
                             />
                             <Input
+                                placeholder="ISBN"
+                                type="text"
+                                value={isbn}
+                                onChange={(e) => setISBN(e.target.value)}
+                            />
+                            <Input
+                                placeholder="Editora"
+                                type="text"
+                                value={editora}
+                                onChange={(e) => setEditora(e.target.value)}
+                            />
+                            <Input
                                 placeholder="Data de Lançamento"
                                 type="date"
                                 value={dataLancamento}
@@ -143,4 +159,4 @@ export default function CadLivros() {
             </section>
         </>
     );
-}
+} 

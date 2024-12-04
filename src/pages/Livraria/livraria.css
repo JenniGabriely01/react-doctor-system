@@ -173,7 +173,12 @@
 
 .title-detalhe {
     font-weight: 700;
+    font-size: 1rem;
     margin: 0.25vw;
+}
+
+.info-detalhe {
+    font-size: 0.90rem;
 }
 
 .livros.detalhes-abertos {
