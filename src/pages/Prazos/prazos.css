@@ -128,6 +128,7 @@
 
 .top-card {
     display: flex;
+    justify-content: space-between;
     align-items: center;
     margin-bottom: -18px;
 }

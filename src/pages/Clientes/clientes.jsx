@@ -16,26 +16,27 @@ export default function Clientes() {
     const [filteredClientes, setFilteredClientes] = useState([]);
     const [livrosEmprestadosCount, setLivrosEmprestadosCount] = useState(0);
     const [livrosCount, setLivrosCount] = useState(0);
+    const [expandedCards, setExpandedCards] = useState({});
 
     useEffect(() => {
-    const fetchClientesRecentes = async () => {
-        try {
-            const response = await fetch('http://localhost:3000/api/clientes');
-            const data = await response.json();
+        const fetchClientesRecentes = async () => {
+            try {
+                const response = await fetch('http://localhost:3000/api/clientes');
+                const data = await response.json();
 
-            // Filtrar clientes dos últimos 7 dias
-            const umaSemanaAtras = new Date();
-            umaSemanaAtras.setDate(umaSemanaAtras.getDate() - 7);
-            const recentes = data.filter(cliente => new Date(cliente.createdAt) > umaSemanaAtras);
+                // Filtrar clientes dos últimos 7 dias
+                const umaSemanaAtras = new Date();
+                umaSemanaAtras.setDate(umaSemanaAtras.getDate() - 7);
+                const recentes = data.filter(cliente => new Date(cliente.createdAt) > umaSemanaAtras);
 
-            setClientesRecentes(recentes.length);
-        } catch (error) {
-            console.log("Erro ao buscar clientes recentes", error);
-        }
-    };
+                setClientesRecentes(recentes.length);
+            } catch (error) {
+                console.log("Erro ao buscar clientes recentes", error);
+            }
+        };
 
-    fetchClientesRecentes();
-}, []);
+        fetchClientesRecentes();
+    }, []);
 
     // Buscar todos os clientes
     useEffect(() => {
@@ -100,7 +101,44 @@ export default function Clientes() {
                 console.error('Erro ao buscar contagem de livros:', error);
             });
     }, []);
-    
+
+    useEffect(() => {
+        const filtered = clientes.filter((cliente) =>
+            cliente.nome.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            cliente.sobrenome.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+        setFilteredClientes(filtered.slice(0, mostrarTodos ? filtered.length : 6));
+    }, [searchTerm, clientes, mostrarTodos]);
+
+    const toggleCardExpand = (id) => {
+        setExpandedCards((prev) => ({
+            ...prev,
+            [id]: !prev[id],
+        }));
+    };
+
+    const handleRemoverCliente = async (id) => {
+        const confirmar = window.confirm("Tem certeza que deseja remover este cliente?");
+        if (!confirmar) return;
+
+        try {
+            await fetch(`http://localhost:3000/api/clientes/${id}`, {
+                method: "DELETE",
+            });
+            setClientes((prevClientes) => prevClientes.filter((cliente) => cliente._id !== id));
+            setFilteredClientes((prevClientes) =>
+                prevClientes.filter((cliente) => cliente._id !== id)
+            );
+            setExpandedCards((prev) => {
+                const updated = { ...prev };
+                delete updated[id];
+                return updated;
+            });
+        } catch (error) {
+            console.error("Erro ao remover cliente:", error);
+        }
+    };
+
     return (
         <main className="clientes">
             <div>
@@ -144,11 +182,58 @@ export default function Clientes() {
                         {filteredClientes.length > 0 ? (
                             filteredClientes.map((cliente) => (
                                 <div className="card-cliente" key={cliente._id}>
-                                    <h3>{cliente.nome} {cliente.sobrenome}</h3>
-                                    <div className="bottom-info">
-                                        <p> {cliente.livrosEmprestados || 0} Livro(s) emprestados</p>
-                                        <p> Cadastrado em: <span className="data-cliente-cadastrado">{cliente.createdAt ? new Date(cliente.createdAt).toLocaleDateString() : 'Data não disponível'}</span></p>
+                                    <div className="top-card-cliente">
+                                        <h3>
+                                            {cliente.nome} {cliente.sobrenome}
+                                        </h3>
+
+                                        <button
+                                            className="btn-vermais"
+                                            onClick={() => toggleCardExpand(cliente._id)}
+                                        >
+                                            {expandedCards[cliente._id]
+                                                ? "Ver menos"
+                                                : "Ver mais"}
+                                        </button>
                                     </div>
+
+                                    <div className="bottom-info">
+                                        <p>
+                                            {cliente.livrosEmprestados || 0} Livro(s) emprestados
+                                        </p>
+                                        <p>
+                                            Cadastrado em:{" "}
+                                            <span className="data-cadastro">
+                                                {cliente.createdAt
+                                                    ? new Date(cliente.createdAt).toLocaleDateString()
+                                                    : "Data não disponível"}
+                                            </span>
+                                        </p>
+                                    </div>
+
+                                    {/* Detalhes adicionais no card */}
+                                    {expandedCards[cliente._id] && (
+                                        <div className="detalhes-card-clientes">
+                                            <hr />
+                                            <p>
+                                                <strong>Email:</strong> {cliente.email || "Não informado"}
+                                            </p>
+                                            <p>
+                                                <strong>Telefone:</strong>{" "}
+                                                {cliente.telefone || "Não informado"}
+                                            </p>
+                                            {/* Botão para remover cliente */}
+                                            <div className="btn-remover">
+                                                <button
+                                                    className="btn-remover"
+                                                    onClick={() => handleRemoverCliente(cliente._id)}
+                                                >
+                                                    Remover Cliente
+                                                </button>
+                                            </div>
+
+                                        </div>
+                                    )}
                                 </div>
                             ))
                         ) : (

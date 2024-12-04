@@ -106,11 +106,66 @@
 .card-cliente {
     background-color: var(--Rosa);
     border-left: 8px solid var(--Vermelho);
+    border-radius: 8px;
     display: flex;
     flex-direction: column;
-    padding: 15px 25px 15px 15px;
-    border-radius: 8px;
+    justify-content: center;
     text-align: left;
+    padding: 15px 25px 15px 15px;
+    align-self: start;
+}
+
+.top-card-cliente {
+    display: flex;
+    justify-content: space-between;
+}
+
+.top-card-cliente button {
+    background: transparent;
+    border: 0;
+    font-weight: 500;
+    cursor: pointer;
+    color: var(--Vermelho);
+}
+
+.data-cadastro {
+    font-weight: 600;
+}
+
+.detalhes-card-clientes {
+    margin-top: 10px;
+    color: var(--Marrom);
+    font-weight: 600;
+}
+
+.detalhes-card-clientes hr {
+    background-color: var(--Vermelho);
+    height: 1px;
+    margin: 10px 0;
+    border: 0;
+}
+
+.detalhes-card-clientes strong {
+    color: var(--Vermelho);
+}
+
+.detalhes-card-clientes p {
+    font-size: 1vw;
+    margin-bottom: 10px;
+}
+
+.btn-remover { 
+    display: flex;
+    justify-content: end;
+}
+
+.detalhes-card-clientes button {
+    background: transparent;
+    border: 0;
+    color: var(--Vermelho);
+    font-size: 1.1vw;
+    font-weight: 700;
+    display: flex;
     cursor: pointer;
 }
 
