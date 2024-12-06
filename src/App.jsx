@@ -8,13 +8,14 @@ import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import CadClientes from './pages/CadClientes/cadClientes';
 import Emprestimo from './pages/Emprestimo/emprestimo';
 import CadLivros from './pages/CadLivros/cadLivros';
-
+import Password from './pages/RecuperarSenha/Password';
 function App() {
 
     return (
         <BrowserRouter>
             <Routes>
                 <Route path="/login" element={<Login />} />
+                <Route path="/Password" element={<Password />} /> 
                 <Route path="/Dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
                 <Route path="/Acervo" element={<PrivateRoute><Acervo /></PrivateRoute>} />
                 <Route path="/CadLivros" element={<PrivateRoute><CadLivros /></PrivateRoute>} />

@@ -4,9 +4,7 @@ import './login.css';
 import imagemDireita from '../../assets/imagens/imagemFundoLogin.png';
 import logoVertical from '../../assets/imagens/logoVertical.svg';
 import logoForm from '../../assets/imagens/logoMenu.svg';
-import Input from '../../components/input/inpux'; 
-/* Importação da tela de login */
-/* import 'ldrs/ring';  */
+import Input from '../../components/input/inpux';
 
 export default function Login() {
     const [email, setEmail] = useState('');
@@ -19,46 +17,43 @@ export default function Login() {
 
     const handleLogin = async (event) => {
         event.preventDefault();
-        setError('');
-        setSuccess('');
-        
+        setError("");
+        setSuccess("");
+    
         if (!email || !password) {
-            setError('*Por favor, insira todos os campos.');
+            setError("*Por favor, preencha todos os campos.");
             return;
         }
-
-        setLoading(true);  
-
+    
         try {
-            const response = await fetch('http://localhost:3000/login', {
-                method: 'POST',
+            const response = await fetch("http://localhost:3000/login", {
+                method: "POST",
                 headers: {
-                    'Content-Type': 'application/json',
+                    "Content-Type": "application/json",
                 },
                 body: JSON.stringify({ email, password }),
             });
-
+    
             const data = await response.json();
-
-            if (response.ok) {
-                setSuccess('Login bem-sucedido!');
-                sessionStorage.setItem('token', data.token); 
-
-                
-                setTimeout(() => {
-                    setLoading(false); 
-                    navigate('/Dashboard');
-                    /* Tempo da tela de carregamento */
-                }, 1000); // 1 segundo. 
-            } else {
-                setError(data.error || 'Erro ao realizar login');
-                setLoading(false); 
+    
+            if (!response.ok) {
+                setError(data.error || "Erro ao realizar login");
+                return;
             }
-        } catch (err) {
-            console.error('*Erro ao fazer login:', err);
-            setError('*Erro ao fazer login');
-            setLoading(false); 
+    
+            setSuccess("Login bem-sucedido!");
+            sessionStorage.setItem("token", data.token);
+    
+            setTimeout(() => {
+                navigate("/Dashboard");
+            }, 1000);
+        } catch (error) {
+            console.error("Erro no login:", error);
+            setError("*Erro ao fazer login. Verifique a conexão com o servidor.");
         }
+    };
+    const handleForgotPassword = () => {
+        navigate('/Password'); 
     };
 
     return (
@@ -69,7 +64,7 @@ export default function Login() {
                     <h1>Bem-vindo de Volta!</h1>
                     <p className="p-title">Por favor, entre em sua conta.</p>
                     <form onSubmit={handleLogin}>
-                        <Input 
+                        <Input
                             placeholder="Email"
                             type="email"
                             value={email}
@@ -88,12 +83,18 @@ export default function Login() {
                         {loading ? (
                             <div className="loading-container">
                                 {/* Tela de carregamento */}
-                                <l-ring size="100" color="white"></l-ring> 
+                                <l-ring size="100" color="white"></l-ring>
                             </div>
                         ) : (
                             <button type="submit">Entrar</button>
                         )}
                     </form>
+                    <button
+                        className="forgot-password-button"
+                        onClick={handleForgotPassword}
+                    >
+                        Esqueci minha senha
+                    </button>
                 </div>
             </div>
 
